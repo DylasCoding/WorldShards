@@ -326,7 +326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -305, y: 77}
+  m_AnchoredPosition: {x: -320, y: 73}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &186207907
@@ -1439,8 +1439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 3706197912117316503, guid: 91ae677b28abdb74e815aff708ee1556, type: 3}
   ghostParent: {fileID: 746616622}
-  ghostDelay: 0.1
-  ghostLifetime: 0.2
+  ghostDelay: 0.01
+  ghostLifetime: 1
 --- !u!1 &753913323
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,7 +1512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -90, y: -80.2}
+  m_AnchoredPosition: {x: -98, y: -83}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &780383417
@@ -2282,6 +2282,7 @@ GameObject:
   - component: {fileID: 1774229712}
   - component: {fileID: 1774229713}
   - component: {fileID: 1774229714}
+  - component: {fileID: 1774229715}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -2393,6 +2394,22 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 13160e7f7bdc0bd41bcec71782a28d61, type: 2}
   currentHealth: 0
   isAttacking: 0
+--- !u!114 &1774229715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774229710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d101e24da94d59246a9d52c14c6e6c40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 3706197912117316503, guid: 91ae677b28abdb74e815aff708ee1556, type: 3}
+  ghostParent: {fileID: 1774229711}
+  ghostDelay: 0.01
+  ghostLifetime: 1
 --- !u!1 &1890237824
 GameObject:
   m_ObjectHideFlags: 0

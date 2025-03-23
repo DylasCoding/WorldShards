@@ -10,27 +10,47 @@ public class GhostDash : MonoBehaviour
     public float ghostLifetime;
     private float ghostDelaySeconds;
     private float ghostLifetimeSeconds;
+    private Vector2 lastPosition;
     void Start()
     {
         ghostDelaySeconds = ghostDelay;
         ghostLifetimeSeconds = ghostLifetime;
+        lastPosition = transform.position;
     }
     void Update()
     {
-        if (ghostDelaySeconds > 0)
+        if (Vector2.Distance(transform.position, lastPosition) > 0.01f)
         {
-            ghostDelaySeconds -= Time.deltaTime;
+            if (ghostDelaySeconds <= 0)
+            {
+                createGhost(lastPosition);
+                ghostDelaySeconds = ghostDelay;
+                lastPosition = transform.position;
+            }
+            else
+            {
+                ghostDelaySeconds -= Time.deltaTime;
+            }
         }
-        else
+    }
+
+    void createGhost(Vector2 position)
+    {
+        GameObject currentGhost = Instantiate(ghostPrefab, position, transform.rotation);
+        if (ghostParent != null)
         {
-
-            Vector3 ghostPosition = new Vector3(transform.position.x - 0.1f, transform.position.y, 0f);
-
-            GameObject currentGhost = Instantiate(ghostPrefab, ghostPosition, transform.rotation);
+            currentGhost.transform.SetParent(ghostParent);
 
             SpriteRenderer ghostSprite = currentGhost.GetComponent<SpriteRenderer>();
-            ghostSprite.sprite = GetComponent<SpriteRenderer>().sprite;
-            ghostDelaySeconds = ghostDelay;
+            SpriteRenderer characterSprite = GetComponent<SpriteRenderer>();
+
+            if (ghostSprite.sprite != null && characterSprite.sprite != null)
+            {
+                ghostSprite.sprite = characterSprite.sprite;
+                ghostSprite.flipX = characterSprite.flipX;
+                Debug.Log("Ghost created");
+            }
+
             Destroy(currentGhost, ghostLifetimeSeconds);
         }
     }

@@ -21,12 +21,10 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: bb8cf2bb929270f468649fb7eb008505, type: 3}
-    - time: 0.33333334
       value: {fileID: 21300000, guid: 50913197102661846826b895f48d6587, type: 3}
-    - time: 0.6666667
+    - time: 0.33333334
       value: {fileID: 21300000, guid: 7eaba3afac6af1a469a288b3d7d1dc36, type: 3}
-    - time: 1
+    - time: 0.6666667
       value: {fileID: 21300000, guid: 815d6136385fbbc47be38bc5c7660c26, type: 3}
     attribute: m_Sprite
     path: 
@@ -50,7 +48,6 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: bb8cf2bb929270f468649fb7eb008505, type: 3}
     - {fileID: 21300000, guid: 50913197102661846826b895f48d6587, type: 3}
     - {fileID: 21300000, guid: 7eaba3afac6af1a469a288b3d7d1dc36, type: 3}
     - {fileID: 21300000, guid: 815d6136385fbbc47be38bc5c7660c26, type: 3}
@@ -59,7 +56,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.3333334
+    m_StopTime: 1
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -79,7 +76,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1
+  - time: 0.6666667
     functionName: OnAnimationDealDamage
     data: 
     objectReferenceParameter: {fileID: 0}

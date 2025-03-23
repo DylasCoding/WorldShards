@@ -20,11 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
-    - time: 0.25
+    - time: 0
       value: {fileID: 21300000, guid: 2c39ce6a63deb4b4ea181bae6bf021b5, type: 3}
-    - time: 0.5
+    - time: 0.25
       value: {fileID: 21300000, guid: 6630fd1a88d386f468e639adddfac874, type: 3}
-    - time: 0.75
+    - time: 0.5
       value: {fileID: 21300000, guid: 7c08194dc6873b14ab352163cb815f77, type: 3}
     attribute: m_Sprite
     path: 
@@ -56,7 +56,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.75
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -76,7 +76,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.75
+  - time: 0.5
     functionName: OnAnimationDealDamage
     data: 
     objectReferenceParameter: {fileID: 0}

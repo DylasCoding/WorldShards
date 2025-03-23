@@ -9,7 +9,7 @@ public class CharacterSwitcher : MonoBehaviour
 
     void Start()
     {
-
+        Debug.Log("Current character: " + currentCharacter.name);
     }
 
 }

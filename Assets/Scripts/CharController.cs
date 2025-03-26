@@ -39,12 +39,8 @@ public class CharController : MonoBehaviour
 
         animator.SetInteger("SkillNumber", index);
 
-        if (skill.isMovementSkill)
-        {
-            StartCoroutine(HandleMovementSkill(skill));
-            StartCoroutine(WaitAnimationFinish(skill.skillAnimation.name));
-        }
-        // StartCoroutine(DealDamage(skill, target));
+        if (skill.isMovementSkill) { StartCoroutine(HandleMovementSkill(skill)); }
+
         this.targetForDamage = target;
         this.currentSkill = skill;
         StartCoroutine(WaitAnimationFinish(skill.skillAnimation.name));
@@ -112,9 +108,9 @@ public class CharController : MonoBehaviour
     {
         float animationLength = GetAnimationClipLength(clipName);
         yield return new WaitForSeconds(animationLength);
-        isAttacking = false;
         animator.SetInteger("SkillNumber", 0);
         OnMovementComplete();
+        isAttacking = false;
     }
 
     public void OnMovementComplete()

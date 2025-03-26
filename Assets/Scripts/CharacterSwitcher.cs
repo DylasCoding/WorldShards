@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 public class CharacterSwitcher : MonoBehaviour
 {
-    public CharacterController currentCharacter;
-    public List<CharacterController> characters;
+    [SerializeField] private CharacterData[] _characters;
+    [SerializeField] private CharacterData _defaultCharacter;
+    [SerializeField] private CharController _playerController;
+
+    [SerializeField] private Button[] _switchButton;
+
+    private CharacterData currentCharacter;
+
 
     void Start()
     {
-        Debug.Log("Current character: " + currentCharacter.name);
-        Debug.Log("Current character: " + currentCharacter.name);
-        Debug.Log("Current character: " + currentCharacter.name);
 
     }
 

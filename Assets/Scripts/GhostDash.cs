@@ -48,7 +48,7 @@ public class GhostDash : MonoBehaviour
             {
                 ghostSprite.sprite = characterSprite.sprite;
                 ghostSprite.flipX = characterSprite.flipX;
-                Debug.Log("Ghost created");
+                // Debug.Log("Ghost created");
             }
 
             Destroy(currentGhost, ghostLifetimeSeconds);

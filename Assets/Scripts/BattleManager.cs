@@ -30,7 +30,7 @@ public class BattleManager : MonoBehaviour
     {
         yield return new WaitUntil(() => !player.isAttacking);
 
-        if (enemy.currentHealth <= 0)
+        if (enemy.GetCurrentHealth() <= 0)
         {
             EndGame();
             yield break;
@@ -53,11 +53,11 @@ public class BattleManager : MonoBehaviour
     }
     private void EndGame()
     {
-        if (player.currentHealth <= 0)
+        if (player.GetCurrentHealth() <= 0)
         {
             Debug.Log("Player is dead");
         }
-        if (enemy.currentHealth <= 0)
+        if (enemy.GetCurrentHealth() <= 0)
         {
             Debug.Log("Enemy is dead");
         }

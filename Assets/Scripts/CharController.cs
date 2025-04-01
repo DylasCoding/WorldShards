@@ -10,24 +10,42 @@ public class CharController : MonoBehaviour
     public CharacterData characterData;
     private Animator animator;
     private Vector2 originalPosition;
-    public int currentHealth;
     public bool isAttacking = false;
+
+    [Header("Health")]
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int maxHealth;
 
     //save skill, target
     private SkillData currentSkill;
     private CharController targetForDamage;
 
+    [Header("UI")]
+    [SerializeField] private GameObject healthBarPrefab;
+
     void Start()
     {
-        currentHealth = characterData.maxHealth;
+        maxHealth = characterData.maxHealth;
+        currentHealth = maxHealth;
         animator = GetComponent<Animator>();
         originalPosition = transform.position;
         animator.runtimeAnimatorController = characterData.animatorController;
+
+        HealthUIUpdate(currentHealth, maxHealth);
     }
 
-    void Update()
+    public void UpdateCharacterData(CharacterData newCharacterData, int newHealth)
     {
+        characterData = newCharacterData;
+        currentHealth = newHealth;
 
+        if (animator == null)
+            animator = GetComponent<Animator>();
+
+        animator.runtimeAnimatorController = characterData.animatorController;
+        isAttacking = false;
+        animator.SetInteger("SkillNumber", 0);
+        transform.position = originalPosition;
     }
 
     public void useSkill(int index, CharController target)
@@ -143,11 +161,29 @@ public class CharController : MonoBehaviour
         }
     }
 
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    private void HealthUIUpdate(int currentHealth, int maxHealth)
+    {
+        if (healthBarPrefab != null)
+        {
+            HealthUI healthUI = healthBarPrefab.GetComponent<HealthUI>();
+            if (healthUI != null)
+            {
+                healthUI.UpdateHealthBar(currentHealth, maxHealth);
+            }
+        }
+    }
+
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log(characterData.characterName + " take " + damage + " damage! Hp: " + currentHealth);
         animator.SetBool("TakeDamage", true);
+
+        HealthUIUpdate(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {

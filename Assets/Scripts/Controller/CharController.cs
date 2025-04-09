@@ -12,6 +12,10 @@ public class CharController : MonoBehaviour
     private Vector2 originalPosition;
     public bool isAttacking = false;
 
+    [Header("Damage Spawner")]
+    [SerializeField] private DamageSpawner damageSpawner;
+
+
     [Header("Health")]
     [SerializeField] private int currentHealth;
     [SerializeField] private int maxHealth;
@@ -23,7 +27,7 @@ public class CharController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private GameObject healthBarPrefab;
 
-    void Start()
+    private void Start()
     {
         maxHealth = characterData.maxHealth;
         currentHealth = maxHealth;
@@ -32,12 +36,28 @@ public class CharController : MonoBehaviour
         animator.runtimeAnimatorController = characterData.animatorController;
 
         HealthUIUpdate(currentHealth, maxHealth);
+
+        //update position
+        MoveToOriginalPosition();
+    }
+
+    private void MoveToOriginalPosition()
+    {
+        if (role == CharacterRole.Player)
+            // transform.position = originalPosition;
+            originalPosition = transform.position;
     }
 
     public void UpdateCharacterData(CharacterData newCharacterData, int newHealth)
     {
+        MoveToOriginalPosition();
         characterData = newCharacterData;
         currentHealth = newHealth;
+        maxHealth = newCharacterData.maxHealth;
+
+        //update UI
+        HealthUIUpdate(currentHealth, maxHealth);
+        Debug.Log("Update character data: " + characterData.characterName + " " + currentHealth + "/" + characterData.maxHealth);
 
         if (animator == null)
             animator = GetComponent<Animator>();
@@ -79,8 +99,7 @@ public class CharController : MonoBehaviour
     private IEnumerator HandleMovementSkill(SkillData skill)
     {
         Vector2 currentPosition = transform.position;
-        Vector2 targetPosition = new Vector2(currentPosition.x + skill.targetPositionOffset.x,
-                                        currentPosition.y + skill.targetPositionOffset.y);
+        Vector2 targetPosition = new Vector2(currentPosition.x + skill.targetPositionOffset.x, currentPosition.y + skill.targetPositionOffset.y);
         if (role == CharacterRole.Enemy)
         {
             if (skill.isJumpSkill)
@@ -165,13 +184,19 @@ public class CharController : MonoBehaviour
     {
         return currentHealth;
     }
-    private void HealthUIUpdate(int currentHealth, int maxHealth)
+
+    public CharacterData GetCharacterData()
+    {
+        return characterData;
+    }
+    public void HealthUIUpdate(int currentHealth, int maxHealth)
     {
         if (healthBarPrefab != null)
         {
             HealthUI healthUI = healthBarPrefab.GetComponent<HealthUI>();
             if (healthUI != null)
             {
+                Debug.Log($"{characterData.characterName} - Updating HP: {currentHealth}/{maxHealth}");
                 healthUI.UpdateHealthBar(currentHealth, maxHealth);
             }
         }
@@ -180,16 +205,36 @@ public class CharController : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        Debug.Log(characterData.characterName + " take " + damage + " damage! Hp: " + currentHealth);
+
+        if (role == CharacterRole.Enemy)
+        {
+            Debug.Log("Enemy take damage: " + damage);
+        }
+        else
+        {
+            Debug.Log("Player take damage:  " + damage);
+        }
+
         animator.SetBool("TakeDamage", true);
 
         HealthUIUpdate(currentHealth, maxHealth);
+        SpawnDamagePopup(damage);
 
         if (currentHealth <= 0)
         {
             Die();
         }
         StartCoroutine(ResetTakeDamage());
+    }
+
+    private void SpawnDamagePopup(int damage)
+    {
+        if (damageSpawner != null)
+        {
+            Vector2 spawnPosition = new Vector2(originalPosition.x, originalPosition.y + 1f);
+            Debug.Log("Spawn damage popup at: " + spawnPosition);
+            damageSpawner.SpawnDamagePopup(spawnPosition, damage);
+        }
     }
 
     private void Die()

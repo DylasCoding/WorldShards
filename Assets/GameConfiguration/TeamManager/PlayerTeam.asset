@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: PlayerTeam
   m_EditorClassIdentifier: 
   team:
-  - characterData: {fileID: 11400000, guid: 13160e7f7bdc0bd41bcec71782a28d61, type: 2}
-    currentHealth: 0
   - characterData: {fileID: 11400000, guid: bfa437f9523637740a2f7386bf77fdf3, type: 2}
-    currentHealth: 0
+    currentHealth: 90
+  - characterData: {fileID: 11400000, guid: f5b211529f6e63c41b4af6dc19d60a8d, type: 2}
+    currentHealth: 176
   - characterData: {fileID: 11400000, guid: b01db4e123a8fcd418a469179024eacf, type: 2}
-    currentHealth: 0
+    currentHealth: 72
+  - characterData: {fileID: 11400000, guid: 13160e7f7bdc0bd41bcec71782a28d61, type: 2}
+    currentHealth: 191

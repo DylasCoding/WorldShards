@@ -10,6 +10,9 @@ public class SkillData : ScriptableObject
         public GameObject skillEffectPrefab;
         public AnimationClip skillAnimation;
 
+        [Header("UI")]
+        public Sprite skillImage;
+
         [Header("Damage Settings")]
         public int damageIncrease;
         public float damageMultiplier;
@@ -32,4 +35,10 @@ public class SkillData : ScriptableObject
         public Vector2 jumpForce = new Vector2(6, 2.7f);
         public float jumpTime;
         public float jumpDelay;
+
+        [Header("Range Settings")]
+        public bool isRangeSkill;
+        public Transform targetPosition;
+        public float rangeSpeed = 5f;
+        public float rangeDistance = 5f;
 }

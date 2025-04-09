@@ -16,6 +16,8 @@ public class HealthUI : MonoBehaviour
 
     public void UpdateHealthBar(int currentHealth, int maxHealth)
     {
+        //reset before update
+        barImage.fillAmount = 0f;
         float healthPercentage = CalculateFillAmount(currentHealth, maxHealth);
         barImage.fillAmount = healthPercentage;
     }

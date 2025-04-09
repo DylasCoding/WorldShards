@@ -9,12 +9,9 @@ public class BattleManager : MonoBehaviour
     private bool isPlayerTurn = true;
     private bool isActionDone = false;
 
-    void Start()
-    {
-        //print name of the player and enemy
-        Debug.Log("Player: " + player.characterData.characterName);
-        Debug.Log("Enemy: " + enemy.characterData.characterName);
-    }
+    //check team manager
+    [SerializeField] private TeamManager PlayerTeam;
+    [SerializeField] private TeamManager EnemyTeam;
 
     public void PlayerAttack(int skillIndex)
     {

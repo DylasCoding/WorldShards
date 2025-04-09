@@ -16,10 +16,12 @@ MonoBehaviour:
   description: +50% basic damage
   skillEffectPrefab: {fileID: 0}
   skillAnimation: {fileID: 7400000, guid: 1398185a1770df44fa568edfb36fc6df, type: 2}
+  skillImage: {fileID: 2040094142, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
   damageIncrease: 50
   damageMultiplier: 0
   manaCost: 0
   manaRegen: 0
+  hpCost: 0
   hpRegen: 0
   isMovementSkill: 1
   targetPositionOffset: {x: 8.5, y: 0}

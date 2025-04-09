@@ -1,11 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     CharController charController;
     BattleManager battleManager;
+
+    [Header("UI")]
+    [SerializeField] private UnityEngine.UI.Image[] skillImages;
     void Awake()
     {
         charController = FindObjectOfType<CharController>();
@@ -36,9 +41,20 @@ public class UIController : MonoBehaviour
         battleManager.PlayerAttack(3);
     }
 
-    public void ChangeCharacter(int index)
+    public void ChangeSkillImage()
     {
-        // charController.characterData = charController.characterData.characterList[index];
-        // charController.animator.runtimeAnimatorController = charController.characterData.animatorController;
+        if (charController.role == CharController.CharacterRole.Player)
+        {
+            CharacterData characterData = charController.characterData;
+            if (characterData.basicAttack != null)
+                skillImages[0].sprite = characterData.basicAttack.skillImage;
+
+            if (characterData.specialSkill1 != null)
+                skillImages[1].sprite = characterData.specialSkill1.skillImage;
+
+            if (characterData.specialSkill2 != null)
+                skillImages[2].sprite = characterData.specialSkill2.skillImage;
+        }
+
     }
 }

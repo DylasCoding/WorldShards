@@ -15,9 +15,9 @@ MonoBehaviour:
   skillName: 
   description: 
   skillEffectPrefab: {fileID: 0}
-  skillAnimation: {fileID: 0}
+  skillAnimation: {fileID: 7400000, guid: 1398185a1770df44fa568edfb36fc6df, type: 2}
   skillImage: {fileID: -968946620, guid: 34559d8a2ea7ed34ab9d68082fdc71bf, type: 3}
-  damageIncrease: 0
+  damageIncrease: 1
   damageMultiplier: 0
   manaCost: 0
   manaRegen: 0
@@ -30,3 +30,7 @@ MonoBehaviour:
   jumpForce: {x: 6, y: 2.7}
   jumpTime: 0
   jumpDelay: 0
+  isRangeSkill: 1
+  RangePrefab: {fileID: 1698579518581292128, guid: d3739569428ce434bb319a8cddfd90fb, type: 3}
+  isSpellCastSkill: 0
+  spellPrefab: {fileID: 0}

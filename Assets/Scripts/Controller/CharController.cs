@@ -8,34 +8,40 @@ public class CharController : MonoBehaviour
     public enum CharacterRole { Player, Enemy };
     public CharacterRole role = CharacterRole.Player;
     public CharacterData characterData;
-    private Animator animator;
-    private Vector2 originalPosition;
+    private Animator _animator;
+    private Vector2 _originalPosition;
     public bool isAttacking = false;
 
     [Header("Damage Spawner")]
-    [SerializeField] private DamageSpawner damageSpawner;
+    [SerializeField] private DamageSpawner _damageSpawner;
+
+    [Header("Effect Prefab")]
+    [SerializeField] private SkillEffectHandler _skillEffectHandler;
+
+    [Header("Buff")]
+    [SerializeField] private BattleManager _battleManager;
 
 
     [Header("Health")]
-    [SerializeField] private int currentHealth;
-    [SerializeField] private int maxHealth;
+    private int _currentHealth;
+    private int _maxHealth;
 
     //save skill, target
-    private SkillData currentSkill;
-    private CharController targetForDamage;
+    private SkillData _currentSkill;
+    private CharController _targetForDamage;
 
     [Header("UI")]
-    [SerializeField] private GameObject healthBarPrefab;
+    [SerializeField] private GameObject _healthBarPrefab;
 
     private void Start()
     {
-        maxHealth = characterData.maxHealth;
-        currentHealth = maxHealth;
-        animator = GetComponent<Animator>();
-        originalPosition = transform.position;
-        animator.runtimeAnimatorController = characterData.animatorController;
+        _maxHealth = characterData.maxHealth;
+        _currentHealth = _maxHealth;
+        _animator = GetComponent<Animator>();
+        _originalPosition = transform.position;
+        _animator.runtimeAnimatorController = characterData.animatorController;
 
-        HealthUIUpdate(currentHealth, maxHealth);
+        HealthUIUpdate(_currentHealth, _maxHealth);
 
         //update position
         MoveToOriginalPosition();
@@ -43,49 +49,57 @@ public class CharController : MonoBehaviour
 
     private void MoveToOriginalPosition()
     {
-        if (role == CharacterRole.Player)
-            // transform.position = originalPosition;
-            originalPosition = transform.position;
+        _originalPosition = transform.position;
     }
 
     public void UpdateCharacterData(CharacterData newCharacterData, int newHealth)
     {
         MoveToOriginalPosition();
         characterData = newCharacterData;
-        currentHealth = newHealth;
-        maxHealth = newCharacterData.maxHealth;
+        _currentHealth = newHealth;
+        _maxHealth = newCharacterData.maxHealth;
 
         //update UI
-        HealthUIUpdate(currentHealth, maxHealth);
-        Debug.Log("Update character data: " + characterData.characterName + " " + currentHealth + "/" + characterData.maxHealth);
+        HealthUIUpdate(_currentHealth, _maxHealth);
 
-        if (animator == null)
-            animator = GetComponent<Animator>();
+        if (_animator == null)
+            _animator = GetComponent<Animator>();
 
-        animator.runtimeAnimatorController = characterData.animatorController;
+        _animator.runtimeAnimatorController = characterData.animatorController;
         isAttacking = false;
-        animator.SetInteger("SkillNumber", 0);
-        transform.position = originalPosition;
+        _animator.SetInteger("SkillNumber", 0);
+        transform.position = _originalPosition;
     }
 
     public void useSkill(int index, CharController target)
     {
         if (isAttacking) return;
         isAttacking = true;
+
         SkillData skill = GetSkill(index);
         if (skill == null) return;
 
-        animator.SetInteger("SkillNumber", index);
+        _animator.SetInteger("SkillNumber", index);
 
         if (skill.isMovementSkill) { StartCoroutine(HandleMovementSkill(skill)); }
+        // if (skill.isBuffSkill)
+        // {
+        //     _battleManager.BattleApplyBuff(0, skill.buffTurns, skill, transform);
+        //     _battleManager.EndTurn();
+        // }
 
-        this.targetForDamage = target;
-        this.currentSkill = skill;
+        this._targetForDamage = target;
+        this._currentSkill = skill;
+
+        if (skill.isBuffSkill)
+        {
+            _targetForDamage.TakeDamage(0);
+        }
         StartCoroutine(WaitAnimationFinish(skill.skillAnimation.name));
 
     }
 
-    private SkillData GetSkill(int index)
+    public SkillData GetSkill(int index)
     {
         switch (index)
         {
@@ -104,23 +118,22 @@ public class CharController : MonoBehaviour
         {
             if (skill.isJumpSkill)
             {
-                targetPosition = new Vector2(originalPosition.x - skill.jumpForce.x, originalPosition.y - skill.jumpForce.y);
+                targetPosition = new Vector2(_originalPosition.x - skill.jumpForce.x, _originalPosition.y - skill.jumpForce.y);
                 yield return StartCoroutine(SweepToTarget(targetPosition, skill.jumpTime));
             }
-            targetPosition = new Vector2(originalPosition.x - skill.targetPositionOffset.x,
-                                        originalPosition.y - skill.targetPositionOffset.y);
+            targetPosition = new Vector2(_originalPosition.x - skill.targetPositionOffset.x,
+                                        _originalPosition.y - skill.targetPositionOffset.y);
             yield return StartCoroutine(SweepToTarget(targetPosition, skill.animationEventTime));
         }
         else
         {
             if (skill.isJumpSkill)
             {
-                targetPosition = new Vector2(originalPosition.x + skill.jumpForce.x, originalPosition.y + skill.jumpForce.y);
+                targetPosition = new Vector2(_originalPosition.x + skill.jumpForce.x, _originalPosition.y + skill.jumpForce.y);
                 yield return StartCoroutine(SweepToTarget(targetPosition, skill.jumpTime));
-                Debug.Log("jump" + targetPosition + " " + skill.jumpTime);
             }
-            targetPosition = new Vector2(originalPosition.x + skill.targetPositionOffset.x,
-                                        originalPosition.y + skill.targetPositionOffset.y);
+            targetPosition = new Vector2(_originalPosition.x + skill.targetPositionOffset.x,
+                                        _originalPosition.y + skill.targetPositionOffset.y);
             yield return StartCoroutine(SweepToTarget(targetPosition, skill.animationEventTime));
         }
     }
@@ -133,7 +146,6 @@ public class CharController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime * 1.25f;
             float t = elapsedTime / duration;
-            // float smoothT = 1f - Mathf.Pow(1f - t, 3);
             float smoothT = 1f - Mathf.Pow(2f, -10f * t);
             transform.position = Vector2.Lerp(currentPosition, targetPosition, smoothT);
             yield return null;
@@ -145,21 +157,21 @@ public class CharController : MonoBehaviour
     {
         float animationLength = GetAnimationClipLength(clipName);
         yield return new WaitForSeconds(animationLength);
-        animator.SetInteger("SkillNumber", 0);
+        _animator.SetInteger("SkillNumber", 0);
         OnMovementComplete();
-        isAttacking = false;
+        // isAttacking = false;
     }
 
     public void OnMovementComplete()
     {
         // transform.position = new Vector2(originalPosition.x, originalPosition.y);
-        Vector2 nowPosition = new Vector2(originalPosition.x, originalPosition.y);
+        Vector2 nowPosition = new Vector2(_originalPosition.x, _originalPosition.y);
         StartCoroutine(SweepToTarget(nowPosition, 0.5f));
     }
 
     private float GetAnimationClipLength(string clipName)
     {
-        RuntimeAnimatorController ac = animator.runtimeAnimatorController;
+        RuntimeAnimatorController ac = _animator.runtimeAnimatorController;
         foreach (var clip in ac.animationClips)
         {
             if (clip.name == clipName)
@@ -172,17 +184,30 @@ public class CharController : MonoBehaviour
 
     public void OnAnimationDealDamage()
     {
-        if (targetForDamage != null)
+        if (_targetForDamage != null)
         {
-            int basicDamage = currentSkill.damageIncrease + characterData.attackDamage;
-            int totalDamage = basicDamage + (int)(basicDamage * currentSkill.damageMultiplier);
-            targetForDamage.TakeDamage(totalDamage);
+            int basicDamage = _currentSkill.damageIncrease + characterData.attackDamage;
+            int totalDamage = basicDamage + (int)(basicDamage * _currentSkill.damageMultiplier);
+
+            if (_currentSkill.isArrowSkill || _currentSkill.isRangeSkill)
+            {
+                Vector3 actorPosition = transform.position;
+                if (_currentSkill.isSpellCastSkill)
+                    StartCoroutine(ExecuteSkillEffects(_currentSkill, _targetForDamage, actorPosition, totalDamage));
+                else
+                    StartCoroutine(_skillEffectHandler.RangedAttackEffect(_currentSkill, _targetForDamage, actorPosition, totalDamage));
+            }
+            else
+            {
+                StartCoroutine(_skillEffectHandler.MeleeAttackEffect(_currentSkill.skillEffectPrefab, _targetForDamage, totalDamage));
+            }
+            // _targetForDamage.TakeDamage(totalDamage);
         }
     }
 
     public int GetCurrentHealth()
     {
-        return currentHealth;
+        return _currentHealth;
     }
 
     public CharacterData GetCharacterData()
@@ -191,12 +216,12 @@ public class CharController : MonoBehaviour
     }
     public void HealthUIUpdate(int currentHealth, int maxHealth)
     {
-        if (healthBarPrefab != null)
+        if (_healthBarPrefab != null)
         {
-            HealthUI healthUI = healthBarPrefab.GetComponent<HealthUI>();
+            HealthUI healthUI = _healthBarPrefab.GetComponent<HealthUI>();
             if (healthUI != null)
             {
-                Debug.Log($"{characterData.characterName} - Updating HP: {currentHealth}/{maxHealth}");
+                // Debug.Log($"{characterData.characterName} - Updating HP: {currentHealth}/{maxHealth}");
                 healthUI.UpdateHealthBar(currentHealth, maxHealth);
             }
         }
@@ -204,36 +229,35 @@ public class CharController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        _currentHealth -= damage;
 
-        if (role == CharacterRole.Enemy)
+        if (damage > 0)
         {
-            Debug.Log("Enemy take damage: " + damage);
+            _animator.SetBool("TakeDamage", true);
+
+            HealthUIUpdate(_currentHealth, _maxHealth);
+            SpawnDamagePopup(damage);
+            StartCoroutine(ReturnInitialState());
         }
-        else
+
+        if (_currentHealth <= 0)
         {
-            Debug.Log("Player take damage:  " + damage);
-        }
-
-        animator.SetBool("TakeDamage", true);
-
-        HealthUIUpdate(currentHealth, maxHealth);
-        SpawnDamagePopup(damage);
-
-        if (currentHealth <= 0)
-        {
+            _animator.SetBool("TakeDamage", true);
             Die();
         }
-        StartCoroutine(ResetTakeDamage());
+
+        //next turn
+        isAttacking = false;
+
+        _battleManager.EndTurn();
     }
 
     private void SpawnDamagePopup(int damage)
     {
-        if (damageSpawner != null)
+        if (_damageSpawner != null)
         {
-            Vector2 spawnPosition = new Vector2(originalPosition.x, originalPosition.y + 1f);
-            Debug.Log("Spawn damage popup at: " + spawnPosition);
-            damageSpawner.SpawnDamagePopup(spawnPosition, damage);
+            Vector2 spawnPosition = new Vector2(_originalPosition.x, _originalPosition.y + 1f);
+            _damageSpawner.SpawnDamagePopup(spawnPosition, damage);
         }
     }
 
@@ -244,9 +268,18 @@ public class CharController : MonoBehaviour
     }
 
     // reset animation when take damage
-    private IEnumerator ResetTakeDamage()
+    private IEnumerator ReturnInitialState()
     {
         yield return new WaitForSeconds(0.5f);
-        animator.SetBool("TakeDamage", false);
+        _animator.SetBool("TakeDamage", false);
+    }
+
+    private IEnumerator ExecuteSkillEffects(SkillData skillData, CharController target, Vector3 actorPosition, int totalDamage)
+    {
+        // Chờ SpellCastEffect hoàn thành
+        yield return StartCoroutine(_skillEffectHandler.SpellCastEffect(skillData, target, actorPosition));
+
+        // Sau khi SpellCastEffect hoàn thành, gọi RangedAttackEffect
+        yield return StartCoroutine(_skillEffectHandler.RangedAttackEffect(skillData, target, actorPosition, totalDamage));
     }
 }

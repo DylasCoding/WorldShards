@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Normal Attack
   description: Attack enemy with basic damage
-  skillEffectPrefab: {fileID: 0}
+  skillEffectPrefab: {fileID: 4971315804670800502, guid: 70e69a3509090bb4092151a77f5ca213, type: 3}
   skillAnimation: {fileID: 7400000, guid: 52e96e7d05703ad43a731ec015c162ad, type: 2}
   skillImage: {fileID: 863145078, guid: 34559d8a2ea7ed34ab9d68082fdc71bf, type: 3}
   damageIncrease: 0
@@ -30,3 +30,7 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 0}
   jumpTime: 0
   jumpDelay: 0
+  isRangeSkill: 0
+  targetPosition: {fileID: 0}
+  rangeSpeed: 5
+  rangeDistance: 5

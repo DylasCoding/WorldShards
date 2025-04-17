@@ -30,3 +30,8 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 0}
   jumpTime: 0
   jumpDelay: 0
+  isArrowSkill: 1
+  isRangeSkill: 0
+  RangePrefab: {fileID: 0}
+  isSpellCastSkill: 0
+  spellPrefab: {fileID: 0}

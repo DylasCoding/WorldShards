@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c11f3f0b3af7c478726f51ac8e3bb5, type: 3}
+  m_Name: Mikoto
+  m_EditorClassIdentifier: 
+  characterName: Mikoto
+  maxHealth: 300
+  attackDamage: 10
+  characterSprite: {fileID: 21300000, guid: 8ddf0912a81f1a048ad327e70641ef95, type: 3}
+  characterImage: {fileID: 1109833280, guid: 979832c931c44354e91a0f7dc2beb225, type: 3}
+  animatorController: {fileID: 9100000, guid: 0aea09a576b69f74e92a8519944d40af, type: 2}
+  basicAttack: {fileID: 11400000, guid: 46268628ce7a6554ba52b94ca5f0f4cb, type: 2}
+  specialSkill1: {fileID: 11400000, guid: f0db8ed0e970a4243a1c518d7d64690a, type: 2}
+  specialSkill2: {fileID: 11400000, guid: e90fde9692463204e9d3903de04e4bc0, type: 2}

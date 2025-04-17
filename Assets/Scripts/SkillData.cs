@@ -17,10 +17,6 @@ public class SkillData : ScriptableObject
         public int damageIncrease;
         public float damageMultiplier;
 
-        [Header("Mana Settings")]
-        public int manaCost;
-        public int manaRegen;
-
         [Header("Health Settings")]
         public int hpCost;
         public int hpRegen;
@@ -37,8 +33,16 @@ public class SkillData : ScriptableObject
         public float jumpDelay;
 
         [Header("Range Settings")]
+        public bool isArrowSkill;
         public bool isRangeSkill;
-        public Transform targetPosition;
-        public float rangeSpeed = 5f;
-        public float rangeDistance = 5f;
+        public GameObject RangePrefab;
+
+        [Header("Spell Cast Settings")]
+        public bool isSpellCastSkill;
+        public GameObject spellPrefab;
+
+        [Header("Buff SKill")]
+        public bool isBuffSkill;
+        public int buffTurns = 1;
+        public GameObject buffPrefab;
 }

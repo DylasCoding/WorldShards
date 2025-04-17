@@ -20,4 +20,4 @@ MonoBehaviour:
   animatorController: {fileID: 9100000, guid: 8e6d36e1d624f094a851d9ee33b5a851, type: 2}
   basicAttack: {fileID: 11400000, guid: 4b6a36bf196e73e43bb1cc4401b22490, type: 2}
   specialSkill1: {fileID: 11400000, guid: 9f679c3302917e74a8fd7d61fe655383, type: 2}
-  specialSkill2: {fileID: 0}
+  specialSkill2: {fileID: 11400000, guid: 802cd04eef1d94842a91fcc89310e4ca, type: 2}

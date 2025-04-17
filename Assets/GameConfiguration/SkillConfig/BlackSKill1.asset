@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   description: 
-  skillEffectPrefab: {fileID: 0}
+  skillEffectPrefab: {fileID: 6716258372788647046, guid: bcb2eb3e549898749858bdc1524609b2, type: 3}
   skillAnimation: {fileID: 7400000, guid: 167792feeaaef5f40ab64762c02a33a6, type: 2}
   skillImage: {fileID: 1627082858, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
   damageIncrease: 0
@@ -30,3 +30,7 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 0}
   jumpTime: 0
   jumpDelay: 0
+  isRangeSkill: 0
+  RangePrefab: {fileID: 0}
+  isSpellCastSkill: 0
+  spellPrefab: {fileID: 0}

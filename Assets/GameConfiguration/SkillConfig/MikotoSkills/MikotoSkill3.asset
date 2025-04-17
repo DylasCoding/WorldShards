@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
+  m_Name: MikotoSkill3
+  m_EditorClassIdentifier: 
+  skillName: Healing
+  description: 
+  skillEffectPrefab: {fileID: 0}
+  skillAnimation: {fileID: 7400000, guid: cb2f9bc147739be45a7abe32b240b13f, type: 2}
+  skillImage: {fileID: 1391157013, guid: 522a32479b2a7344cb8d9f4056c83f2f, type: 3}
+  damageIncrease: 0
+  damageMultiplier: 0
+  hpCost: 0
+  hpRegen: 0
+  isMovementSkill: 0
+  targetPositionOffset: {x: 8.5, y: 0}
+  animationEventTime: 0.5
+  isJumpSkill: 0
+  jumpForce: {x: 6, y: 2.7}
+  jumpTime: 0
+  jumpDelay: 0
+  isArrowSkill: 0
+  isRangeSkill: 0
+  RangePrefab: {fileID: 0}
+  isSpellCastSkill: 1
+  spellPrefab: {fileID: 4191660963644928886, guid: 63bd1ba626c43594298612991c204248, type: 3}
+  isBuffSkill: 0
+  buffTurns: 1
+  buffPrefab: {fileID: 0}

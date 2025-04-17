@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Spring blossoms
   description: These flowers seem to each hold a story.
-  skillEffectPrefab: {fileID: 0}
+  skillEffectPrefab: {fileID: 3432419391500162844, guid: 706b53ae1c198984d82773c8837dc939, type: 3}
   skillAnimation: {fileID: 7400000, guid: faf3bb2194581da4baf5129125516666, type: 2}
   skillImage: {fileID: 19784458, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
   damageIncrease: 70
@@ -30,3 +30,9 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 0}
   jumpTime: 0
   jumpDelay: 0
+  isArrowSkill: 1
+  isRangeSkill: 0
+  RangePrefab: {fileID: 9063749519840123577, guid: a7735da9f959cd24b86a640d52555fbe, type: 3}
+  isSpellCastSkill: 0
+  spellPrefab: {fileID: 0}
+  isBuffSkill: 0

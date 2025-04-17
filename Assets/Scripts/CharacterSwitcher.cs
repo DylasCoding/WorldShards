@@ -22,7 +22,7 @@ public class CharacterSwitcher : MonoBehaviour
     private Animator _characterAnimator;
     [SerializeField] private Transform _characterPosition;
 
-    void Start()
+    private void Start()
     {
         for (int i = firstButtonIndex; i < _buttons.Length; i++)
         {
@@ -38,8 +38,16 @@ public class CharacterSwitcher : MonoBehaviour
             SetImageUI(i, characterData);
         }
 
+        //reset effects
+        _teamManager.DestroyAllBuffs();
+
         // Hiển thị nhân vật đầu tiên (index 0)
         UpdateCharacter();
+    }
+
+    public TeamManager GetTeamManager()
+    {
+        return _teamManager;
     }
 
     private void SetImageUI(int i, CharacterData characterData)
@@ -56,11 +64,13 @@ public class CharacterSwitcher : MonoBehaviour
 
     void SwitchCharacter(int index)
     {
+        //hide all effects of previous character
+        _teamManager.CancelBuff(0);
+
         int previousIndex = _currentCharacterIndex;
-        Debug.Log("Button " + index + " clicked." + " previous index: " + previousIndex);
+        // Debug.Log("Button " + index + " clicked." + " previous index: " + previousIndex);
         _teamManager.UpdateCurrentHealth(_currentCharacterIndex, _playerController.GetCurrentHealth());
         _teamManager.SwapCharacters(previousIndex, index);
-
 
         UpdateHeathBar();
         UpdateCharacter();
@@ -104,6 +114,8 @@ public class CharacterSwitcher : MonoBehaviour
         SetOriginalPosition();
         var state = _teamManager.GetCharacterData(_currentCharacterIndex);
         int currentHealth = _teamManager.GetCurrentHealth(_currentCharacterIndex);
+
+        _teamManager.GetAllBuffs(0, _characterPosition);
 
         if (state == null) return;
 

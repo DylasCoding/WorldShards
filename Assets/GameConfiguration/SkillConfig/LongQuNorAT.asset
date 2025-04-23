@@ -17,10 +17,12 @@ MonoBehaviour:
   skillEffectPrefab: {fileID: 4971315804670800502, guid: 70e69a3509090bb4092151a77f5ca213, type: 3}
   skillAnimation: {fileID: 7400000, guid: 52e96e7d05703ad43a731ec015c162ad, type: 2}
   skillImage: {fileID: 863145078, guid: 34559d8a2ea7ed34ab9d68082fdc71bf, type: 3}
+  SkillActionImage: {fileID: 118469886, guid: fb1274f6bf2aada41b8016e5ba08245c, type: 3}
+  audioClip: {fileID: 8300000, guid: 7259c9cae45552e4d96531f1598fb381, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: 73dd9d3222ff64547906929664365906, type: 3}
+  effectAudioClip: {fileID: 0}
   damageIncrease: 0
   damageMultiplier: 0
-  manaCost: 0
-  manaRegen: 0
   hpCost: 0
   hpRegen: 0
   isMovementSkill: 1
@@ -30,7 +32,11 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 0}
   jumpTime: 0
   jumpDelay: 0
+  isArrowSkill: 0
   isRangeSkill: 0
-  targetPosition: {fileID: 0}
-  rangeSpeed: 5
-  rangeDistance: 5
+  RangePrefab: {fileID: 0}
+  isSpellCastSkill: 0
+  spellPrefab: {fileID: 0}
+  isBuffSkill: 0
+  buffTurns: 1
+  buffPrefab: {fileID: 0}

@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c11f3f0b3af7c478726f51ac8e3bb5, type: 3}
   m_Name: Byleth
   m_EditorClassIdentifier: 
+  characterID: 3
   characterName: Byleth
   maxHealth: 200
   attackDamage: 20
   characterSprite: {fileID: 21300000, guid: b6d41c673c313994e8a47502902eb4cf, type: 3}
   characterImage: {fileID: 126227430, guid: b91ad37efa36f594696fedb5108299b8, type: 3}
   animatorController: {fileID: 9100000, guid: 7d5b21b053fe4584b8f8aa9bbc04b045, type: 2}
+  turnActionAudioClip: {fileID: 0}
+  damageAudioClip: {fileID: 0}
+  defeatAudioClip: {fileID: 0}
   basicAttack: {fileID: 11400000, guid: 4cfa5aacb9351ef4dbe4002a9e8d6195, type: 2}
   specialSkill1: {fileID: 11400000, guid: 1b688043efd36e24f8db95a54c7b3ddf, type: 2}
   specialSkill2: {fileID: 11400000, guid: 231fc5743772c0b48bb47cc4b38e1639, type: 2}

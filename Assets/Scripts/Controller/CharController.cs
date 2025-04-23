@@ -71,7 +71,7 @@ public class CharController : MonoBehaviour
         transform.position = _originalPosition;
     }
 
-    public void useSkill(int index, CharController target)
+    public void useSkill(int index, CharController target, ActionPanelManager panelManager, AudioManager audioManager)
     {
         if (isAttacking) return;
         isAttacking = true;
@@ -79,24 +79,30 @@ public class CharController : MonoBehaviour
         SkillData skill = GetSkill(index);
         if (skill == null) return;
 
-        _animator.SetInteger("SkillNumber", index);
+        // Gọi ShowPanel và truyền callback
+        panelManager.ShowPanel(skill, role, audioManager, () => ContinueSkillLogic(index, target, skill, audioManager));
+    }
 
-        if (skill.isMovementSkill) { StartCoroutine(HandleMovementSkill(skill)); }
-        // if (skill.isBuffSkill)
-        // {
-        //     _battleManager.BattleApplyBuff(0, skill.buffTurns, skill, transform);
-        //     _battleManager.EndTurn();
-        // }
+    private void ContinueSkillLogic(int index, CharController target, SkillData skill, AudioManager audioManager)
+    {
+        _animator.SetInteger("SkillNumber", index);
+        audioManager.PlaySFX(skill.hitAudioClip);
+
+        if (skill.isMovementSkill)
+        {
+            StartCoroutine(HandleMovementSkill(skill));
+        }
 
         this._targetForDamage = target;
         this._currentSkill = skill;
 
         if (skill.isBuffSkill)
         {
+            Debug.Log("Name of target: " + target.characterData.characterName);
             _targetForDamage.TakeDamage(0);
         }
-        StartCoroutine(WaitAnimationFinish(skill.skillAnimation.name));
 
+        StartCoroutine(WaitAnimationFinish(skill.skillAnimation.name));
     }
 
     public SkillData GetSkill(int index)
@@ -229,10 +235,11 @@ public class CharController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        _currentHealth -= damage;
+
 
         if (damage > 0)
         {
+            _currentHealth -= damage;
             _animator.SetBool("TakeDamage", true);
 
             HealthUIUpdate(_currentHealth, _maxHealth);
@@ -249,6 +256,8 @@ public class CharController : MonoBehaviour
         //next turn
         isAttacking = false;
 
+        Debug.Log(characterData.characterName + " took " + damage + " damage! Remaining health: " + _currentHealth);
+
         _battleManager.EndTurn();
     }
 
@@ -264,7 +273,6 @@ public class CharController : MonoBehaviour
     private void Die()
     {
         Debug.Log(characterData.characterName + " was defeated!");
-        gameObject.SetActive(false);
     }
 
     // reset animation when take damage

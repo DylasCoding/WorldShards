@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: 
   description: 
-  skillEffectPrefab: {fileID: 0}
-  skillAnimation: {fileID: 7400000, guid: 04b07d488e4f0c647986fb244496c323, type: 2}
+  skillEffectPrefab: {fileID: 1698579518581292128, guid: d3739569428ce434bb319a8cddfd90fb, type: 3}
+  skillAnimation: {fileID: 7400000, guid: 612979250430cec48b642ddd9ae7fcfb, type: 2}
   skillImage: {fileID: -1824038461, guid: 3024e097c362f2e489a91a69aa8a5c8e, type: 3}
-  damageIncrease: 0
+  SkillActionImage: {fileID: -1697157423, guid: a72f1eab5f4962141893d2aa0384d146, type: 3}
+  audioClip: {fileID: 8300000, guid: 1e866b6ac827f3f4abc799cd0d44ac8f, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: ebecd2fd211d2fe42abd4396791097c9, type: 3}
+  damageIncrease: 1
   damageMultiplier: 0
-  manaCost: 0
-  manaRegen: 0
   hpCost: 0
   hpRegen: 0
   isMovementSkill: 0
@@ -30,7 +31,11 @@ MonoBehaviour:
   jumpForce: {x: 6, y: 2.7}
   jumpTime: 0
   jumpDelay: 0
-  isRangeSkill: 0
-  targetPosition: {fileID: 0}
-  rangeSpeed: 5
-  rangeDistance: 5
+  isArrowSkill: 0
+  isRangeSkill: 1
+  RangePrefab: {fileID: 1698579518581292128, guid: d3739569428ce434bb319a8cddfd90fb, type: 3}
+  isSpellCastSkill: 0
+  spellPrefab: {fileID: 0}
+  isBuffSkill: 0
+  buffTurns: 1
+  buffPrefab: {fileID: 0}

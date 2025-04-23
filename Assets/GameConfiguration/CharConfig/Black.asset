@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c11f3f0b3af7c478726f51ac8e3bb5, type: 3}
   m_Name: Black
   m_EditorClassIdentifier: 
+  characterID: 1
   characterName: Black Knight
   maxHealth: 200
   attackDamage: 9
   characterSprite: {fileID: 21300000, guid: 4d7777ca5f802dc448e5d8ef8b96e028, type: 3}
   characterImage: {fileID: -288244859, guid: ab7170d01d1ddb141b5d7d3d1d1d0d4e, type: 3}
   animatorController: {fileID: 9100000, guid: 8e6d36e1d624f094a851d9ee33b5a851, type: 2}
+  turnActionAudioClip: {fileID: 0}
+  damageAudioClip: {fileID: 0}
+  defeatAudioClip: {fileID: 0}
   basicAttack: {fileID: 11400000, guid: 4b6a36bf196e73e43bb1cc4401b22490, type: 2}
   specialSkill1: {fileID: 11400000, guid: 9f679c3302917e74a8fd7d61fe655383, type: 2}
   specialSkill2: {fileID: 11400000, guid: 802cd04eef1d94842a91fcc89310e4ca, type: 2}

@@ -14,13 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillName: Wind Arrow
   description: May the winds guide you.
-  skillEffectPrefab: {fileID: 0}
+  skillEffectPrefab: {fileID: 7239254059106972794, guid: eb1b3809553f8194998b9c24d5444f20, type: 3}
   skillAnimation: {fileID: 7400000, guid: 4c15e9d56ad8fa948ab7eeda2720dbda, type: 2}
   skillImage: {fileID: -944710404, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
+  SkillActionImage: {fileID: 1419521784, guid: 2c353283cc449a546b8dc111f3e1b1e6, type: 3}
+  audioClip: {fileID: 8300000, guid: ccc7012ee0d72f14a9891285f4682085, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: 7bce9eac971eb0649980fcd3b332c4e1, type: 3}
   damageIncrease: 13
   damageMultiplier: 0
-  manaCost: 0
-  manaRegen: 0
   hpCost: 0
   hpRegen: 0
   isMovementSkill: 0
@@ -30,8 +31,11 @@ MonoBehaviour:
   jumpForce: {x: 0, y: 0}
   jumpTime: 0
   jumpDelay: 0
-  isArrowSkill: 1
-  isRangeSkill: 0
-  RangePrefab: {fileID: 0}
+  isArrowSkill: 0
+  isRangeSkill: 1
+  RangePrefab: {fileID: 872401518782363136, guid: 75b357fca47f96645bf49e861e050bbc, type: 3}
   isSpellCastSkill: 0
   spellPrefab: {fileID: 0}
+  isBuffSkill: 0
+  buffTurns: 1
+  buffPrefab: {fileID: 0}

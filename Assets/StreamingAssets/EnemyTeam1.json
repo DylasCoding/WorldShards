@@ -1,0 +1,12 @@
+{
+  "team": [
+    {
+      "characterID": 3,
+      "level": 3
+    },
+    {
+      "characterID": 5,
+      "level": 2
+    }
+  ]
+}

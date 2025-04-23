@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c11f3f0b3af7c478726f51ac8e3bb5, type: 3}
   m_Name: LongQu
   m_EditorClassIdentifier: 
+  characterID: 2
   characterName: LongQu
   maxHealth: 120
   attackDamage: 13
   characterSprite: {fileID: 21300000, guid: 2c39ce6a63deb4b4ea181bae6bf021b5, type: 3}
   characterImage: {fileID: -1820418403, guid: fb1274f6bf2aada41b8016e5ba08245c, type: 3}
   animatorController: {fileID: 9100000, guid: b405b2bf3a6826c4dac06462f169d6a7, type: 2}
+  turnActionAudioClip: {fileID: 0}
+  damageAudioClip: {fileID: 0}
+  defeatAudioClip: {fileID: 0}
   basicAttack: {fileID: 11400000, guid: b1139b62c4742f8419f59c5499e423d0, type: 2}
   specialSkill1: {fileID: 11400000, guid: 2f53e6df444f1034c82310ecb95afa33, type: 2}
   specialSkill2: {fileID: 11400000, guid: 012dfa5abd1a4804984f3647911190e9, type: 2}

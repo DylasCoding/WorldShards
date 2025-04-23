@@ -17,6 +17,9 @@ MonoBehaviour:
   skillEffectPrefab: {fileID: 4353883874288392794, guid: cda9e1e827a447e489c74f2a86bce900, type: 3}
   skillAnimation: {fileID: 7400000, guid: 054a9224a866c474fb5d180c529ac5f8, type: 2}
   skillImage: {fileID: -1775349794, guid: 3024e097c362f2e489a91a69aa8a5c8e, type: 3}
+  SkillActionImage: {fileID: -2139388675, guid: 979832c931c44354e91a0f7dc2beb225, type: 3}
+  audioClip: {fileID: 8300000, guid: 2a6e81f368de4b044b7a2bf5d1df9a9e, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: af07e35bcc90c5649b301a4983dac251, type: 3}
   damageIncrease: 10
   damageMultiplier: 0
   hpCost: 0

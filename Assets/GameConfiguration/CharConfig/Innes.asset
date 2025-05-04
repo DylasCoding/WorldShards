@@ -18,6 +18,7 @@ MonoBehaviour:
   attackDamage: 15
   characterSprite: {fileID: 21300000, guid: 548d8a17621dcd44e9e9692c06d98dcc, type: 3}
   characterImage: {fileID: 1090604972, guid: 2c353283cc449a546b8dc111f3e1b1e6, type: 3}
+  CharacterUltimateImage: {fileID: -731917511, guid: 2c353283cc449a546b8dc111f3e1b1e6, type: 3}
   animatorController: {fileID: 9100000, guid: 22b1871460e0f954fa365464e204458d, type: 2}
   turnActionAudioClip: {fileID: 0}
   damageAudioClip: {fileID: 0}

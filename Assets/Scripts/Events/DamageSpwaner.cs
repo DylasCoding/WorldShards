@@ -3,6 +3,9 @@ using UnityEngine;
 public class DamageSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject damagePopupPrefab;
+    [SerializeField] private GameObject criticalDamagePopupPrefab; // Popup cho damage crit
+    [SerializeField] private GameObject healPopupPrefab; // Popup cho heal
+
     [SerializeField] private float heightOffset = 1f; // Độ cao trên đầu character
 
     public void SpawnDamagePopup(Vector2 position, int damage)

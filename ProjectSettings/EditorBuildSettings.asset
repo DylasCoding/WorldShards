@@ -8,4 +8,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Combat Scence.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/Login Scene.unity
+    guid: e21b10c7b0651794b833b419815bc664
+  - enabled: 0
+    path: Assets/Scenes/Test SaveCloud.unity
+    guid: d77c29e6b49cd6443b2e71300e403b49
+  - enabled: 1
+    path: Assets/Scenes/Main Scene.unity
+    guid: dc6d9104626e3cd498897926c414a6be
+  - enabled: 1
+    path: Assets/Scenes/Lineup Scene.unity
+    guid: ac532fddabec99e489a39d52f6470f38
   m_configObjects: {}

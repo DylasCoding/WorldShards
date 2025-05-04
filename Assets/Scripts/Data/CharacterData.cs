@@ -5,16 +5,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharConfig", menuName = "Character/Create New Character")]
 public class CharacterData : ScriptableObject
 {
+        public enum CharacterType
+        {
+                Warrior,
+                Mage,
+                Archer,
+                Rogue,
+                Healer,
+                Tank,
+        }
         [Header("Character Info")]
         public int characterID;
         public string characterName;
+        public CharacterType characterType;
         public int maxHealth;
         public int attackDamage;
 
         [Header("Character Appearance")]
         public Sprite characterSprite;
         public Sprite characterImage;
+        public Sprite CharacterUltimateImage;
         public RuntimeAnimatorController animatorController;
+
+        public int rarity = 3; // 1: Common, 2: Rare, 3: Epic, 4: Legendary
 
         [Header("Audio")]
         public AudioClip turnActionAudioClip;

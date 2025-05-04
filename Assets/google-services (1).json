@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "660872566747",
+    "firebase_url": "https://apt-diode-452902-b6-default-rtdb.firebaseio.com",
+    "project_id": "apt-diode-452902-b6",
+    "storage_bucket": "apt-diode-452902-b6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660872566747:android:ab262ecd9bb2d6f7eab9fe",
+        "android_client_info": {
+          "package_name": "com.dylas.wordshards"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660872566747-e50j1k2ioi2efhnufd02h0mnf5fa6f61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDz8V-x7YzFevnWiq3oo1Pkt435mHQ8UIg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660872566747-e50j1k2ioi2efhnufd02h0mnf5fa6f61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

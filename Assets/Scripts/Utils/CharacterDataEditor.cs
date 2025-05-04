@@ -1,6 +1,6 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using System.Linq;
 
 [CustomEditor(typeof(CharacterData))]
 public class CharacterDataEditor : Editor
@@ -44,3 +44,4 @@ public class CharacterDataEditor : Editor
         EditorGUILayout.LabelField("Character ID (Auto-Generated)", character.characterID.ToString());
     }
 }
+#endif

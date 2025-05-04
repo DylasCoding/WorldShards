@@ -2241,7 +2241,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1516510242
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2975,7 +2975,7 @@ PrefabInstance:
     - target: {fileID: 1580625848698512099, guid: 920de8e8097ff5f419a6c6b51ada1a32, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8ddf0912a81f1a048ad327e70641ef95, type: 3}
+      objectReference: {fileID: 21300000, guid: a99f9352ac55ae241916842a109df8b5, type: 3}
     - target: {fileID: 1619679595133586941, guid: 920de8e8097ff5f419a6c6b51ada1a32, type: 3}
       propertyPath: _panelManager
       value: 
@@ -3031,7 +3031,7 @@ PrefabInstance:
     - target: {fileID: 5670511151694157462, guid: 920de8e8097ff5f419a6c6b51ada1a32, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 0aea09a576b69f74e92a8519944d40af, type: 2}
+      objectReference: {fileID: 9100000, guid: 934e63f2513273e4bbdf82706699c11a, type: 2}
     - target: {fileID: 8708397317019245456, guid: 920de8e8097ff5f419a6c6b51ada1a32, type: 3}
       propertyPath: m_Name
       value: Player

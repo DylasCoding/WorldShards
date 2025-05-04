@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c11f3f0b3af7c478726f51ac8e3bb5, type: 3}
   m_Name: Baldr
   m_EditorClassIdentifier: 
-  characterID: 0
-  characterName: 
-  maxHealth: 0
-  attackDamage: 0
-  characterSprite: {fileID: 0}
-  characterImage: {fileID: 0}
+  characterID: 6
+  characterName: Baldr
+  maxHealth: 210
+  attackDamage: 50
+  characterSprite: {fileID: 21300000, guid: 305fd76aad96aa74287e31c6e944ba55, type: 3}
+  characterImage: {fileID: 1157239108, guid: 2b5ab7406942bfd4181e1348bd43173c, type: 3}
+  CharacterUltimateImage: {fileID: 704421731, guid: 6634a25a98fa5f846b078b0768d59632, type: 3}
   animatorController: {fileID: 0}
+  rarity: 3
   turnActionAudioClip: {fileID: 0}
   damageAudioClip: {fileID: 0}
   defeatAudioClip: {fileID: 0}

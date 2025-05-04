@@ -589,7 +589,7 @@ MonoBehaviour:
         m_CallState: 2
       - m_Target: {fileID: 2782882370870521810}
         m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
-        m_MethodName: SwitchImage
+        m_MethodName: OnClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -615,7 +615,6 @@ MonoBehaviour:
   characterImage: {fileID: 4957376516814189904}
   switchImageButton: {fileID: 2782882370870521810}
   characterNameText: {fileID: 3785591682687936874}
-  rarityIndicator: {fileID: 0}
   selectionIndicator: {fileID: 0}
 --- !u!114 &2782882370870521810
 MonoBehaviour:

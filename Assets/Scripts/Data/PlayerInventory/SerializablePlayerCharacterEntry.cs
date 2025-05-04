@@ -7,7 +7,7 @@ public class SerializablePlayerCharacterEntry
 {
     public int characterID;
     public int level;
-    public bool isUnlocked;
+    public bool isUnlocked = true;
 }
 
 [System.Serializable]

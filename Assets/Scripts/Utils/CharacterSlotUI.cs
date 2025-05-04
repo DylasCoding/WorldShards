@@ -3,18 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro; // Thêm thư viện TMP nếu bạn sử dụng TextMeshPro
+using TMPro;
+using System; // Thêm thư viện TMP nếu bạn sử dụng TextMeshPro
 public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI References")]
-    [SerializeField] private Image backgroundImage;  // Image bên ngoài (không thay đổi)
-    [SerializeField] private Image characterImage;   // Image bên trong (sẽ thay đổi theo character)
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image characterImage;
 
-    [SerializeField] private SwitchImageButton switchImageButton; // set true/false cho image
+    [Header("Character Information")]
+    [SerializeField] private TextMeshProUGUI _charName;
+    [SerializeField] private TextMeshProUGUI _charLevel;
+    [SerializeField] private TextMeshProUGUI _charClass;
+    [SerializeField] private TextMeshProUGUI _charHealth;
+    [SerializeField] private TextMeshProUGUI _charAttack;
+    [SerializeField] private TextMeshProUGUI _charDefense;
+
+    [SerializeField] private SwitchImageButton switchImageButton;
 
     [Header("Optional UI Elements")]
-    [SerializeField] private TextMeshProUGUI characterNameText;     // Hiển thị tên nhân vật (nếu cần)
-    [SerializeField] private GameObject selectionIndicator; // Hiển thị trạng thái chọn
+    [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private GameObject selectionIndicator;
 
     private CharacterData _characterData;
 
@@ -23,6 +32,15 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
     // Event khi slot được click
     public delegate void SlotClickedHandler(CharacterSlotUI slot);
     public event SlotClickedHandler OnSlotClicked;
+
+    private void Start()
+    {
+        if (switchImageButton != null)
+        {
+            SwitchImageGroupManager.Instance.Register(switchImageButton);
+            GetComponent<Button>().onClick.AddListener(switchImageButton.OnClick);
+        }
+    }
 
     public void SetCharacterData(CharacterData characterData)
     {
@@ -60,7 +78,7 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
     // Xử lý sự kiện click
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Slot clicked: " + _characterData.characterName);
+        // Debug.Log("Slot clicked: " + _characterData.characterName);
         // Kích hoạt sự kiện click
         OnSlotClicked?.Invoke(this);
 
@@ -71,26 +89,28 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void CheckClick()
-    {
-        Debug.Log("Slot clicked:");
-    }
-
     // Đặt trạng thái đã chọn
     public void SetSelected(bool selected)
     {
-
         if (selectionIndicator != null)
         {
             selectionIndicator.SetActive(selected);
         }
-
-        Debug.Log("Slot selected: " + _characterData.characterName);
-
-        // Bạn cũng có thể thay đổi hiệu ứng khác như màu sắc
-        if (backgroundImage != null)
+        if (_charName != null)
         {
-            backgroundImage.color = selected ? new Color(0.8f, 0.8f, 1f) : Color.white;
+            _charName.text = _characterData.characterName;
+        }
+        if (_charHealth != null)
+        {
+            _charHealth.text = _characterData.maxHealth.ToString();
+        }
+        if (_charAttack != null)
+        {
+            _charAttack.text = _characterData.attackDamage.ToString();
+        }
+        if (_charDefense != null)
+        {
+            _charDefense.text = _characterData.defense.ToString();
         }
     }
 }

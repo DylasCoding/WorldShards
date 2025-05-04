@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerCharacterEntry
 {
     public CharacterData characterData;
-    public int level;
-    public bool isUnlocked;
+    public int level = 1;
+    public bool isUnlocked = true;
 }
 
 [CreateAssetMenu(fileName = "PlayerCharacterInventory", menuName = "Character/Player Inventory")]

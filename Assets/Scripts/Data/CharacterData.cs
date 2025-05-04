@@ -8,11 +8,13 @@ public class CharacterData : ScriptableObject
         public enum CharacterType
         {
                 Warrior,
+                SwordMaster,
                 Mage,
                 Archer,
                 Rogue,
                 Healer,
                 Tank,
+                Monk,
         }
         [Header("Character Info")]
         public int characterID;
@@ -20,6 +22,7 @@ public class CharacterData : ScriptableObject
         public CharacterType characterType;
         public int maxHealth;
         public int attackDamage;
+        public int defense = 0;
 
         [Header("Character Appearance")]
         public Sprite characterSprite;

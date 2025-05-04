@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class CharacterRosterManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private CharacterDatabase characterDatabase;
     [SerializeField] private GameObject characterSlotPrefab;
+    [SerializeField] private PlayerInventoryManager playerInventoryManager;
 
     [Header("Configuration")]
     [SerializeField] private bool instantiateOnAwake = true;
@@ -39,20 +39,20 @@ public class CharacterRosterManager : MonoBehaviour
     // Tạo và hiển thị tất cả nhân vật từ database
     public void PopulateCharacterRoster()
     {
-        // Xóa tất cả các slot cũ nếu có
         ClearAllSlots();
-
-        // Kiểm tra xem database có tồn tại không
-        if (characterDatabase == null || characterDatabase.characters == null)
+        playerInventoryManager.LoadFromJson(); // Tải dữ liệu từ JSON nếu cần
+        if (playerInventoryManager == null || playerInventoryManager.ownedCharacters == null)
         {
-            Debug.LogError("Character database is null or empty!");
+            Debug.LogError("Player inventory is null or empty!");
             return;
         }
 
-        // Tạo slot cho mỗi nhân vật
-        foreach (CharacterData character in characterDatabase.characters)
+        foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
         {
-            CreateCharacterSlot(character);
+            if (entry.isUnlocked)
+            {
+                CreateCharacterSlot(entry.characterData);
+            }
         }
     }
 
@@ -123,15 +123,15 @@ public class CharacterRosterManager : MonoBehaviour
         }
     }
 
-    // Phương thức để lọc nhân vật theo điều kiện
+    // Phương thức để lọc nhân vật theo điều kiện// BUG
     public void FilterCharacters(System.Predicate<CharacterData> filterCondition)
     {
-        if (characterDatabase == null || characterDatabase.characters == null)
+        if (playerInventoryManager == null || playerInventoryManager.ownedCharacters == null)
             return;
 
         ClearAllSlots();
 
-        foreach (CharacterData character in characterDatabase.characters)
+        foreach (CharacterData character in playerInventoryManager.ownedCharacters.ConvertAll(entry => entry.characterData))
         {
             if (filterCondition == null || filterCondition(character))
             {

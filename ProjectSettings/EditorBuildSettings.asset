@@ -20,4 +20,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lineup Scene.unity
     guid: ac532fddabec99e489a39d52f6470f38
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 1b0cf3040b82f884493f8ad72188399a, type: 2}

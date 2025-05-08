@@ -4,21 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using System; // Thêm thư viện TMP nếu bạn sử dụng TextMeshPro
 public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
 {
     [Header("UI References")]
     [SerializeField] private Image backgroundImage;
     [SerializeField] private Image characterImage;
 
-    [Header("Character Information")]
-    [SerializeField] private TextMeshProUGUI _charName;
-    [SerializeField] private TextMeshProUGUI _charLevel;
-    [SerializeField] private TextMeshProUGUI _charClass;
-    [SerializeField] private TextMeshProUGUI _charHealth;
-    [SerializeField] private TextMeshProUGUI _charAttack;
-    [SerializeField] private TextMeshProUGUI _charDefense;
 
+    [Header("Switch Image Button")]
     [SerializeField] private SwitchImageButton switchImageButton;
 
     [Header("Optional UI Elements")]
@@ -26,6 +19,8 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
     [SerializeField] private GameObject selectionIndicator;
 
     private CharacterData _characterData;
+    private PlayerCharacterEntry _playerCharacterEntry;
+    private ShowInformation _showInformation;
 
     public CharacterData CharacterData => _characterData;
 
@@ -42,10 +37,16 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void SetCharacterData(CharacterData characterData)
+    public void SetCharacterData(PlayerCharacterEntry playerCharacterEntry)
     {
-        _characterData = characterData;
+        _characterData = playerCharacterEntry.characterData;
+        _playerCharacterEntry = playerCharacterEntry;
         UpdateUI();
+    }
+
+    public void SetShowInformation(ShowInformation showInformation)
+    {
+        _showInformation = showInformation;
     }
 
     // Cập nhật các phần tử UI dựa trên dữ liệu nhân vật
@@ -96,21 +97,10 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
         {
             selectionIndicator.SetActive(selected);
         }
-        if (_charName != null)
+
+        if (_showInformation != null && selected)
         {
-            _charName.text = _characterData.characterName;
-        }
-        if (_charHealth != null)
-        {
-            _charHealth.text = _characterData.maxHealth.ToString();
-        }
-        if (_charAttack != null)
-        {
-            _charAttack.text = _characterData.attackDamage.ToString();
-        }
-        if (_charDefense != null)
-        {
-            _charDefense.text = _characterData.defense.ToString();
+            _showInformation.UpdateCharacterInfo(_playerCharacterEntry);
         }
     }
 }

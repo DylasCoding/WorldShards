@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 2
   characterName: LongQu
+  characterType: 1
   maxHealth: 120
   attackDamage: 13
+  defense: 0
   characterSprite: {fileID: 21300000, guid: 2c39ce6a63deb4b4ea181bae6bf021b5, type: 3}
   characterImage: {fileID: -1820418403, guid: fb1274f6bf2aada41b8016e5ba08245c, type: 3}
   CharacterUltimateImage: {fileID: -2008894259, guid: fb1274f6bf2aada41b8016e5ba08245c, type: 3}
   animatorController: {fileID: 9100000, guid: b405b2bf3a6826c4dac06462f169d6a7, type: 2}
+  incrementalHealth: 10
+  incrementalAttack: 2
+  incrementalDefense: 1
   turnActionAudioClip: {fileID: 0}
   damageAudioClip: {fileID: 0}
   defeatAudioClip: {fileID: 0}

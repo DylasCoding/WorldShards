@@ -10,8 +10,8 @@ public class PlayerCharacterEntry
     public bool isUnlocked = true;
 }
 
-[CreateAssetMenu(fileName = "PlayerCharacterInventory", menuName = "Character/Player Inventory")]
-public class PlayerCharacterInventory : ScriptableObject
+[System.Serializable]
+public class PlayerCharacterInventory
 {
-    public List<PlayerCharacterEntry> ownedCharacters;
+    public List<OwnedCharacter> ownedCharacters = new();
 }

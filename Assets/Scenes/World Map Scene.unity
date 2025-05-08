@@ -615,6 +615,7 @@ GameObject:
   - component: {fileID: 621289564}
   - component: {fileID: 621289563}
   - component: {fileID: 621289562}
+  - component: {fileID: 621289565}
   m_Layer: 5
   m_Name: Stage2
   m_TagString: Untagged
@@ -686,7 +687,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 621289563}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 621289565}
+        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
+        m_MethodName: SwitchImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &621289563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -725,6 +738,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 621289560}
   m_CullTransparentMesh: 1
+--- !u!114 &621289565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 621289560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2032d64bcaa8b2459aa98950bb54eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite1: {fileID: 2101293099, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  sprite2: {fileID: 1028941392, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  isSwitched: 0
 --- !u!1 &655014110
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,6 +1354,7 @@ GameObject:
   - component: {fileID: 1077811817}
   - component: {fileID: 1077811816}
   - component: {fileID: 1077811815}
+  - component: {fileID: 1077811818}
   m_Layer: 5
   m_Name: Boss
   m_TagString: Untagged
@@ -1397,7 +1426,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1077811816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1077811818}
+        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
+        m_MethodName: SwitchImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1077811816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1436,6 +1477,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077811813}
   m_CullTransparentMesh: 1
+--- !u!114 &1077811818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1077811813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2032d64bcaa8b2459aa98950bb54eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite1: {fileID: -1884699047, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  sprite2: {fileID: -1710135187, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  isSwitched: 0
 --- !u!1 &1160949527
 GameObject:
   m_ObjectHideFlags: 0
@@ -1461,17 +1517,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160949527}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1355089801}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -35}
-  m_SizeDelta: {x: 50, y: 290}
+  m_SizeDelta: {x: 290, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1160949529
 MonoBehaviour:
@@ -1493,7 +1549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 468329076, guid: 6bf874b44631c134698bd771837a0dcd, type: 3}
+  m_Sprite: {fileID: 914502829, guid: 6bf874b44631c134698bd771837a0dcd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1642,6 +1698,7 @@ GameObject:
   - component: {fileID: 1309266396}
   - component: {fileID: 1309266395}
   - component: {fileID: 1309266394}
+  - component: {fileID: 1309266397}
   m_Layer: 5
   m_Name: Stage1
   m_TagString: Untagged
@@ -1713,7 +1770,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1309266395}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1309266397}
+        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
+        m_MethodName: SwitchImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1309266395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,6 +1821,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309266392}
   m_CullTransparentMesh: 1
+--- !u!114 &1309266397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1309266392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2032d64bcaa8b2459aa98950bb54eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite1: {fileID: 972420049, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  sprite2: {fileID: 955180613, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  isSwitched: 0
 --- !u!1 &1355089797
 GameObject:
   m_ObjectHideFlags: 0
@@ -2086,6 +2170,7 @@ GameObject:
   - component: {fileID: 1492484094}
   - component: {fileID: 1492484093}
   - component: {fileID: 1492484092}
+  - component: {fileID: 1492484095}
   m_Layer: 5
   m_Name: Stage3
   m_TagString: Untagged
@@ -2157,7 +2242,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1492484093}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1492484095}
+        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
+        m_MethodName: SwitchImage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1492484093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,6 +2293,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1492484090}
   m_CullTransparentMesh: 1
+--- !u!114 &1492484095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492484090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2032d64bcaa8b2459aa98950bb54eb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite1: {fileID: 34719598, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  sprite2: {fileID: -153132937, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  isSwitched: 0
 --- !u!1 &1571114474
 GameObject:
   m_ObjectHideFlags: 0

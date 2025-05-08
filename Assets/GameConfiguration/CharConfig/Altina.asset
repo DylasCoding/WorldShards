@@ -14,12 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 7
   characterName: Altina
+  characterType: 4
   maxHealth: 190
   attackDamage: 32
+  defense: 0
   characterSprite: {fileID: 21300000, guid: a99f9352ac55ae241916842a109df8b5, type: 3}
   characterImage: {fileID: 539497848, guid: 94b81d005f54d38428dd83ddb6c7f390, type: 3}
   CharacterUltimateImage: {fileID: 1225223318, guid: 94b81d005f54d38428dd83ddb6c7f390, type: 3}
   animatorController: {fileID: 9100000, guid: 934e63f2513273e4bbdf82706699c11a, type: 2}
+  incrementalHealth: 10
+  incrementalAttack: 2
+  incrementalDefense: 1
   turnActionAudioClip: {fileID: 0}
   damageAudioClip: {fileID: 0}
   defeatAudioClip: {fileID: 0}

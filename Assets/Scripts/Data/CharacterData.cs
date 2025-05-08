@@ -30,7 +30,10 @@ public class CharacterData : ScriptableObject
         public Sprite CharacterUltimateImage;
         public RuntimeAnimatorController animatorController;
 
-        public int rarity = 3; // 1: Common, 2: Rare, 3: Epic, 4: Legendary
+        [Header("Character Incremental Stats")]
+        public int incrementalHealth = 10;
+        public int incrementalAttack = 2;
+        public int incrementalDefense = 1;
 
         [Header("Audio")]
         public AudioClip turnActionAudioClip;

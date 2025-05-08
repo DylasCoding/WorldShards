@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Threading.Tasks;
 
 public class PlayerInventoryManager : MonoBehaviour
 {
@@ -12,11 +13,11 @@ public class PlayerInventoryManager : MonoBehaviour
 
     public void SaveToJson()
     {
-        SerializablePlayerInventory saveData = new();
+        PlayerCharacterInventory saveData = new();
 
         foreach (var entry in ownedCharacters)
         {
-            saveData.ownedCharacters.Add(new SerializablePlayerCharacterEntry
+            saveData.ownedCharacters.Add(new OwnedCharacter
             {
                 characterID = entry.characterData.characterID,
                 level = entry.level,
@@ -28,6 +29,18 @@ public class PlayerInventoryManager : MonoBehaviour
 
         File.WriteAllText(savePath, json);
         Debug.Log("Saved to: " + savePath);
+
+        SyncOwnedCharactersToCloud().ContinueWith(task =>
+        {
+            if (task.IsFaulted)
+            {
+                Debug.LogError("Failed to sync to cloud: " + task.Exception);
+            }
+            else
+            {
+                Debug.Log("Synced to cloud successfully.");
+            }
+        });
     }
 
     public void LoadFromJson()
@@ -39,7 +52,7 @@ public class PlayerInventoryManager : MonoBehaviour
         }
 
         string json = File.ReadAllText(savePath);
-        SerializablePlayerInventory saveData = JsonUtility.FromJson<SerializablePlayerInventory>(json);
+        PlayerCharacterInventory saveData = JsonUtility.FromJson<PlayerCharacterInventory>(json);
 
         ownedCharacters.Clear();
 
@@ -59,4 +72,28 @@ public class PlayerInventoryManager : MonoBehaviour
 
         Debug.Log("Inventory loaded.");
     }
+
+    public async Task SyncOwnedCharactersToCloud()
+    {
+        PlayerCharacterInventory saveData = new();
+
+        foreach (var entry in ownedCharacters)
+        {
+            saveData.ownedCharacters.Add(new OwnedCharacter
+            {
+                characterID = entry.characterData.characterID,
+                level = entry.level,
+                isUnlocked = entry.isUnlocked
+            });
+        }
+
+        string json = JsonUtility.ToJson(saveData);
+        await Unity.Services.CloudSave.CloudSaveService.Instance.Data.Player.SaveAsync(new Dictionary<string, object>
+    {
+        { "OwnedCharacters", json }
+    });
+
+        Debug.Log("Synced OwnedCharacters to Cloud.");
+    }
+
 }

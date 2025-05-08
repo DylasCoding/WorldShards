@@ -8,6 +8,7 @@ public class CharacterRosterManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject characterSlotPrefab;
     [SerializeField] private PlayerInventoryManager playerInventoryManager;
+    [SerializeField] private ShowInformation showInformation;
 
     [Header("Configuration")]
     [SerializeField] private bool instantiateOnAwake = true;
@@ -51,13 +52,13 @@ public class CharacterRosterManager : MonoBehaviour
         {
             if (entry.isUnlocked)
             {
-                CreateCharacterSlot(entry.characterData);
+                CreateCharacterSlot(entry);
             }
         }
     }
 
     // Tạo một slot mới cho nhân vật
-    private void CreateCharacterSlot(CharacterData characterData)
+    private void CreateCharacterSlot(PlayerCharacterEntry playerCharacterEntry)
     {
         if (characterSlotPrefab == null)
         {
@@ -67,14 +68,13 @@ public class CharacterRosterManager : MonoBehaviour
 
         // Tạo một instance mới từ prefab và thêm vào chính container này
         GameObject slotInstance = Instantiate(characterSlotPrefab, transform);
-
-        // Lấy component CharacterSlotUI
         CharacterSlotUI slotUI = slotInstance.GetComponent<CharacterSlotUI>();
 
         if (slotUI != null)
         {
             // Thiết lập dữ liệu cho slot
-            slotUI.SetCharacterData(characterData);
+            slotUI.SetCharacterData(playerCharacterEntry);
+            slotUI.SetShowInformation(showInformation);
 
             // Đăng ký sự kiện click
             slotUI.OnSlotClicked += HandleCharacterSlotClicked;
@@ -124,18 +124,18 @@ public class CharacterRosterManager : MonoBehaviour
     }
 
     // Phương thức để lọc nhân vật theo điều kiện// BUG
-    public void FilterCharacters(System.Predicate<CharacterData> filterCondition)
+    public void FilterCharacters(System.Predicate<PlayerCharacterEntry> filterCondition)
     {
         if (playerInventoryManager == null || playerInventoryManager.ownedCharacters == null)
             return;
 
         ClearAllSlots();
 
-        foreach (CharacterData character in playerInventoryManager.ownedCharacters.ConvertAll(entry => entry.characterData))
+        foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
         {
-            if (filterCondition == null || filterCondition(character))
+            if (entry.isUnlocked && filterCondition(entry))
             {
-                CreateCharacterSlot(character);
+                CreateCharacterSlot(entry);
             }
         }
     }

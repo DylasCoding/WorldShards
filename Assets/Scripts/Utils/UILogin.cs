@@ -20,14 +20,14 @@ public class UILogin : MonoBehaviour
     {
         loginButton.onClick.AddListener(LoginButtonPressed);
         loginController.OnSignedIn += LoginController_OnSignedIn;
-        loginController.OnAvatarUpdate += LoginController_OnAvatarUpdate;
+        // loginController.OnAvatarUpdate += LoginController_OnAvatarUpdate;
     }
 
     private void OnDisable()
     {
         loginButton.onClick.RemoveListener(LoginButtonPressed);
         loginController.OnSignedIn -= LoginController_OnSignedIn;
-        loginController.OnAvatarUpdate -= LoginController_OnAvatarUpdate;
+        // loginController.OnAvatarUpdate -= LoginController_OnAvatarUpdate;
     }
 
     private async void LoginButtonPressed()

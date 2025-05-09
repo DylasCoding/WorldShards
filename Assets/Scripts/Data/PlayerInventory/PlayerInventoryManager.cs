@@ -96,4 +96,25 @@ public class PlayerInventoryManager : MonoBehaviour
         Debug.Log("Synced OwnedCharacters to Cloud.");
     }
 
+    public void UpdateOwnedCharacters(List<OwnedCharacter> newOwnedCharacters)
+    {
+        ownedCharacters.Clear();
+
+        foreach (var entry in newOwnedCharacters)
+        {
+            CharacterData data = characterDatabase.characters.Find(c => c.characterID == entry.characterID);
+            if (data != null)
+            {
+                ownedCharacters.Add(new PlayerCharacterEntry
+                {
+                    characterData = data,
+                    level = entry.level,
+                    isUnlocked = entry.isUnlocked
+                });
+            }
+        }
+
+        SaveToJson();
+    }
+
 }

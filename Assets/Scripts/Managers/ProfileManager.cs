@@ -96,10 +96,6 @@ public class ProfileManager : MonoBehaviour
         {
             _editNamePanel.SetActive(true);
         }
-        else
-        {
-            Debug.LogError("Edit Name Panel is not assigned in the inspector!");
-        }
     }
 
     public void HideEditNamePanel()
@@ -107,10 +103,6 @@ public class ProfileManager : MonoBehaviour
         if (_editNamePanel != null)
         {
             _editNamePanel.SetActive(false);
-        }
-        else
-        {
-            Debug.LogError("Edit Name Panel is not assigned in the inspector!");
         }
     }
 

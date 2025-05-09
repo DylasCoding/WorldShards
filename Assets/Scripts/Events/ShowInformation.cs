@@ -19,6 +19,10 @@ public class ShowInformation : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _upgradeGemCost;
     [SerializeField] private TextMeshProUGUI _upgradeFeatherCost;
 
+    [Header("UI Reload")]
+    [SerializeField] private TextMeshProUGUI _gemText;
+    [SerializeField] private TextMeshProUGUI _featherText;
+
     [Header("Upgrade data")]
     private UpgradeTree _upgradeTree;
     private PlayerCharacterEntry _playerCharacterEntry;
@@ -84,6 +88,7 @@ public class ShowInformation : MonoBehaviour
             if (_playerInventoryManager != null)
             {
                 _playerInventoryManager.SaveToJson();
+                UpdateBalanceUI(LoginController.Instance.PlayerProfile);
             }
             else
             {
@@ -98,5 +103,11 @@ public class ShowInformation : MonoBehaviour
         {
             _isUpgrading = false;
         }
+    }
+
+    private void UpdateBalanceUI(PlayerProfile profile)
+    {
+        _gemText.text = profile.Gems.ToString();
+        _featherText.text = profile.Feathers.ToString();
     }
 }

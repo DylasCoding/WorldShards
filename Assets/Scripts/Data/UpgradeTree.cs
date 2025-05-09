@@ -55,6 +55,8 @@ public class UpgradeTree
             await DataSyncManager.SaveGems(profile.Gems);
             await DataSyncManager.SaveFeathers(profile.Feathers);
 
+            LoginController.Instance.UpdatePlayerProfileWithoutSave(profile);
+
             Debug.Log("Upgraded to level: " + playerCharacterEntry.level);
         }
         else

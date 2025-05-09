@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using TMPro;
 
 public class GachaSystem : MonoBehaviour
 {
@@ -19,12 +21,33 @@ public class GachaSystem : MonoBehaviour
     public GameObject gachaPanel;
     public GameObject notificationPanel;
 
+    [Header("player balance")]
+    [SerializeField] private TextMeshProUGUI _gemsText;
+    [SerializeField] private TextMeshProUGUI _feathersText;
+
+    [Header("Gacha Settings")]
+    [SerializeField] private PlayerInventoryManager _playerInventoryManager;
+
     private bool isRolling = false;
-    private bool isShowNotification = false;
 
     [Header("roll percentage")]
     private float characterPercentage = 0.1f;
-    private float gemPercentage = 0.45f; // 50% chance to get a gem
+    private float gemPercentage = 0.5f; // 50% chance to get a gem
+
+    private void Awake()
+    {
+        UpdatePlayerBalance();
+    }
+
+    private void UpdatePlayerBalance()
+    {
+        var profile = LoginController.Instance.PlayerProfile;
+        if (_gemsText != null)
+            _gemsText.text = profile.Gems.ToString();
+
+        if (_feathersText != null)
+            _feathersText.text = profile.Feathers.ToString();
+    }
 
     public void OnGachaButtonClick()
     {
@@ -37,6 +60,18 @@ public class GachaSystem : MonoBehaviour
     private IEnumerator RollGachaCoroutine()
     {
         isRolling = true;
+
+        var profile = LoginController.Instance.PlayerProfile;
+
+        if (!CheckBallance(profile))
+        {
+            Debug.Log("Not enough gems or feathers to roll.");
+            yield break;
+        }
+
+        //cost 500 gems to roll
+        profile.Gems -= 500;
+
         ShowGachaPanel();
         gachaButton.interactable = false;
         ClearGachaSlots();
@@ -59,8 +94,25 @@ public class GachaSystem : MonoBehaviour
                 //find component by tag
                 Image iconImage = item.transform.Find("CharImage").GetComponent<Image>();
                 iconImage.sprite = character.characterImage;
-                if (!isShowNotification)
+
+
+                bool isOwned = profile.ownedCharacters.Exists(c => c.characterID == character.characterID);
+
+                if (!isOwned)
+                {
+                    profile.ownedCharacters.Add(new OwnedCharacter
+                    {
+                        characterID = character.characterID,
+                        level = 1,
+                        isUnlocked = true
+                    });
+
+                    _playerInventoryManager.UpdateOwnedCharacters(profile.ownedCharacters);
+                    _playerInventoryManager.SaveToJson();
+
                     StartCoroutine(OnNotification());
+                }
+
             }
             else
             {
@@ -68,21 +120,37 @@ public class GachaSystem : MonoBehaviour
                 if (currencyRand < gemPercentage)
                 {
                     item = Instantiate(gemPrefab, slot.position, Quaternion.identity, gachaContainer);
+
+                    //random gem amount
+                    int gemAmount = Random.Range(20, 500);
+                    item.GetComponentInChildren<TextMeshProUGUI>().text = gemAmount.ToString();
+                    profile.Gems += gemAmount;
                 }
                 else
                 {
                     item = Instantiate(featherPrefab, slot.position, Quaternion.identity, gachaContainer);
+
+                    //random feather amount
+                    int featherAmount = Random.Range(20, 100);
+                    item.GetComponentInChildren<TextMeshProUGUI>().text = featherAmount.ToString();
+                    profile.Feathers += featherAmount;
                 }
             }
 
             StartCoroutine(DeactivateVFX(vfx, 1f));
-            yield return new WaitForSeconds(0.1f); //wait for the VFX to finish before showing the item
+            yield return new WaitForSeconds(0.1f);
         }
+#pragma warning disable CS8602
+        UpdateBalance(profile);
+#pragma warning restore CS8602
+
+        LoginController.Instance.UpdatePlayerProfileWithoutSave(profile);
 
         yield return new WaitForSeconds(0.5f);
         gachaButton.interactable = true;
         isRolling = false;
         ShowGachaPanel();
+        UpdatePlayerBalance();
     }
 
     private CharacterData GetRandomCharacter()
@@ -108,7 +176,6 @@ public class GachaSystem : MonoBehaviour
 
     private IEnumerator OnNotification()
     {
-        isShowNotification = true;
         notificationPanel.SetActive(true);
 
         RectTransform rectTransform = notificationPanel.GetComponent<RectTransform>();
@@ -145,7 +212,28 @@ public class GachaSystem : MonoBehaviour
 
         // Hide panel
         notificationPanel.SetActive(false);
-        isShowNotification = false;
+    }
+
+    //check if player has enough gems and feathers to roll
+    private bool CheckBallance(PlayerProfile profile)
+    {
+        if (profile.Gems >= 500)
+        {
+            return true;
+        }
+        else
+        {
+            Debug.Log("Not enough gems or feathers to roll.");
+            return false;
+        }
+    }
+
+    private async Task UpdateBalance(PlayerProfile profile)
+    {
+        await Task.Delay(10);
+
+        await DataSyncManager.SaveGems(profile.Gems);
+        await DataSyncManager.SaveFeathers(profile.Feathers);
     }
 
     private void ShowGachaPanel()

@@ -1,9 +1,24 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShowOutline : MonoBehaviour
 {
-    public GameObject outlinePrefab; // Prefab viền đã thiết kế sẵn
+    public GameObject outlinePrefab;
     private GameObject outlineInstance;
+
+    [SerializeField] private SceneDirection _sceneRedirects;
+
+    [SerializeField]
+    private enum ObjectType
+    {
+        none,
+        Accessory,
+        Weapon,
+        Owl,
+        MyHeroes,
+    }
+
+    [SerializeField] private ObjectType objectType = ObjectType.none;
 
     private bool isShowing = false;
 
@@ -67,10 +82,12 @@ public class ShowOutline : MonoBehaviour
             outlineSR.flipX = mainSR.flipX;
             outlineSR.flipY = mainSR.flipY;
             outlineSR.sortingLayerID = mainSR.sortingLayerID;
-            outlineSR.sortingOrder = mainSR.sortingOrder - 1; // nằm sau object chính
+            outlineSR.sortingOrder = mainSR.sortingOrder - 1; // behind the main object
         }
 
         isShowing = true;
+
+        OnOpenScene(); // Call the method to open the scene based on objectType
     }
 
 
@@ -80,6 +97,34 @@ public class ShowOutline : MonoBehaviour
         {
             Destroy(outlineInstance);
             isShowing = false;
+        }
+    }
+
+    private void OnOpenScene()
+    {
+        if (objectType == ObjectType.none)
+        {
+            Debug.LogWarning("Object type is not set. Please set it in the inspector.");
+            return;
+        }
+
+        // Handle the opening of the scene based on objectType
+        switch (objectType)
+        {
+            case ObjectType.Accessory:
+                // SceneManager.LoadScene("AccessoryScene");
+                break;
+            case ObjectType.Weapon:
+                // Open weapon scene
+                break;
+            case ObjectType.Owl:
+                // Open owl scene
+                break;
+            case ObjectType.MyHeroes:
+                _sceneRedirects.GoToSummonScene();
+                break;
+            default:
+                break;
         }
     }
 }

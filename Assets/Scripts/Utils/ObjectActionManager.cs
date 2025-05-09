@@ -19,7 +19,7 @@ public class ObjectActionManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Nếu cần giữ qua nhiều scene
+            // DontDestroyOnLoad(gameObject); // Nếu cần giữ qua nhiều scene
             RegisterActions();
         }
         else

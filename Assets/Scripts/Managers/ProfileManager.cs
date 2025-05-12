@@ -82,7 +82,7 @@ public class ProfileManager : MonoBehaviour
             _playerIDText.text = idText;
 
             if (_heroesCountText != null)
-                _heroesCountText.text = "123";
+                _heroesCountText.text = profile.ownedCharacters.Count.ToString();
         }
         else
         {

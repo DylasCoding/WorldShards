@@ -11,6 +11,11 @@ public class PlayerInventoryManager : MonoBehaviour
 
     private string savePath => Path.Combine(Application.persistentDataPath, "player_inventory.json");
 
+    private void Awake()
+    {
+        LoadFromJson();
+    }
+
     public void SaveToJson()
     {
         PlayerCharacterInventory saveData = new();
@@ -69,6 +74,7 @@ public class PlayerInventoryManager : MonoBehaviour
                 });
             }
         }
+        GameData.ownedCharacters = ownedCharacters;
 
         Debug.Log("Inventory loaded.");
     }

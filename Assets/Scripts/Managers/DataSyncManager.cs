@@ -70,7 +70,9 @@ public static class DataSyncManager
 
         foreach (var key in keysToDelete)
         {
+#pragma warning disable CS0618
             await CloudSaveService.Instance.Data.ForceDeleteAsync(key);
+#pragma warning restore CS0618
         }
         Debug.Log("All player data deleted.");
     }

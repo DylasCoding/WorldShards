@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class ShowOutline : MonoBehaviour
 {
@@ -32,6 +33,13 @@ public class ShowOutline : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             point = Camera.main.ScreenToWorldPoint(touch.position);
 
+            // Kiểm tra xem touch có trên UI hay không
+            if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
+            {
+                HideOutline(); // Bỏ qua nếu chạm vào UI
+                return;
+            }
+
             if (touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved)
             {
                 CheckAndShowOutline(point);
@@ -47,6 +55,14 @@ public class ShowOutline : MonoBehaviour
         }
 #else
         point = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // Kiểm tra xem chuột có trên UI hay không
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            HideOutline(); // Bỏ qua nếu chuột trên UI
+            return;
+        }
+
         CheckAndShowOutline(point);
 #endif
     }

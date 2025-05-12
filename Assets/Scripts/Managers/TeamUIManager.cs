@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TeamDisplayManager : MonoBehaviour
 {
@@ -13,27 +14,64 @@ public class TeamDisplayManager : MonoBehaviour
     [SerializeField] private SpriteRenderer characterSprite3;
     [SerializeField] private SpriteRenderer characterSprite4;
 
-    // List để dễ truy cập
+    [Header("Team Ultimate Images")]
+    [SerializeField] private Image teamUltimateImage1;
+    [SerializeField] private Image teamUltimateImage2;
+    [SerializeField] private Image teamUltimateImage3;
+    [SerializeField] private Image teamUltimateImage4;
+
+    [Header("Team Select Buttons")]
+    [SerializeField] private Button teamSelectButton1;
+    [SerializeField] private Button teamSelectButton2;
+    [SerializeField] private Button teamSelectButton3;
+    [SerializeField] private Button teamSelectButton4;
+
+    // List
     private List<SpriteRenderer> characterSprites = new List<SpriteRenderer>();
+    private List<Image> teamUltimateImages = new List<Image>();
+    private List<Button> teamSelectButtons = new List<Button>();
+
+    private int selectedButtonIndex = -1;
 
     private void Awake()
     {
+        teamManager.LoadTeamFromJson();
         // Thêm tất cả SpriteRenderer vào list để dễ quản lý
         characterSprites.Add(characterSprite1);
         characterSprites.Add(characterSprite2);
         characterSprites.Add(characterSprite3);
         characterSprites.Add(characterSprite4);
+
+        // Thêm tất cả Image vào list để dễ quản lý
+        teamUltimateImages.Add(teamUltimateImage1);
+        teamUltimateImages.Add(teamUltimateImage2);
+        teamUltimateImages.Add(teamUltimateImage3);
+        teamUltimateImages.Add(teamUltimateImage4);
+
+        // Thêm tất cả Button vào list để dễ quản lý
+        teamSelectButtons.Add(teamSelectButton1);
+        teamSelectButtons.Add(teamSelectButton2);
+        teamSelectButtons.Add(teamSelectButton3);
+        teamSelectButtons.Add(teamSelectButton4);
     }
 
     private void Start()
     {
         UpdateCharacterSprites();
+
+        if (teamSelectButtons.Count == 0)
+        {
+            for (int i = 0; i < teamSelectButtons.Count; i++)
+            {
+                int index = i; // Lưu chỉ số của nút
+                teamSelectButtons[i].onClick.AddListener(() => OnTeamButtonClicked(index));
+                Debug.Log($"Team button {index} set up.");
+            }
+        }
     }
 
-    // Cập nhật tất cả sprite nhân vật dựa vào TeamManager
     public void UpdateCharacterSprites()
     {
-        // Ẩn tất cả sprite trước
         foreach (var spriteRenderer in characterSprites)
         {
             if (spriteRenderer != null)
@@ -42,7 +80,14 @@ public class TeamDisplayManager : MonoBehaviour
             }
         }
 
-        // Hiển thị và cập nhật sprite cho các nhân vật trong team
+        foreach (var image in teamUltimateImages)
+        {
+            if (image != null)
+            {
+                image.gameObject.SetActive(false);
+            }
+        }
+
         for (int i = 0; i < 4; i++)
         {
             CharacterData characterData = teamManager.GetCharacterData(i);
@@ -52,85 +97,46 @@ public class TeamDisplayManager : MonoBehaviour
                 characterSprites[i].gameObject.SetActive(true);
                 characterSprites[i].sprite = characterData.characterSprite;
 
-                // Thêm các điều chỉnh khác nếu cần
-                // Ví dụ: characterSprites[i].sortingOrder = i;
+                if (teamUltimateImages[i] != null)
+                {
+                    teamUltimateImages[i].gameObject.SetActive(true);
+                    teamUltimateImages[i].sprite = characterData.CharacterUltimateImage;
+                }
+
             }
         }
     }
 
-    // Phương thức để thay đổi nhân vật tại một vị trí cụ thể
-    public void ChangeCharacterAt(int index, CharacterData newCharacterData)
+    public void OnTeamButtonClicked(int index)
     {
-        if (index < 0 || index >= 4)
+        selectedButtonIndex = index; // Lưu chỉ số của nút được chọn
+        Debug.Log($"Selected Team Button: {index}");
+    }
+
+    public void ReplaceCharacterWithSelectedSlot(PlayerCharacterEntry selectedCharacter)
+    {
+        if (selectedButtonIndex < 0 || selectedButtonIndex >= teamManager.GetTeamSize())
         {
-            Debug.LogError("Invalid character index");
+            Debug.LogError("Invalid team button index");
             return;
         }
 
-        // Tạo mảng mới từ team hiện tại
-        CharacterData[] currentTeam = new CharacterData[4];
-        for (int i = 0; i < 4; i++)
-        {
-            currentTeam[i] = teamManager.GetCharacterData(i);
-        }
-
-        // Thay đổi nhân vật tại vị trí được chỉ định
-        currentTeam[index] = newCharacterData;
-
-        // Cập nhật team mới
-        teamManager.SetUpCharacter(currentTeam);
-
-        // Cập nhật sprites
+        // Sử dụng hàm SetCharacterSate để thay đổi dữ liệu
+        teamManager.SetCharacterSate(selectedButtonIndex, selectedCharacter);
         UpdateCharacterSprites();
+        teamManager.SaveTeamToJson();
+        Debug.Log($"Replaced character at index {selectedButtonIndex} with {selectedCharacter.characterData.characterName}");
     }
 
-    // Phương thức để hoán đổi vị trí hai nhân vật
-    public void SwapCharacters(int indexA, int indexB)
-    {
-        teamManager.SwapCharacters(indexA, indexB);
-        UpdateCharacterSprites();
-    }
-
-    // Phương thức để lấy thông tin sức khỏe của nhân vật
-    public int GetCharacterHealth(int index)
-    {
-        return teamManager.GetCurrentHealth(index);
-    }
-
-    public int GetCharacterMaxHealth(int index)
-    {
-        return teamManager.GetMaxHealth(index);
-    }
-
-    // Cập nhật sức khỏe của nhân vật
-    public void UpdateCharacterHealth(int index, int health)
-    {
-        teamManager.UpdateCurrentHealth(index, health);
-    }
-
-    // Lưu team sau khi thay đổi
     public void SaveTeam()
     {
         teamManager.SaveTeamToJson();
     }
 
-    // Tải lại team từ file
     public void ReloadTeam()
     {
-        teamManager.LoadTeam();
+        teamManager.LoadTeamFromJson();
         teamManager.InitializeTeam();
         UpdateCharacterSprites();
-    }
-
-    // Để hiển thị các buff của nhân vật (nếu cần)
-    public void ShowCharacterBuffs(int index, Transform targetPosition)
-    {
-        teamManager.GetAllBuffs(index, targetPosition);
-    }
-
-    // Để ẩn các buff của nhân vật
-    public void HideCharacterBuffs(int index)
-    {
-        teamManager.CancelBuff(index);
     }
 }

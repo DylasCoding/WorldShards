@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
 
 public class ObjectActionManager : MonoBehaviour
@@ -19,7 +17,6 @@ public class ObjectActionManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject); // Nếu cần giữ qua nhiều scene
             RegisterActions();
         }
         else
@@ -28,7 +25,6 @@ public class ObjectActionManager : MonoBehaviour
         }
     }
 
-    // Đăng ký xử lý cho từng GameObject.name
     void RegisterActions()
     {
         actionMap["Accessory"] = OpenPanel;
@@ -41,6 +37,8 @@ public class ObjectActionManager : MonoBehaviour
         actionMap["Setting"] = OpenPanel;
 
         actionMap["Battle"] = ChangeScene;
+
+        actionMap["EditTeam"] = OpenPanel;
     }
 
     // Hàm gọi xử lý
@@ -73,6 +71,10 @@ public class ObjectActionManager : MonoBehaviour
         else if (obj.name == "MyHeroes")
         {
             panelIndex = 2;
+        }
+        else if (obj.name == "EditTeam")
+        {
+            panelIndex = 0; //another scene so must be 0 first [Scene "LineUp Scene"]
         }
 
         if (panelIndex >= 0 && panelIndex < panels.Count)

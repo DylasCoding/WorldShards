@@ -6,7 +6,16 @@ using System.IO;
 [CreateAssetMenu(fileName = "TeamManager", menuName = "GameData/TeamManager")]
 public class TeamManager : ScriptableObject
 {
-    [SerializeField] private string teamJsonFilename = "team_data.json";
+    [SerializeField] private string filename = "player_team.json";
+    private string savePath => Path.Combine(Application.persistentDataPath, filename);
+
+    public enum TeamType
+    {
+        Player,
+        Enemy
+    }
+    public TeamType teamType = TeamType.Enemy;
+
     [SerializeField] private CharacterDatabase characterDatabase;
 
     [System.Serializable]
@@ -25,6 +34,12 @@ public class TeamManager : ScriptableObject
     }
 
     [SerializeField] private List<CharacterState> team = new List<CharacterState>(4);
+
+    private void Awake()
+    {
+        LoadTeamFromJson();
+        InitializeTeam();
+    }
 
     public void InitializeTeam()
     {
@@ -56,6 +71,30 @@ public class TeamManager : ScriptableObject
         if (index >= 0 && index < team.Count)
             return team[index].characterData;
         return null;
+    }
+
+    public CharacterState GetCharacterState(int index)
+    {
+        if (index >= 0 && index < team.Count)
+            return team[index];
+        return null;
+    }
+
+    public void SetCharacterSate(int index, PlayerCharacterEntry playerCharacterEntry)
+    {
+        if (index < 0 || index >= team.Count)
+        {
+            Debug.LogError("Invalid index");
+            return;
+        }
+        team[index].characterData = playerCharacterEntry.characterData;
+        team[index].level = playerCharacterEntry.level;
+        team[index].currentHealth = playerCharacterEntry.characterData.maxHealth;
+    }
+
+    public int GetTeamSize()
+    {
+        return team.Count;
     }
 
     public int GetCurrentHealth(int index)
@@ -200,13 +239,12 @@ public class TeamManager : ScriptableObject
         }
     }
 
-
     public void SaveTeamToJson()
     {
         TeamJsonWrapper wrapper = new TeamJsonWrapper();
         foreach (var member in team)
         {
-            wrapper.team.Add(new CharacterStateJson
+            wrapper.team.Add(new TeamMember
             {
                 characterID = member.characterData.characterID,
                 level = member.level,
@@ -214,24 +252,56 @@ public class TeamManager : ScriptableObject
         }
 
         string json = JsonUtility.ToJson(wrapper, true);
-        string path = Path.Combine(Application.streamingAssetsPath, "NewTeam.json");
-        File.WriteAllText(path, json);
-        Debug.Log($"Team saved to {path}");
+        File.WriteAllText(savePath, json);
     }
 
-    public void LoadTeam()
+    public void LoadTeamFromJson()
     {
-        List<CharacterState> loaded = TeamLoader.LoadFromStreamingAssets(teamJsonFilename, characterDatabase.characters);
-        if (loaded != null)
+        List<CharacterState> loadedTeam = new List<CharacterState>();
+        if (teamType == TeamType.Player)
         {
-            team = loaded;
-            Debug.Log("Team loaded successfully.");
+            List<PlayerCharacterEntry> ownedCharacters = GameData.ownedCharacters;
+            loadedTeam = TeamLoader.PlayerLoadFromJson(savePath, characterDatabase.characters, ownedCharacters);
+            if (loadedTeam == null)
+            {
+                Debug.LogError("Failed to load team from JSON.");
+                return;
+            }
+
         }
+        else
+        {
+            loadedTeam = TeamLoader.EnemyLoadFromJson(savePath, characterDatabase.characters);
+        }
+
+        if (loadedTeam != null)
+        {
+            team = loadedTeam;
+            if (teamType == TeamType.Player)
+                SaveTeamToJson();
+            InitializeTeam();
+            // Debug.Log("Team loaded successfully from JSON.");
+        }
+        else
+        {
+            Debug.LogError("Failed to load team from JSON.");
+        }
+    }
+
+    public bool IsCharacterInTeam(CharacterData characterData)
+    {
+        foreach (var character in team)
+        {
+            if (character.characterData == characterData)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnEnable()
     {
-        LoadTeam();
-        InitializeTeam();
+        LoadTeamFromJson();
     }
 }

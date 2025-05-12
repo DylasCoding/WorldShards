@@ -42,7 +42,9 @@ public class CloudSave : MonoBehaviour
 
     public async void DeleteKey()
     {
+#pragma warning disable CS0618
         await CloudSaveService.Instance.Data.Player.DeleteAsync("firstData");
+#pragma warning restore CS0618
         Debug.Log("Key 'firstData' deleted.");
     }
 

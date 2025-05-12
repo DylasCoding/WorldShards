@@ -16,6 +16,7 @@ public class LoginController : MonoBehaviour
     // public event Action<PlayerProfile> OnAvatarUpdate;
 
     private string playerInventoryPath => Path.Combine(Application.persistentDataPath, "player_inventory.json");
+    private string playerTeamPath => Path.Combine(Application.persistentDataPath, "player_team.json");
 
     private PlayerInfo playerInfo;
     private PlayerProfile playerProfile;
@@ -59,6 +60,8 @@ public class LoginController : MonoBehaviour
 
     public async Task InitSignIn()
     {
+        if (AuthenticationService.Instance.IsSignedIn)
+            SignOut();
         await PlayerAccountService.Instance.StartSignInAsync();
     }
 
@@ -115,6 +118,7 @@ public class LoginController : MonoBehaviour
             { "Feathers", playerProfile.Feathers },
             { "Level", playerProfile.Level },
             { "OwnedCharacters", JsonUtility.ToJson(new PlayerCharacterInventory { ownedCharacters = playerProfile.ownedCharacters }) },
+            { "Team", JsonUtility.ToJson(new TeamJsonWrapper { team = playerProfile.team }) }
         };
 
         await CloudSaveService.Instance.Data.Player.SaveAsync(data);
@@ -124,9 +128,12 @@ public class LoginController : MonoBehaviour
     private async Task LoadPlayerProfileFromCloud()
     {
         var keys = new HashSet<string> { "Name", "Gems", "Feathers", "Level", "OwnedCharacters", "Team" };
-        var savedData = await CloudSaveService.Instance.Data.LoadAsync(keys);
 
-        if (!savedData.ContainsKey("Level"))
+#pragma warning disable CS0618
+        var savedData = await CloudSaveService.Instance.Data.LoadAsync(keys);
+#pragma warning restore CS0618 
+
+        if (!savedData.ContainsKey("Team"))
         {
             await SetDefaultProfile();
             await SavePlayerProfileToCloud();
@@ -143,13 +150,18 @@ public class LoginController : MonoBehaviour
         var ownedWrapper = JsonUtility.FromJson<PlayerCharacterInventory>(ownedJson);
 
         playerProfile.ownedCharacters = ownedWrapper?.ownedCharacters ?? new List<OwnedCharacter>();
-
-        //save owned characters to json file playerInventoryPath
         string json = JsonUtility.ToJson(ownedWrapper);
         File.WriteAllText(playerInventoryPath, json);
 
-        Debug.Log("Player profile loaded from cloud.");
-        Debug.Log($"Owned Characters: {playerProfile.ownedCharacters.Count}");
+        var teamJson = savedData["Team"];
+        var teamWrapper = JsonUtility.FromJson<TeamJsonWrapper>(teamJson);
+        playerProfile.team = teamWrapper != null && teamWrapper.team != null ? teamWrapper.team : new List<TeamMember>();
+
+        // Save Team to JSON file
+        string teamJsonFile = JsonUtility.ToJson(teamWrapper);
+        File.WriteAllText(playerTeamPath, teamJsonFile);
+        Debug.Log("Team loaded from cloud.");
+
     }
 
     private async Task SetDefaultProfile()
@@ -167,6 +179,7 @@ public class LoginController : MonoBehaviour
 
         // characters default
         playerProfile.ownedCharacters.Add(new OwnedCharacter { characterID = 1, level = 1, isUnlocked = true });
+        playerProfile.team.Add(new TeamMember { characterID = 1, level = 1 });
     }
 
     public async void UpdatePlayerProfile(PlayerProfile updatedProfile)
@@ -183,5 +196,12 @@ public class LoginController : MonoBehaviour
     private void OnDestroy()
     {
         PlayerAccountService.Instance.SignedIn -= SignedIn;
+    }
+
+    public void SignOut()
+    {
+        PlayerAccountService.Instance.SignOut();
+        AuthenticationService.Instance.SignOut();
+        playerInfo = null;
     }
 }

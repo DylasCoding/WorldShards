@@ -22,40 +22,55 @@ public static class TeamLoader
         public int level;
     }
 
-    public static List<TeamManager.CharacterState> LoadFromStreamingAssets(string filename, List<CharacterData> allCharacters)
+    public static List<TeamManager.CharacterState> PlayerLoadFromJson(string jsonPath, List<CharacterData> allCharacters, List<PlayerCharacterEntry> ownedCharacters)
     {
-        string path = Path.Combine(Application.streamingAssetsPath, filename);
-        string json = "";
-
-#if UNITY_ANDROID
-        UnityWebRequest www = UnityWebRequest.Get(path);
-        www.SendWebRequest();
-        while (!www.isDone) { }
-
-        if (www.result == UnityWebRequest.Result.Success)
+        if (!File.Exists(jsonPath))
         {
-            json = www.downloadHandler.text;
-        }
-        else
-        {
-            Debug.LogError($"Failed to load team file: {www.error} | Path: {path}");
+            Debug.LogError($"Team JSON file not found at: {jsonPath}");
             return null;
         }
-#else
-        Debug.Log($"Attempting to load file from path: {path}");
-        if (File.Exists(path))
-        {
-            json = File.ReadAllText(path);
-        }
-        else
-        {
-            Debug.LogError("Team file not found at: " + path);
-            return null;
-        }
-#endif
 
-        TeamJsonWrapper wrapper = JsonUtility.FromJson<TeamJsonWrapper>(json);
         List<TeamManager.CharacterState> loadedTeam = new List<TeamManager.CharacterState>();
+
+        string json = File.ReadAllText(jsonPath);
+        TeamJsonWrapper wrapper = JsonUtility.FromJson<TeamJsonWrapper>(json);
+
+        foreach (var entry in wrapper.team)
+        {
+            // Tìm character trong ownedCharacters dựa trên characterID
+            PlayerCharacterEntry foundEntry = ownedCharacters.Find(c => c.characterData.characterID == int.Parse(entry.characterID));
+            CharacterData found = foundEntry?.characterData;
+
+            if (found != null)
+            {
+                // Lấy level từ ownedCharacters thay vì entry.level
+                var state = new TeamManager.CharacterState(found)
+                {
+                    level = foundEntry.level // Lấy level từ ownedCharacters
+                };
+                loadedTeam.Add(state);
+            }
+            else
+            {
+                Debug.LogWarning($"Character not found for ID: {entry.characterID}");
+            }
+        }
+
+        return loadedTeam;
+    }
+
+    public static List<TeamManager.CharacterState> EnemyLoadFromJson(string jsonPath, List<CharacterData> allCharacters)
+    {
+        if (!File.Exists(jsonPath))
+        {
+            Debug.LogError($"Team JSON file not found at: {jsonPath}");
+            return null;
+        }
+
+        List<TeamManager.CharacterState> loadedTeam = new List<TeamManager.CharacterState>();
+
+        string json = File.ReadAllText(jsonPath);
+        TeamJsonWrapper wrapper = JsonUtility.FromJson<TeamJsonWrapper>(json);
 
         foreach (var entry in wrapper.team)
         {
@@ -70,7 +85,7 @@ public static class TeamLoader
             }
             else
             {
-                Debug.LogWarning($"Character not found: {entry.characterID}");
+                Debug.LogWarning($"Character not found for ID: {entry.characterID}");
             }
         }
 

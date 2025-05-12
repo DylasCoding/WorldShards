@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class SceneDirection : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class SceneDirection : MonoBehaviour
 
     public void GoToLoginScene()
     {
+        LoginController.Instance.SignOut();
+        Destroy(LoginController.Instance.gameObject);
         StartCoroutine(TransitionToScene(loginSceneName));
     }
 

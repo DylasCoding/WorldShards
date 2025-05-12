@@ -23,6 +23,9 @@ public class ShowInformation : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _gemText;
     [SerializeField] private TextMeshProUGUI _featherText;
 
+    [Header("Notification")]
+    [SerializeField] private NotificationManager _notificationManager;
+
     [Header("Upgrade data")]
     private UpgradeTree _upgradeTree;
     private PlayerCharacterEntry _playerCharacterEntry;
@@ -88,7 +91,9 @@ public class ShowInformation : MonoBehaviour
             if (_playerInventoryManager != null)
             {
                 _playerInventoryManager.SaveToJson();
+                _notificationManager.ShowNotification(_playerCharacterEntry.characterData.characterName + " Level up!");
                 UpdateBalanceUI(LoginController.Instance.PlayerProfile);
+
             }
             else
             {

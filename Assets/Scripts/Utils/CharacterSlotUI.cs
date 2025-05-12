@@ -16,11 +16,16 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
 
     [Header("Optional UI Elements")]
     [SerializeField] private TextMeshProUGUI characterNameText;
+    [SerializeField] private TextMeshProUGUI characterLevelText;
+
     [SerializeField] private GameObject selectionIndicator;
 
     private CharacterData _characterData;
-    private PlayerCharacterEntry _playerCharacterEntry;
+    public PlayerCharacterEntry _playerCharacterEntry;
+
+    [Header("State")]
     private ShowInformation _showInformation;
+    public bool isCharLineUp = false;
 
     public CharacterData CharacterData => _characterData;
 
@@ -60,6 +65,9 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
 
             if (characterNameText != null)
                 characterNameText.gameObject.SetActive(false);
+
+            if (characterLevelText != null)
+                characterLevelText.gameObject.SetActive(false);
             return;
         }
 
@@ -71,8 +79,17 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
             // Điều chỉnh màu nếu cần
             characterImage.color = Color.white;
 
-            characterNameText.gameObject.SetActive(true);
-            characterNameText.text = _characterData.characterName;
+            if (characterNameText != null)
+            {
+                characterNameText.gameObject.SetActive(true);
+                characterNameText.text = _characterData.characterName;
+            }
+
+            if (characterLevelText != null)
+            {
+                characterLevelText.gameObject.SetActive(true);
+                characterLevelText.text = "Lv " + _playerCharacterEntry.level.ToString();
+            }
         }
     }
 
@@ -88,6 +105,11 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
         {
             selectionIndicator.SetActive(true);
         }
+        if (isCharLineUp)
+        {
+            GameData.playerCharacterEntry = _playerCharacterEntry;
+            Debug.Log($"Selected Character: {_playerCharacterEntry.characterData.characterName}, Level: {_playerCharacterEntry.level}");
+        }
     }
 
     // Đặt trạng thái đã chọn
@@ -101,6 +123,11 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
         if (_showInformation != null && selected)
         {
             _showInformation.UpdateCharacterInfo(_playerCharacterEntry);
+        }
+
+        if (isCharLineUp)
+        {
+            GameData.playerCharacterEntry = _playerCharacterEntry;
         }
     }
 }

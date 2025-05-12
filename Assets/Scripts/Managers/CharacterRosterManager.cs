@@ -6,9 +6,11 @@ using UnityEngine.UI;
 public class CharacterRosterManager : MonoBehaviour
 {
     [Header("References")]
+    [SerializeField] private TeamManager _teamManager;
     [SerializeField] private GameObject characterSlotPrefab;
     [SerializeField] private PlayerInventoryManager playerInventoryManager;
     [SerializeField] private ShowInformation showInformation;
+    [SerializeField] private TeamDisplayManager _teamDisplayManager;
 
     [Header("Configuration")]
     [SerializeField] private bool instantiateOnAwake = true;
@@ -48,13 +50,15 @@ public class CharacterRosterManager : MonoBehaviour
             return;
         }
 
-        foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
-        {
-            if (entry.isUnlocked)
-            {
-                CreateCharacterSlot(entry);
-            }
-        }
+        // foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
+        // {
+        //     if (entry.isUnlocked)
+        //     {
+        //         CreateCharacterSlot(entry);
+        //     }
+        // }
+
+        FilterCharacters(entry => entry.level > 0);
     }
 
     // Tạo một slot mới cho nhân vật
@@ -74,7 +78,9 @@ public class CharacterRosterManager : MonoBehaviour
         {
             // Thiết lập dữ liệu cho slot
             slotUI.SetCharacterData(playerCharacterEntry);
-            slotUI.SetShowInformation(showInformation);
+
+            if (showInformation != null)
+                slotUI.SetShowInformation(showInformation);
 
             // Đăng ký sự kiện click
             slotUI.OnSlotClicked += HandleCharacterSlotClicked;
@@ -98,6 +104,16 @@ public class CharacterRosterManager : MonoBehaviour
         foreach (CharacterSlotUI charSlot in characterSlots)
         {
             charSlot.SetSelected(charSlot == slot);
+        }
+
+        if (slot.isCharLineUp)
+        {
+            if (_teamDisplayManager != null)
+            {
+                _teamDisplayManager.ReplaceCharacterWithSelectedSlot(slot._playerCharacterEntry);
+                //reload display
+                PopulateCharacterRoster();
+            }
         }
     }
 
@@ -130,12 +146,26 @@ public class CharacterRosterManager : MonoBehaviour
             return;
 
         ClearAllSlots();
-
-        foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
+        if (_teamManager != null)
         {
-            if (entry.isUnlocked && filterCondition(entry))
+            Debug.Log("Filtering characters based on team");
+            // không tạo nhân vật đã thuộc team
+            foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
             {
-                CreateCharacterSlot(entry);
+                if (entry.isUnlocked && filterCondition(entry) && !_teamManager.IsCharacterInTeam(entry.characterData))
+                {
+                    CreateCharacterSlot(entry);
+                }
+            }
+        }
+        else
+        {
+            foreach (PlayerCharacterEntry entry in playerInventoryManager.ownedCharacters)
+            {
+                if (entry.isUnlocked && filterCondition(entry))
+                {
+                    CreateCharacterSlot(entry);
+                }
             }
         }
     }

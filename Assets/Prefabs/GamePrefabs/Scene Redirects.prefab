@@ -236,4 +236,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneFade: {fileID: 3195617270441013763}
-  fadeDuration: 0.5
+  fadeDuration: 0.3

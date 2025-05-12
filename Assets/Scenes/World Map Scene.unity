@@ -256,6 +256,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 55052303}
   m_CullTransparentMesh: 1
+--- !u!1001 &88820771
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1172896936771244317, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_Name
+      value: Notification
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1413.4532
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 945.1289
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.7632475
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190990523293724687, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+--- !u!114 &88820772 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6950749611766504667, guid: a47cb6203dd724a4088c212fb28d7347, type: 3}
+  m_PrefabInstance: {fileID: 88820771}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0da60f03afb2604f853e390370d00f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &139090969
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,7 +620,7 @@ GameObject:
   - component: {fileID: 517080806}
   - component: {fileID: 517080805}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -700,14 +768,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 621289565}
-        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
-        m_MethodName: SwitchImage
-        m_Mode: 1
+      - m_Target: {fileID: 1859065998}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: OnStageButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1147,7 +1215,7 @@ GameObject:
   - component: {fileID: 727965388}
   - component: {fileID: 727965387}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1222,7 +1290,7 @@ GameObject:
   - component: {fileID: 952097755}
   - component: {fileID: 952097754}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1507,14 +1575,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1077811818}
-        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
-        m_MethodName: SwitchImage
-        m_Mode: 1
+      - m_Target: {fileID: 1859065998}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: OnStageButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1851,14 +1919,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1309266397}
-        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
-        m_MethodName: SwitchImage
-        m_Mode: 1
+      - m_Target: {fileID: 1859065998}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: OnStageButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2323,14 +2391,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1492484095}
-        m_TargetAssemblyTypeName: SwitchImageButton, Assembly-CSharp
-        m_MethodName: SwitchImage
-        m_Mode: 1
+      - m_Target: {fileID: 1859065998}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: OnStageButtonClicked
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2859,6 +2927,61 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1747495859}
   m_CullTransparentMesh: 1
+--- !u!1 &1859065997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1859065999}
+  - component: {fileID: 1859065998}
+  m_Layer: 0
+  m_Name: StageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1859065998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859065997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06b22daf42bf6d64e9b2c27bb7671c68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stage1Button: {fileID: 1309266394}
+  stage1Image: {fileID: 955180613, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  stage2Button: {fileID: 621289562}
+  stage2Image: {fileID: 1028941392, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  stage3Button: {fileID: 1492484092}
+  stage3Image: {fileID: -153132937, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  bossStageButton: {fileID: 1077811815}
+  bossStageImage: {fileID: -1710135187, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
+  _notificationPanel: {fileID: 88820772}
+  _sceneDirection: {fileID: 649924544}
+  level: 2
+--- !u!4 &1859065999
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1859065997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.6177701, y: 0.073838025, z: -0.048821654}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1883351712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,7 +3118,7 @@ GameObject:
   - component: {fileID: 2074729973}
   - component: {fileID: 2074729972}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3068,3 +3191,5 @@ SceneRoots:
   - {fileID: 1355089801}
   - {fileID: 139090972}
   - {fileID: 649924543}
+  - {fileID: 1859065999}
+  - {fileID: 88820771}

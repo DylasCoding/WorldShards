@@ -27,6 +27,7 @@ public class GachaSystem : MonoBehaviour
 
     [Header("Gacha Settings")]
     [SerializeField] private PlayerInventoryManager _playerInventoryManager;
+    [SerializeField] private NotificationManager _notificationManager;
 
     private bool isRolling = false;
 
@@ -65,7 +66,7 @@ public class GachaSystem : MonoBehaviour
 
         if (!CheckBallance(profile))
         {
-            Debug.Log("Not enough gems or feathers to roll.");
+            _notificationManager.ShowNotification("Not enough gems or feathers to roll.");
             yield break;
         }
 
@@ -111,6 +112,10 @@ public class GachaSystem : MonoBehaviour
                     _playerInventoryManager.SaveToJson();
 
                     StartCoroutine(OnNotification());
+                }
+                else
+                {
+                    _notificationManager.ShowNotification("Character already owned!");
                 }
 
             }

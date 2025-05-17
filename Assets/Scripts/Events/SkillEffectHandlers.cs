@@ -59,6 +59,14 @@ public class SkillEffectHandler : MonoBehaviour
             yield return null;
         }
 
+        if (skillData.skillEffectPrefab != null)
+        {
+            GameObject hitEffect = Instantiate(skillData.skillEffectPrefab, target.transform.position, Quaternion.identity);
+            Animator hitAnimator = hitEffect.GetComponent<Animator>();
+            float hitAnimationLength = GetAnimationLength(hitAnimator);
+            Destroy(hitEffect, hitAnimationLength);
+        }
+
         Destroy(effect);
 
         target.TakeDamage(totalDamage);

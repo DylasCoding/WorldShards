@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class BattleManager : MonoBehaviour
 {
     public CharController player;
@@ -15,11 +16,9 @@ public class BattleManager : MonoBehaviour
     private TeamManager playerTeam;
     private TeamManager enemyTeam;
 
-    [Header("Audio")]
-    [SerializeField] private AudioManager audioManager;
-
     [Header("Battle events")]
     [SerializeField] private ActionPanelManager _panelManager;
+    [SerializeField] private SummaryPanel _summaryPanel;
 
 
     private List<Buff> activeBuffs = new List<Buff>(); // List to store active buffs
@@ -28,7 +27,7 @@ public class BattleManager : MonoBehaviour
     {
         playerTeam = playerSwitcher.GetTeamManager();
         enemyTeam = enemySwitcher.GetTeamManager();
-        // audioManager.PlayBattleMusic();
+        AudioManager.Instance.PlayBattleMusic();
     }
 
     public void PlayerAttack(int skillIndex)
@@ -36,9 +35,10 @@ public class BattleManager : MonoBehaviour
         if (!isPlayerTurn || isActionDone) { return; }
 
         SkillData skillData = player.GetSkill(skillIndex);
-
         BattleUpdateBuffs();
-        player.useSkill(skillIndex, enemy, _panelManager, audioManager);
+
+        int level = playerTeam.GetLevel(0);
+        player.useSkill(skillIndex, level, enemy, _panelManager);
         isActionDone = true; // Đánh dấu hành động đã hoàn thành
 
         if (skillData.isBuffSkill)
@@ -53,15 +53,20 @@ public class BattleManager : MonoBehaviour
         Debug.Log("End Player Turn");
 
         isPlayerTurn = false;
-        isActionDone = false; // Reset trạng thái hành động
+        isActionDone = false;
+
+        enemyTeam.UpdateCurrentHealth(0, enemy.GetCurrentHealth());
 
         if (enemy.GetCurrentHealth() <= 0)
         {
             CheckTeam();
-            // return;
+            if (enemySwitcher.CheckAllCharactersDead())
+            {
+                return;
+            }
         }
-
         StartCoroutine(EnemyTurn());
+
     }
 
     private IEnumerator EnemyTurn()
@@ -73,9 +78,12 @@ public class BattleManager : MonoBehaviour
 
             BattleUpdateBuffs();
 
-            int randomSkill = Random.Range(1, 3);
+            int randomSkill = UnityEngine.Random.Range(1, 3);
+
             SkillData skill = enemy.GetSkill(randomSkill);
-            enemy.useSkill(randomSkill, player, _panelManager, audioManager);
+
+            int level = enemyTeam.GetLevel(0);
+            enemy.useSkill(randomSkill, level, player, _panelManager);
 
             // Chờ class khác gọi EndTurn để kết thúc lượt của enemy
             isActionDone = true;
@@ -97,6 +105,7 @@ public class BattleManager : MonoBehaviour
 
         isPlayerTurn = true;
         isActionDone = false;
+        playerTeam.UpdateCurrentHealth(0, player.GetCurrentHealth());
 
         if (player.GetCurrentHealth() <= 0)
         {
@@ -109,12 +118,10 @@ public class BattleManager : MonoBehaviour
     {
         if (isPlayerTurn && isActionDone)
         {
-            Debug.Log("End Player Turn called from outside");
             EndPlayerTurn();
         }
         else if (!isPlayerTurn && isActionDone)
         {
-            Debug.Log("End Enemy Turn called from outside");
             EndEnemyTurn();
         }
         else
@@ -153,12 +160,25 @@ public class BattleManager : MonoBehaviour
     {
         if (isPlayerTurn)
         {
-            playerSwitcher.AutoSwapCharacter();
+            bool allDead = playerSwitcher.CheckAllCharactersDead();
+            if (allDead)
+            {
+                EndGame(2);
+                return;
+            }
+            else
+                playerSwitcher.AutoSwapCharacter();
         }
         else
         {
-            Debug.Log("Auto swap enemy character");
-            enemySwitcher.AutoSwapCharacter();
+            bool allDead = enemySwitcher.CheckAllCharactersDead();
+            if (allDead)
+            {
+                EndGame(1);
+                return;
+            }
+            else
+                enemySwitcher.AutoSwapCharacter();
         }
     }
     private void CheckTeam()
@@ -167,9 +187,49 @@ public class BattleManager : MonoBehaviour
         AutoSwapCharacter();
     }
 
-    private void EndGame()
+    private void EndGame(int index)
     {
-        Debug.Log("Game Over");
-        // Show game over UI or perform any other actions needed
+        int stage = PlayerPrefs.GetInt("Stage", 1);
+        Debug.Log("In Stage: " + stage);
+        int level = LoginController.Instance.PlayerProfile.Level;
+        RewardSystem rewardSystem = new RewardSystem(); // Khởi tạo RewardSystem
+        Reward reward;
+
+        switch (index)
+        {
+            case 1: // Player Win
+                Debug.Log("Player Win");
+
+                reward = rewardSystem.RewardCalculation(stage, level, true);
+                _summaryPanel.ShowWinPanel("You Win", reward.level, reward.gem, reward.feather);
+
+                UpdateAndSaveReward(reward);
+                break;
+            case 2: // Enemy Win
+                Debug.Log("Enemy Win");
+
+                reward = rewardSystem.RewardCalculation(stage, level, false);
+                _summaryPanel.ShowLosePanel("You Lose", reward.level, reward.gem, reward.feather);
+
+                UpdateAndSaveReward(reward);
+                break;
+            default:
+                Debug.LogError("Invalid index for EndGame");
+                break;
+        }
+    }
+
+    private async void UpdateAndSaveReward(Reward reward)
+    {
+        // Cập nhật profile cục bộ
+        var profile = LoginController.Instance.PlayerProfile;
+        profile.Gems = reward.gem;
+        profile.Feathers = reward.feather;
+        profile.Level = reward.level;
+
+        LoginController.Instance.UpdatePlayerProfileWithoutSave(profile);
+
+        // Lưu dữ liệu lên cloud
+        await DataSyncManager.SaveReward(reward.gem, reward.feather, reward.level);
     }
 }

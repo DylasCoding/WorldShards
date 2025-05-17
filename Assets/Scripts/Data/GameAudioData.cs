@@ -19,11 +19,13 @@ public class GameAudioData : ScriptableObject
     [Header("Game Events")]
     public AudioClip characterSwitchSound;
     public AudioClip gameStartSound;
+    public AudioClip summonSound;
+    public AudioClip summonClickSound;
     public AudioClip turnSound;
     public AudioClip winSound;
     public AudioClip loseSound;
 
     [Header("Audio Settings")]
     [Range(0f, 1f)] public float backgroundMusicVolume = 0.5f;
-    [Range(0f, 1f)] public float soundEffectsVolume = 0.5f;
+    [Range(0f, 1f)] public float soundEffectsVolume = 1f;
 }

@@ -8,4 +8,6 @@ public static class GameData
 
     public static PlayerCharacterEntry playerCharacterEntry = new();
 
+    public static int stageIndex = 1;
+
 }

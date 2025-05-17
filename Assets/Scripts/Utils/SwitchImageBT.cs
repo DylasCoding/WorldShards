@@ -45,4 +45,16 @@ public class SwitchImageButton : MonoBehaviour
             Debug.LogWarning("Can't find image or button!");
         }
     }
+
+    public void SetImage(int index)
+    {
+        if (index == 0)
+        {
+            button.image.sprite = sprite1;
+        }
+        else if (index == 1)
+        {
+            button.image.sprite = sprite2;
+        }
+    }
 }

@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System.Threading.Tasks;
 
 [CreateAssetMenu(fileName = "TeamManager", menuName = "GameData/TeamManager")]
 public class TeamManager : ScriptableObject
 {
     [SerializeField] private string filename = "player_team.json";
     private string savePath => Path.Combine(Application.persistentDataPath, filename);
+
+    [Header("Stream json")]
+    [SerializeField] private string teamJsonFilename = "EnemyTeam1.json";
+    [SerializeField] private List<string> enemyTeamJson = new List<string>();
+
 
     public enum TeamType
     {
@@ -29,7 +35,6 @@ public class TeamManager : ScriptableObject
         public CharacterState(CharacterData characterData)
         {
             this.characterData = characterData;
-            this.currentHealth = characterData.maxHealth;
         }
     }
 
@@ -47,7 +52,7 @@ public class TeamManager : ScriptableObject
         {
             if (character.characterData != null)
             {
-                character.currentHealth = character.characterData.maxHealth;
+                // character.currentHealth = character.characterData.maxHealth;
             }
         }
     }
@@ -82,14 +87,25 @@ public class TeamManager : ScriptableObject
 
     public void SetCharacterSate(int index, PlayerCharacterEntry playerCharacterEntry)
     {
-        if (index < 0 || index >= team.Count)
+        if (index < 0)
         {
             Debug.LogError("Invalid index");
             return;
         }
-        team[index].characterData = playerCharacterEntry.characterData;
-        team[index].level = playerCharacterEntry.level;
-        team[index].currentHealth = playerCharacterEntry.characterData.maxHealth;
+        else if (index >= team.Count && index < 4)
+        {
+            //add new character to team, level of new character is playerCharacterEntry.level
+            team.Add(new CharacterState(playerCharacterEntry.characterData));
+            team[index].level = playerCharacterEntry.level;
+            team[index].currentHealth = playerCharacterEntry.characterData.maxHealth + (playerCharacterEntry.level * playerCharacterEntry.characterData.incrementalHealth);
+        }
+        else
+        {
+            team[index].characterData = playerCharacterEntry.characterData;
+            team[index].level = playerCharacterEntry.level;
+            team[index].currentHealth = playerCharacterEntry.characterData.maxHealth + (playerCharacterEntry.level * playerCharacterEntry.characterData.incrementalHealth);
+        }
+
     }
 
     public int GetTeamSize()
@@ -126,6 +142,16 @@ public class TeamManager : ScriptableObject
             return -1;
         }
         return team[index].characterData.maxHealth;
+    }
+
+    public int GetLevel(int index)
+    {
+        if (index < 0 || index >= team.Count)
+        {
+            Debug.LogError("Invalid index");
+            return -1;
+        }
+        return team[index].level;
     }
 
     public void SwapCharacters(int indexA, int indexB)
@@ -239,7 +265,7 @@ public class TeamManager : ScriptableObject
         }
     }
 
-    public void SaveTeamToJson()
+    public async Task SaveTeamToJson()
     {
         TeamJsonWrapper wrapper = new TeamJsonWrapper();
         foreach (var member in team)
@@ -250,9 +276,11 @@ public class TeamManager : ScriptableObject
                 level = member.level,
             });
         }
-
         string json = JsonUtility.ToJson(wrapper, true);
         File.WriteAllText(savePath, json);
+
+        await DataSyncManager.SaveTeam(wrapper.team);
+
     }
 
     public void LoadTeamFromJson()
@@ -271,7 +299,12 @@ public class TeamManager : ScriptableObject
         }
         else
         {
-            loadedTeam = TeamLoader.EnemyLoadFromJson(savePath, characterDatabase.characters);
+            int stage = PlayerPrefs.GetInt("Stage", 1);
+            Debug.Log("Stage: " + stage);
+            string enemyTeamJsonFilename = enemyTeamJson[stage - 1];
+
+            Debug.Log($"Loaded team with {loadedTeam.Count} members from {enemyTeamJsonFilename}");
+            loadedTeam = TeamLoader.EnemyLoadFromJson(enemyTeamJsonFilename, characterDatabase.characters);
         }
 
         if (loadedTeam != null)

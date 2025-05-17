@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
   m_Name: MikotoSkill3
   m_EditorClassIdentifier: 
-  skillName: Healing
-  description: 
-  skillEffectPrefab: {fileID: 0}
+  skillName: Bubble Attack
+  description: Hmmmm...
+  skillEffectPrefab: {fileID: 4353883874288392794, guid: cda9e1e827a447e489c74f2a86bce900, type: 3}
   skillAnimation: {fileID: 7400000, guid: cb2f9bc147739be45a7abe32b240b13f, type: 2}
+  elementType: 2
   skillImage: {fileID: 1391157013, guid: 522a32479b2a7344cb8d9f4056c83f2f, type: 3}
   SkillActionImage: {fileID: -318330595, guid: 979832c931c44354e91a0f7dc2beb225, type: 3}
-  audioClip: {fileID: 8300000, guid: b38e20108bc537c43a59b31cd66db655, type: 3}
-  hitAudioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 90d97bd351b70f04a9d536525979962e, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: 102f8aca603983741ae5936219cfb434, type: 3}
   effectAudioClip: {fileID: 0}
-  damageIncrease: 0
+  damageIncrease: 20
   damageMultiplier: 0
   hpCost: 0
   hpRegen: 0
@@ -33,10 +34,10 @@ MonoBehaviour:
   jumpTime: 0
   jumpDelay: 0
   isArrowSkill: 0
-  isRangeSkill: 0
-  RangePrefab: {fileID: 0}
+  isRangeSkill: 1
+  RangePrefab: {fileID: 4782129477373516270, guid: f11a6f2c1e512a44db9a56ac12e41aa3, type: 3}
   isSpellCastSkill: 1
   spellPrefab: {fileID: 4191660963644928886, guid: 63bd1ba626c43594298612991c204248, type: 3}
-  isBuffSkill: 1
+  isBuffSkill: 0
   buffTurns: 1
-  buffPrefab: {fileID: 825749305499189640, guid: 0f0ee503b15dfcd4e80801a85c9f5764, type: 3}
+  buffPrefab: {fileID: 0}

@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: 3
   characterName: Byleth
   characterType: 4
+  elementType: 3
   maxHealth: 200
   attackDamage: 20
   defense: 0

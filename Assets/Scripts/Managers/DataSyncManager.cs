@@ -41,6 +41,24 @@ public static class DataSyncManager
         Debug.Log("Level saved.");
     }
 
+    public static async Task SaveReward(int gem, int feather, int level)
+    {
+        await CloudSaveService.Instance.Data.Player.SaveAsync(new Dictionary<string, object>
+        {
+            { "Gems", gem },
+            { "Feathers", feather },
+            { "Level", level }
+        });
+
+        var profile = LoginController.Instance.PlayerProfile;
+        profile.Gems = gem;
+        profile.Feathers = feather;
+        profile.Level = level;
+
+        LoginController.Instance.UpdatePlayerProfileWithoutSave(profile);
+        Debug.Log("Reward saved.");
+    }
+
     public static async Task SaveTeam(List<TeamMember> team)
     {
         string json = JsonUtility.ToJson(new Wrapper<TeamMember>(team));

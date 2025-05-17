@@ -17,6 +17,7 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
     [Header("Optional UI Elements")]
     [SerializeField] private TextMeshProUGUI characterNameText;
     [SerializeField] private TextMeshProUGUI characterLevelText;
+    [SerializeField] private Image characterTypeImage;
 
     [SerializeField] private GameObject selectionIndicator;
 
@@ -26,6 +27,9 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
     [Header("State")]
     private ShowInformation _showInformation;
     public bool isCharLineUp = false;
+
+    [Header("References")]
+    [SerializeField] private CharacterClassIcons _characterClassIcons;
 
     public CharacterData CharacterData => _characterData;
 
@@ -68,6 +72,9 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
 
             if (characterLevelText != null)
                 characterLevelText.gameObject.SetActive(false);
+
+            if (characterTypeImage != null)
+                characterTypeImage.gameObject.SetActive(false);
             return;
         }
 
@@ -89,6 +96,12 @@ public class CharacterSlotUI : MonoBehaviour, IPointerClickHandler
             {
                 characterLevelText.gameObject.SetActive(true);
                 characterLevelText.text = "Lv " + _playerCharacterEntry.level.ToString();
+            }
+
+            if (characterTypeImage != null)
+            {
+                characterTypeImage.gameObject.SetActive(true);
+                characterTypeImage.sprite = _characterClassIcons.GetIcon(_characterData.characterType);
             }
         }
     }

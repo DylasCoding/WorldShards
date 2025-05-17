@@ -10,16 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
-  m_Name: BylethSkil3
+  m_Name: BylethSkill3
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
+  skillName: Mega Slash
+  description: Use soul as attack
   skillEffectPrefab: {fileID: 1698579518581292128, guid: d3739569428ce434bb319a8cddfd90fb, type: 3}
   skillAnimation: {fileID: 7400000, guid: 612979250430cec48b642ddd9ae7fcfb, type: 2}
   skillImage: {fileID: -1824038461, guid: 3024e097c362f2e489a91a69aa8a5c8e, type: 3}
   SkillActionImage: {fileID: -1697157423, guid: a72f1eab5f4962141893d2aa0384d146, type: 3}
   audioClip: {fileID: 8300000, guid: 1e866b6ac827f3f4abc799cd0d44ac8f, type: 3}
   hitAudioClip: {fileID: 8300000, guid: ebecd2fd211d2fe42abd4396791097c9, type: 3}
+  effectAudioClip: {fileID: 0}
   damageIncrease: 1
   damageMultiplier: 0
   hpCost: 0

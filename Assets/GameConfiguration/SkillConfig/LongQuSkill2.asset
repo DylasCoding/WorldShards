@@ -16,6 +16,7 @@ MonoBehaviour:
   description: +50% basic damage
   skillEffectPrefab: {fileID: 769776292871250216, guid: 93195789320e51a43ada2fb57708a5e3, type: 3}
   skillAnimation: {fileID: 7400000, guid: 1398185a1770df44fa568edfb36fc6df, type: 2}
+  elementType: 1
   skillImage: {fileID: 2040094142, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
   SkillActionImage: {fileID: 118469886, guid: fb1274f6bf2aada41b8016e5ba08245c, type: 3}
   audioClip: {fileID: 8300000, guid: 14aaf1428d0799d43b0b687e2ec65f21, type: 3}

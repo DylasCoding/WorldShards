@@ -18,7 +18,9 @@ public class UILogin : MonoBehaviour
 
     private void OnEnable()
     {
+        loginButton.onClick.AddListener(() => AudioManager.Instance.PlayClickSound());
         loginButton.onClick.AddListener(LoginButtonPressed);
+
         loginController.OnSignedIn += LoginController_OnSignedIn;
         // loginController.OnAvatarUpdate += LoginController_OnAvatarUpdate;
     }

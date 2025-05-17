@@ -8,8 +8,11 @@ public class UIController : MonoBehaviour
     CharController charController;
     BattleManager battleManager;
 
+    [SerializeField] private ElementIcons elementIcons;
+
     [Header("UI")]
-    [SerializeField] private UnityEngine.UI.Image[] skillImages;
+    [SerializeField] private Image[] skillImages;
+    [SerializeField] private Image[] elementImages;
     void Awake()
     {
         charController = FindObjectOfType<CharController>();
@@ -46,13 +49,29 @@ public class UIController : MonoBehaviour
         {
             CharacterData characterData = charController.characterData;
             if (characterData.basicAttack != null)
-                skillImages[0].sprite = characterData.basicAttack.skillImage;
+            {
+                if (skillImages.Length > 0)
+                    skillImages[0].sprite = characterData.basicAttack.skillImage;
+                if (elementImages.Length > 0)
+                    elementImages[0].sprite = elementIcons.GetIcon(characterData.basicAttack.elementType);
+            }
 
             if (characterData.specialSkill1 != null)
-                skillImages[1].sprite = characterData.specialSkill1.skillImage;
+            {
+                if (skillImages.Length > 1)
+                    skillImages[1].sprite = characterData.specialSkill1.skillImage;
+                if (elementImages.Length > 1)
+                    elementImages[1].sprite = elementIcons.GetIcon(characterData.specialSkill1.elementType);
+            }
 
             if (characterData.specialSkill2 != null)
-                skillImages[2].sprite = characterData.specialSkill2.skillImage;
+            {
+                if (skillImages.Length > 2)
+                    skillImages[2].sprite = characterData.specialSkill2.skillImage;
+                if (elementImages.Length > 2)
+                    elementImages[2].sprite = elementIcons.GetIcon(characterData.specialSkill2.elementType);
+            }
+
         }
 
     }

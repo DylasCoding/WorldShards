@@ -15,12 +15,13 @@ MonoBehaviour:
   characterID: 6
   characterName: Baldr
   characterType: 7
+  elementType: 1
   maxHealth: 210
   attackDamage: 50
   defense: 0
   characterSprite: {fileID: 21300000, guid: 305fd76aad96aa74287e31c6e944ba55, type: 3}
   characterImage: {fileID: 1157239108, guid: 2b5ab7406942bfd4181e1348bd43173c, type: 3}
-  CharacterUltimateImage: {fileID: 704421731, guid: 6634a25a98fa5f846b078b0768d59632, type: 3}
+  CharacterUltimateImage: {fileID: 127840142, guid: cec8a25cb78548645b7b9ee7aa2eb636, type: 3}
   animatorController: {fileID: 0}
   incrementalHealth: 10
   incrementalAttack: 2

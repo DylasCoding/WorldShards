@@ -20,12 +20,11 @@ public class ActionPanelManager : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public void ShowPanel(SkillData skillData, CharController.CharacterRole characterRole, AudioManager audioManager, Action onComplete = null)
+    public void ShowPanel(SkillData skillData, CharController.CharacterRole characterRole, Action onComplete = null)
     {
         // Active Panel
         gameObject.SetActive(true);
 
-        _audioManager = audioManager;
         _skillData = skillData;
 
         Sprite sprite = skillData.SkillActionImage;
@@ -50,7 +49,17 @@ public class ActionPanelManager : MonoBehaviour
 
     private IEnumerator MoveImages(Action onComplete)
     {
-        _audioManager.EnqueueSFX(_skillData.audioClip);
+        // _audioManager.EnqueueSFX(_skillData.audioClip);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.EnqueueSFX(_skillData.audioClip);
+        }
+        else
+        {
+            Debug.LogWarning("AudioManager is null or has been destroyed.");
+        }
+
         // save first position
         Vector3 image1StartPos = _playerActionImage.rectTransform.anchoredPosition;
         Vector3 image2StartPos = _enemyActionImage.rectTransform.anchoredPosition;
@@ -85,7 +94,7 @@ public class ActionPanelManager : MonoBehaviour
         _playerActionImage.rectTransform.anchoredPosition = image1To;
         _enemyActionImage.rectTransform.anchoredPosition = image2To;
 
-        while (_audioManager.IsSFXPlaying())
+        while (AudioManager.Instance.IsSFXPlaying())
         {
             yield return null;
         }

@@ -21,8 +21,10 @@ MonoBehaviour:
   backgroundBattleMusic: {fileID: 8300000, guid: f6bb8ebc18d937346b5f1d4ffbcfc462, type: 3}
   characterSwitchSound: {fileID: 8300000, guid: 5b94a481031479e459cac88bb28eaa6c, type: 3}
   gameStartSound: {fileID: 0}
+  summonSound: {fileID: 8300000, guid: a0658505586e2554492fe3ef7ea3389e, type: 3}
+  summonClickSound: {fileID: 0}
   turnSound: {fileID: 0}
   winSound: {fileID: 0}
   loseSound: {fileID: 0}
-  backgroundMusicVolume: 0.5
-  soundEffectsVolume: 0.5
+  backgroundMusicVolume: 0.4
+  soundEffectsVolume: 0.7

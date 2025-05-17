@@ -16,10 +16,12 @@ MonoBehaviour:
   description: May the winds guide you.
   skillEffectPrefab: {fileID: 7239254059106972794, guid: eb1b3809553f8194998b9c24d5444f20, type: 3}
   skillAnimation: {fileID: 7400000, guid: 4c15e9d56ad8fa948ab7eeda2720dbda, type: 2}
+  elementType: 1
   skillImage: {fileID: -944710404, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
   SkillActionImage: {fileID: 1419521784, guid: 2c353283cc449a546b8dc111f3e1b1e6, type: 3}
   audioClip: {fileID: 8300000, guid: ccc7012ee0d72f14a9891285f4682085, type: 3}
   hitAudioClip: {fileID: 8300000, guid: 7bce9eac971eb0649980fcd3b332c4e1, type: 3}
+  effectAudioClip: {fileID: 0}
   damageIncrease: 13
   damageMultiplier: 0
   hpCost: 0

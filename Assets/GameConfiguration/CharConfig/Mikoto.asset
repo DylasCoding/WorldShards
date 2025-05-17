@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: 5
   characterName: Mikoto
   characterType: 2
+  elementType: 2
   maxHealth: 300
   attackDamage: 10
   defense: 0

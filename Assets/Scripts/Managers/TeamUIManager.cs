@@ -2,17 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class TeamDisplayManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TeamManager teamManager;
+    [SerializeField] private CharacterClassIcons _characterClassIcons;
+    [SerializeField] private ElementIcons _elementIcons;
 
     [Header("Character Display Objects")]
     [SerializeField] private SpriteRenderer characterSprite1;
     [SerializeField] private SpriteRenderer characterSprite2;
     [SerializeField] private SpriteRenderer characterSprite3;
     [SerializeField] private SpriteRenderer characterSprite4;
+
+    [Header("Character Type Images")]
+    [SerializeField] private List<SpriteRenderer> characterTypeImages = new List<SpriteRenderer>();
+
+    [Header("Character Element Images")]
+    [SerializeField] private List<SpriteRenderer> characterElementImages = new List<SpriteRenderer>();
+
+    [Header("Level Text")]
+    [SerializeField] private List<TextMeshProUGUI> levelTexts = new List<TextMeshProUGUI>();
 
     [Header("Team Ultimate Images")]
     [SerializeField] private Image teamUltimateImage1;
@@ -88,6 +101,30 @@ public class TeamDisplayManager : MonoBehaviour
             }
         }
 
+        foreach (var levelText in levelTexts)
+        {
+            if (levelText != null)
+            {
+                levelText.gameObject.SetActive(false);
+            }
+        }
+
+        foreach (var characterTypeImage in characterTypeImages)
+        {
+            if (characterTypeImage != null)
+            {
+                characterTypeImage.gameObject.SetActive(false);
+            }
+        }
+
+        foreach (var characterElementImage in characterElementImages)
+        {
+            if (characterElementImage != null)
+            {
+                characterElementImage.gameObject.SetActive(false);
+            }
+        }
+
         for (int i = 0; i < 4; i++)
         {
             CharacterData characterData = teamManager.GetCharacterData(i);
@@ -103,40 +140,65 @@ public class TeamDisplayManager : MonoBehaviour
                     teamUltimateImages[i].sprite = characterData.CharacterUltimateImage;
                 }
 
+                if (levelTexts[i] != null)
+                {
+                    levelTexts[i].gameObject.SetActive(true);
+
+                    int level = teamManager.GetLevel(i);
+                    levelTexts[i].text = "Lv " + level.ToString();
+                }
+
+                if (characterTypeImages[i] != null)
+                {
+                    characterTypeImages[i].gameObject.SetActive(true);
+                    characterTypeImages[i].sprite = _characterClassIcons.GetIcon(characterData.characterType);
+                }
+
+                if (characterElementImages[i] != null)
+                {
+                    characterElementImages[i].gameObject.SetActive(true);
+                    characterElementImages[i].sprite = _elementIcons.GetIcon(characterData.elementType);
+                }
+
             }
         }
     }
 
     public void OnTeamButtonClicked(int index)
     {
-        selectedButtonIndex = index; // Lưu chỉ số của nút được chọn
+        selectedButtonIndex = index;
         Debug.Log($"Selected Team Button: {index}");
     }
 
-    public void ReplaceCharacterWithSelectedSlot(PlayerCharacterEntry selectedCharacter)
+    public async void ReplaceCharacterWithSelectedSlot(PlayerCharacterEntry selectedCharacter)
     {
-        if (selectedButtonIndex < 0 || selectedButtonIndex >= teamManager.GetTeamSize())
+        if (selectedButtonIndex < 0)
         {
             Debug.LogError("Invalid team button index");
             return;
         }
 
-        // Sử dụng hàm SetCharacterSate để thay đổi dữ liệu
         teamManager.SetCharacterSate(selectedButtonIndex, selectedCharacter);
         UpdateCharacterSprites();
-        teamManager.SaveTeamToJson();
+
+#pragma warning disable CS0618
+        await teamManager.SaveTeamToJson();
+#pragma warning restore CS0618
+
         Debug.Log($"Replaced character at index {selectedButtonIndex} with {selectedCharacter.characterData.characterName}");
     }
 
-    public void SaveTeam()
+    public async void SaveTeam()
     {
-        teamManager.SaveTeamToJson();
+#pragma warning disable CS0618
+        await teamManager.SaveTeamToJson();
+#pragma warning restore CS0618
     }
 
     public void ReloadTeam()
     {
         teamManager.LoadTeamFromJson();
-        teamManager.InitializeTeam();
         UpdateCharacterSprites();
     }
+
 }

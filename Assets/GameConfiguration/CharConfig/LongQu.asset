@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: 2
   characterName: LongQu
   characterType: 1
+  elementType: 1
   maxHealth: 120
   attackDamage: 13
   defense: 0

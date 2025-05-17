@@ -2,10 +2,10 @@
   "team": [
     {
       "characterID": 3,
-      "level": 3
+      "level": 2
     },
     {
-      "characterID": 5,
+      "characterID": 4,
       "level": 2
     }
   ]

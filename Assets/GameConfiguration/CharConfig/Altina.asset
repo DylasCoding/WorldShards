@@ -15,6 +15,7 @@ MonoBehaviour:
   characterID: 7
   characterName: Altina
   characterType: 4
+  elementType: 2
   maxHealth: 190
   attackDamage: 32
   defense: 0

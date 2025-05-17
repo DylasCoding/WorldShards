@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI; // Add this namespace
+using UnityEngine.UI;
+using TMPro;
 
 public class HealthUI : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI maxHealthText;
+    [SerializeField] private TextMeshProUGUI currentHealthText;
     private Image barImage;
     private void Awake()
     {
@@ -20,6 +23,8 @@ public class HealthUI : MonoBehaviour
         barImage.fillAmount = 0f;
         float healthPercentage = CalculateFillAmount(currentHealth, maxHealth);
         barImage.fillAmount = healthPercentage;
+        currentHealthText.text = currentHealth.ToString();
+        maxHealthText.text = maxHealth.ToString();
     }
 
     private float CalculateFillAmount(int currentHealth, int maxHealth)

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
   m_Name: AltinaSkill2
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
-  skillEffectPrefab: {fileID: 1079057744149690406, guid: 823cc422da3a98a44a6fb9c02a4b60db, type: 3}
+  skillName: No Name
+  description: No description
+  skillEffectPrefab: {fileID: 8154338340208108462, guid: c1a8e37d39e20754f998d0aafe300559, type: 3}
   skillAnimation: {fileID: 7400000, guid: 7be774d84cc21cd4da074ac3690a89bc, type: 2}
+  elementType: 1
   skillImage: {fileID: -859891439, guid: 6d462c9f46a82e642b588066fbff1f6d, type: 3}
   SkillActionImage: {fileID: 715916831, guid: 94b81d005f54d38428dd83ddb6c7f390, type: 3}
   audioClip: {fileID: 8300000, guid: f55c43d95d9ef7449a2a19932856f0db, type: 3}

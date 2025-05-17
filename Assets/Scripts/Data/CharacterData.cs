@@ -5,21 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "CharConfig", menuName = "Character/Create New Character")]
 public class CharacterData : ScriptableObject
 {
-        public enum CharacterType
-        {
-                Warrior,
-                SwordMaster,
-                Mage,
-                Archer,
-                Rogue,
-                Healer,
-                Tank,
-                Monk,
-        }
         [Header("Character Info")]
         public int characterID;
         public string characterName;
-        public CharacterType characterType;
+        public CharacterClass characterType;
+        public ElementType elementType = ElementType.None;
+
+        [Header("Character Stats")]
         public int maxHealth;
         public int attackDamage;
         public int defense = 0;

@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
   m_Name: BlackSKill1
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
+  skillName: No Name
+  description: hmmm...
   skillEffectPrefab: {fileID: 6716258372788647046, guid: bcb2eb3e549898749858bdc1524609b2, type: 3}
   skillAnimation: {fileID: 7400000, guid: 167792feeaaef5f40ab64762c02a33a6, type: 2}
+  elementType: 1
   skillImage: {fileID: 1627082858, guid: a40c130bb2f71d94ebdd9bcf5c935ece, type: 3}
   SkillActionImage: {fileID: -661297647, guid: ab7170d01d1ddb141b5d7d3d1d1d0d4e, type: 3}
   audioClip: {fileID: 8300000, guid: f3a66a94c7705fa4ba5f142145a1e0c0, type: 3}
   hitAudioClip: {fileID: 8300000, guid: 575bb44def58b6f479cd38318fcf6016, type: 3}
+  effectAudioClip: {fileID: 0}
   damageIncrease: 0
   damageMultiplier: 0
   hpCost: 0

@@ -29,19 +29,20 @@ public class CharController : MonoBehaviour
     //save skill, target
     private SkillData _currentSkill;
     private CharController _targetForDamage;
+    private int _level = 1;
 
     [Header("UI")]
     [SerializeField] private GameObject _healthBarPrefab;
 
     private void Start()
     {
-        _maxHealth = characterData.maxHealth;
-        _currentHealth = _maxHealth;
+        // _maxHealth = characterData.maxHealth;
+        // _currentHealth = _maxHealth;
         _animator = GetComponent<Animator>();
         _originalPosition = transform.position;
         _animator.runtimeAnimatorController = characterData.animatorController;
 
-        HealthUIUpdate(_currentHealth, _maxHealth);
+        // HealthUIUpdate(_currentHealth, _maxHealth);
 
         //update position
         MoveToOriginalPosition();
@@ -52,12 +53,13 @@ public class CharController : MonoBehaviour
         _originalPosition = transform.position;
     }
 
-    public void UpdateCharacterData(CharacterData newCharacterData, int newHealth)
+    public void UpdateCharacterData(CharacterData newCharacterData, int newHealth, int level)
     {
         MoveToOriginalPosition();
         characterData = newCharacterData;
         _currentHealth = newHealth;
-        _maxHealth = newCharacterData.maxHealth;
+        _level = level;
+        _maxHealth = newCharacterData.maxHealth + level * newCharacterData.incrementalHealth;
 
         //update UI
         HealthUIUpdate(_currentHealth, _maxHealth);
@@ -71,7 +73,7 @@ public class CharController : MonoBehaviour
         transform.position = _originalPosition;
     }
 
-    public void useSkill(int index, CharController target, ActionPanelManager panelManager, AudioManager audioManager)
+    public void useSkill(int index, int level, CharController target, ActionPanelManager panelManager)
     {
         if (isAttacking) return;
         isAttacking = true;
@@ -80,13 +82,13 @@ public class CharController : MonoBehaviour
         if (skill == null) return;
 
         // Gọi ShowPanel và truyền callback
-        panelManager.ShowPanel(skill, role, audioManager, () => ContinueSkillLogic(index, target, skill, audioManager));
+        panelManager.ShowPanel(skill, role, () => ContinueSkillLogic(index, level, target, skill));
     }
 
-    private void ContinueSkillLogic(int index, CharController target, SkillData skill, AudioManager audioManager)
+    private void ContinueSkillLogic(int index, int level, CharController target, SkillData skill)
     {
         _animator.SetInteger("SkillNumber", index);
-        audioManager.PlaySFX(skill.hitAudioClip);
+        AudioManager.Instance.PlaySFX(skill.hitAudioClip);
 
         if (skill.isMovementSkill)
         {
@@ -95,9 +97,11 @@ public class CharController : MonoBehaviour
 
         this._targetForDamage = target;
         this._currentSkill = skill;
+        this._level = level;
 
         if (skill.isBuffSkill)
         {
+            Debug.Log("Buff skill used: " + skill.skillName);
             Debug.Log("Name of target: " + target.characterData.characterName);
             _targetForDamage.TakeDamage(0);
         }
@@ -124,11 +128,11 @@ public class CharController : MonoBehaviour
         {
             if (skill.isJumpSkill)
             {
-                targetPosition = new Vector2(_originalPosition.x - skill.jumpForce.x, _originalPosition.y - skill.jumpForce.y);
+                targetPosition = new Vector2(_originalPosition.x - skill.jumpForce.x, _originalPosition.y + skill.jumpForce.y);
                 yield return StartCoroutine(SweepToTarget(targetPosition, skill.jumpTime));
             }
             targetPosition = new Vector2(_originalPosition.x - skill.targetPositionOffset.x,
-                                        _originalPosition.y - skill.targetPositionOffset.y);
+                                        _originalPosition.y + skill.targetPositionOffset.y);
             yield return StartCoroutine(SweepToTarget(targetPosition, skill.animationEventTime));
         }
         else
@@ -192,8 +196,13 @@ public class CharController : MonoBehaviour
     {
         if (_targetForDamage != null)
         {
-            int basicDamage = _currentSkill.damageIncrease + characterData.attackDamage;
-            int totalDamage = basicDamage + (int)(basicDamage * _currentSkill.damageMultiplier);
+            // int basicDamage = _currentSkill.damageIncrease + characterData.attackDamage;
+            // int totalDamage = basicDamage + (int)(basicDamage * _currentSkill.damageMultiplier);
+            DamageCalculator damageCalculator = new DamageCalculator();
+
+            Debug.Log($"Character Type: {characterData.characterType}, Target Type: {_targetForDamage.characterData.characterType}");
+
+            int totalDamage = damageCalculator.CalculateDamage(_currentSkill.damageIncrease, _level, characterData, characterData.characterType, _targetForDamage.characterData, _currentSkill);
 
             if (_currentSkill.isArrowSkill || _currentSkill.isRangeSkill)
             {
@@ -235,10 +244,10 @@ public class CharController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-
-
         if (damage > 0)
         {
+            int defense = characterData.defense + _level * characterData.incrementalDefense;
+            damage = Mathf.Max(damage - defense, 0); // Ensure damage is not negative
             _currentHealth -= damage;
             _animator.SetBool("TakeDamage", true);
 

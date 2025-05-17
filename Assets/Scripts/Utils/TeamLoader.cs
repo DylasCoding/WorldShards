@@ -46,8 +46,10 @@ public static class TeamLoader
                 // Lấy level từ ownedCharacters thay vì entry.level
                 var state = new TeamManager.CharacterState(found)
                 {
-                    level = foundEntry.level // Lấy level từ ownedCharacters
+                    level = foundEntry.level,
+                    currentHealth = foundEntry.characterData.maxHealth + (foundEntry.level * foundEntry.characterData.incrementalHealth),
                 };
+                Debug.Log($"Player ID: {entry.characterID}, Level: {state.level}, Current Health: {state.currentHealth}");
                 loadedTeam.Add(state);
             }
             else
@@ -61,15 +63,16 @@ public static class TeamLoader
 
     public static List<TeamManager.CharacterState> EnemyLoadFromJson(string jsonPath, List<CharacterData> allCharacters)
     {
-        if (!File.Exists(jsonPath))
+        string path = Path.Combine(Application.streamingAssetsPath, jsonPath);
+        if (!File.Exists(path))
         {
-            Debug.LogError($"Team JSON file not found at: {jsonPath}");
+            Debug.LogError($"Team JSON file not found at: {path}");
             return null;
         }
 
         List<TeamManager.CharacterState> loadedTeam = new List<TeamManager.CharacterState>();
 
-        string json = File.ReadAllText(jsonPath);
+        string json = File.ReadAllText(path);
         TeamJsonWrapper wrapper = JsonUtility.FromJson<TeamJsonWrapper>(json);
 
         foreach (var entry in wrapper.team)
@@ -79,8 +82,10 @@ public static class TeamLoader
             {
                 var state = new TeamManager.CharacterState(found)
                 {
-                    level = entry.level
+                    level = entry.level,
+                    currentHealth = found.maxHealth + (entry.level * found.incrementalHealth),
                 };
+                Debug.Log($"Enemy ID: {entry.characterID}, Level: {entry.level}, Current Health: {state.currentHealth}");
                 loadedTeam.Add(state);
             }
             else

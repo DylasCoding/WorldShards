@@ -31,6 +31,7 @@ public class PlayerInventoryManager : MonoBehaviour
         }
 
         string json = JsonUtility.ToJson(saveData, true);
+        GameData.ownedCharacters = ownedCharacters;
 
         File.WriteAllText(savePath, json);
         Debug.Log("Saved to: " + savePath);

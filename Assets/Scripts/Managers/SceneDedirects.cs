@@ -12,7 +12,7 @@ public class SceneDirection : MonoBehaviour
     private string worldMapSceneName = "World Map Scene";
     private string lineUpSceneName = "LineUp Scene";
     private string summonSceneName = "Summon Scene";
-    private string battleSceneName = "Combat Scene";
+    // private string battleSceneName = "Combat Scene";
 
     [Header("Fade Settings")]
     [SerializeField] private SceneFade _sceneFade;
@@ -64,6 +64,26 @@ public class SceneDirection : MonoBehaviour
 
     public void GoToBattleScene()
     {
+        int stageIndex = PlayerPrefs.GetInt("Stage", 1);
+        string battleSceneName = "Stage1";
+        switch (stageIndex)
+        {
+            case 1:
+                battleSceneName = "Stage1";
+                break;
+            case 2:
+                battleSceneName = "Stage2";
+                break;
+            case 3:
+                battleSceneName = "Stage3";
+                break;
+            case 4:
+                battleSceneName = "Stage4";
+                break;
+            default:
+                Debug.LogError("Invalid stage index");
+                break;
+        }
         StartCoroutine(TransitionToScene(battleSceneName));
     }
 

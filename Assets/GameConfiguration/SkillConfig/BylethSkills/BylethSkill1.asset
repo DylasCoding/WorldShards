@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
   m_Name: BylethSkill1
   m_EditorClassIdentifier: 
-  skillName: 
-  description: 
+  skillName: No Name
+  description: Hmmmm...
   skillEffectPrefab: {fileID: 5465345417220362512, guid: bccb899486104324db99844128c39ba0, type: 3}
   skillAnimation: {fileID: 7400000, guid: 958789c71e634924c8e4bb0af5a6bd9e, type: 2}
+  elementType: 3
   skillImage: {fileID: 1201631068, guid: 3024e097c362f2e489a91a69aa8a5c8e, type: 3}
   SkillActionImage: {fileID: -278757743, guid: a72f1eab5f4962141893d2aa0384d146, type: 3}
   audioClip: {fileID: 8300000, guid: 96c86c78ca7248d4bbd2bda2df35833c, type: 3}
   hitAudioClip: {fileID: 8300000, guid: a9275a5e86a5c1141a02f105c19ef3a0, type: 3}
+  effectAudioClip: {fileID: 0}
   damageIncrease: 10
   damageMultiplier: 0
   hpCost: 0

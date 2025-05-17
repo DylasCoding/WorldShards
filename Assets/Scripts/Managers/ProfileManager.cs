@@ -23,10 +23,16 @@ public class ProfileManager : MonoBehaviour
     [SerializeField] private GameObject _editNamePanel;
     [SerializeField] private TextMeshProUGUI _editNameInputField;
 
+    private void Awake()
+    {
+        AudioManager.Instance.PlayMainMenuMusic();
+    }
+
     private void Start()
     {
         // Initialize the UI with player information
         ShowUIPlayerInfo();
+        // AudioManager.Instance.PlayMainMenuMusic();
     }
 
     public void ShowUIPlayerInfo()

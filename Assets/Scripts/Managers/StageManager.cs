@@ -25,8 +25,11 @@ public class StageManager : MonoBehaviour
     [Header("Scene fade")]
     [SerializeField] private SceneDirection _sceneDirection;
 
-    [Header("Test value")]
-    [SerializeField] private int level = 1; // Test value, replace with actual player level
+    [Header("Enemy Team Manager")]
+    [SerializeField] private TeamManager _enemyTeamManager;
+
+    // [Header("Test value")]
+    // [SerializeField] private int level = 1; // Test value, replace with actual player level
 
 
     private void Start()
@@ -42,21 +45,25 @@ public class StageManager : MonoBehaviour
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
+                _enemyTeamManager.LoadTeamFromJson();
                 break;
             case 2:
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
+                _enemyTeamManager.LoadTeamFromJson();
                 break;
             case 3:
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
+                _enemyTeamManager.LoadTeamFromJson();
                 break;
             case 4:
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
+                _enemyTeamManager.LoadTeamFromJson();
                 break;
             default:
                 Debug.LogWarning("Invalid stage index: " + stageIndex);
@@ -68,13 +75,14 @@ public class StageManager : MonoBehaviour
     {
         PlayerPrefs.SetInt("Stage", stageIndex);
         Debug.Log("Stage index: " + stageIndex);
+        AudioManager.Instance.PlayClickSound();
         _sceneDirection.GoToLineUpScene();
     }
 
     private void ShowCompletedStage()
     {
-        // var profile = LoginController.Instance.PlayerProfile;
-        // int level = profile.Level;
+        var profile = LoginController.Instance.PlayerProfile;
+        int level = profile.Level;
 
         if (level >= 1)
         {
@@ -99,8 +107,8 @@ public class StageManager : MonoBehaviour
 
     private bool CheckCondition(int stageIndex)
     {
-        // var profile = LoginController.Instance.PlayerProfile;
-        // int level = profile.Level;
+        var profile = LoginController.Instance.PlayerProfile;
+        int level = profile.Level;
 
         if (level >= stageIndex)
         {

@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using System;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class ShowInformation : MonoBehaviour
@@ -19,6 +20,11 @@ public class ShowInformation : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _upgradeGemCost;
     [SerializeField] private TextMeshProUGUI _upgradeFeatherCost;
 
+    [Header("Skill icon")]
+    [SerializeField] private Image _skill1Icon;
+    [SerializeField] private Image _skill2Icon;
+    [SerializeField] private Image _skill3Icon;
+
     [Header("UI Reload")]
     [SerializeField] private TextMeshProUGUI _gemText;
     [SerializeField] private TextMeshProUGUI _featherText;
@@ -31,10 +37,16 @@ public class ShowInformation : MonoBehaviour
     private PlayerCharacterEntry _playerCharacterEntry;
     private bool _isUpgrading = false;
 
+    [Header("Show")]
+    [SerializeField] private ShowSkillInfo _showSkillInfoPanel;
+    [SerializeField] private GameObject _listCharacterPanel;
+    private bool _isShowSkillInfoPanel = false;
+
     private void Start()
     {
         _upgradeTree = new UpgradeTree();
-        Debug.Log(_upgradeTree.level);
+        _listCharacterPanel.SetActive(true);
+        _showSkillInfoPanel.gameObject.SetActive(false);
     }
 
     public void UpdateCharacterInfo(PlayerCharacterEntry playerCharacterEntry)
@@ -64,8 +76,27 @@ public class ShowInformation : MonoBehaviour
         _charAttack.text = attack.ToString();
         _charDefense.text = defense.ToString();
 
+        _skill1Icon.sprite = _playerCharacterEntry.characterData.basicAttack.skillImage;
+        _skill2Icon.sprite = _playerCharacterEntry.characterData.specialSkill1.skillImage;
+        _skill3Icon.sprite = _playerCharacterEntry.characterData.specialSkill2.skillImage;
+
         _upgradeGemCost.text = upgradeGemCost.ToString();
         _upgradeFeatherCost.text = upgradeFeatherCost.ToString();
+    }
+
+    public void OnClickShowSkillInfo()
+    {
+        if (_isShowSkillInfoPanel)
+        {
+            _listCharacterPanel.SetActive(true);
+            _showSkillInfoPanel.gameObject.SetActive(false);
+            _isShowSkillInfoPanel = false;
+            return;
+        }
+        _listCharacterPanel.SetActive(false);
+        _showSkillInfoPanel.gameObject.SetActive(true);
+        _showSkillInfoPanel.ShowSkillInfoPanel(_playerCharacterEntry.characterData);
+        _isShowSkillInfoPanel = true;
     }
 
     public void OnClickUpgradeButton()

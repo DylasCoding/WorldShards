@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: PlayerTeam
   m_EditorClassIdentifier: 
   filename: player_team.json
+  teamJsonFilename: PlayerTeam.json
   teamType: 0
   characterDatabase: {fileID: 11400000, guid: ae1bb4adb2030f048b0a3c14bd42ceb1, type: 2}
   team: []

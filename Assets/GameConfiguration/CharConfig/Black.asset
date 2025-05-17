@@ -14,12 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterID: 1
   characterName: Black Knight
+  characterType: 0
+  elementType: 0
   maxHealth: 200
   attackDamage: 9
+  defense: 0
   characterSprite: {fileID: 21300000, guid: 4d7777ca5f802dc448e5d8ef8b96e028, type: 3}
   characterImage: {fileID: -288244859, guid: ab7170d01d1ddb141b5d7d3d1d1d0d4e, type: 3}
   CharacterUltimateImage: {fileID: -1544775193, guid: ab7170d01d1ddb141b5d7d3d1d1d0d4e, type: 3}
   animatorController: {fileID: 9100000, guid: 8e6d36e1d624f094a851d9ee33b5a851, type: 2}
+  incrementalHealth: 10
+  incrementalAttack: 2
+  incrementalDefense: 1
   turnActionAudioClip: {fileID: 0}
   damageAudioClip: {fileID: 0}
   defeatAudioClip: {fileID: 0}

@@ -10,17 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106d4650b7631b545838d63b18168db2, type: 3}
-  m_Name: EnemyTeam1
+  m_Name: EnemyTeam
   m_EditorClassIdentifier: 
-  teamJsonFilename: EnemyTeam1.json
   filename: enemy_team1.json
+  teamJsonFilename: EnemyTeam1.json
+  enemyTeamJson:
+  - EnemyTeam1.json
+  - EnemyTeam2.json
+  - EnemyTeam3.json
+  - EnemyTeam4.json
+  teamType: 1
   characterDatabase: {fileID: 11400000, guid: ae1bb4adb2030f048b0a3c14bd42ceb1, type: 2}
   team:
-  - characterData: {fileID: 11400000, guid: 13160e7f7bdc0bd41bcec71782a28d61, type: 2}
-    level: 2
+  - characterData: {fileID: 11400000, guid: f5b211529f6e63c41b4af6dc19d60a8d, type: 2}
+    level: 10
     currentHealth: 200
     activeBuffs: []
-  - characterData: {fileID: 11400000, guid: d79804c45fe262d408c56e03760088d6, type: 2}
+  - characterData: {fileID: 11400000, guid: 6d222c5569620f24ea707156b00e71fa, type: 2}
+    level: 5
+    currentHealth: 300
+    activeBuffs: []
+  - characterData: {fileID: 11400000, guid: b01db4e123a8fcd418a469179024eacf, type: 2}
     level: 3
-    currentHealth: 190
+    currentHealth: 120
     activeBuffs: []

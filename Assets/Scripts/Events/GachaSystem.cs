@@ -54,6 +54,7 @@ public class GachaSystem : MonoBehaviour
     {
         if (!isRolling)
         {
+            AudioManager.Instance.PlayClickSound();
             StartCoroutine(RollGachaCoroutine());
         }
     }
@@ -96,6 +97,7 @@ public class GachaSystem : MonoBehaviour
                 Image iconImage = item.transform.Find("CharImage").GetComponent<Image>();
                 iconImage.sprite = character.characterImage;
 
+                AudioManager.Instance.PlaySFXOverlay(AudioManager.Instance.audioData.summonSound);
 
                 bool isOwned = profile.ownedCharacters.Exists(c => c.characterID == character.characterID);
 
@@ -126,14 +128,19 @@ public class GachaSystem : MonoBehaviour
                 {
                     item = Instantiate(gemPrefab, slot.position, Quaternion.identity, gachaContainer);
 
+                    AudioManager.Instance.PlaySFXOverlay(AudioManager.Instance.audioData.summonSound);
+
                     //random gem amount
-                    int gemAmount = Random.Range(20, 500);
+                    int gemAmount = Random.Range(20, 50);
                     item.GetComponentInChildren<TextMeshProUGUI>().text = gemAmount.ToString();
                     profile.Gems += gemAmount;
                 }
                 else
                 {
                     item = Instantiate(featherPrefab, slot.position, Quaternion.identity, gachaContainer);
+
+                    AudioManager.Instance.PlaySFXOverlay(AudioManager.Instance.audioData.summonSound);
+
 
                     //random feather amount
                     int featherAmount = Random.Range(20, 100);

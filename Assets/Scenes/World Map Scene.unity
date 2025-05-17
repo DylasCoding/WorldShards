@@ -511,8 +511,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 30, y: -32}
-  m_SizeDelta: {x: 41.4287, y: 47.6627}
+  m_AnchoredPosition: {x: 60, y: -35}
+  m_SizeDelta: {x: 45, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &449523668
 MonoBehaviour:
@@ -2966,7 +2966,7 @@ MonoBehaviour:
   bossStageImage: {fileID: -1710135187, guid: 69e347aa8e88ab64792280e2280b5c90, type: 3}
   _notificationPanel: {fileID: 88820772}
   _sceneDirection: {fileID: 649924544}
-  level: 2
+  _enemyTeamManager: {fileID: 11400000, guid: 3fbb3d247aecdc94bb6ca85ad3660625, type: 2}
 --- !u!4 &1859065999
 Transform:
   m_ObjectHideFlags: 0

@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f3fe22639df6374095ba515f4973014, type: 3}
   m_Name: BlackSkill3
   m_EditorClassIdentifier: 
-  skillName: Tinh Than Chien Binh
-  description: 
+  skillName: Warrior Spirit
+  description: You can never defeat me!
   skillEffectPrefab: {fileID: 827832400115097846, guid: d51aa49676900e646a54b0c62144e34b, type: 3}
   skillAnimation: {fileID: 7400000, guid: 2412f9f2408526d45a8d2f0ad9ce7bee, type: 2}
+  elementType: 0
   skillImage: {fileID: -2108571622, guid: 34559d8a2ea7ed34ab9d68082fdc71bf, type: 3}
   SkillActionImage: {fileID: 153962579, guid: ab7170d01d1ddb141b5d7d3d1d1d0d4e, type: 3}
   audioClip: {fileID: 8300000, guid: c9bf5475d18a6b34ca200a3c63ac791a, type: 3}
   hitAudioClip: {fileID: 0}
+  effectAudioClip: {fileID: 0}
   damageIncrease: 0
   damageMultiplier: 0
   hpCost: 0

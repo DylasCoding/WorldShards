@@ -4276,6 +4276,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamManager: {fileID: 11400000, guid: 57402c2b01a454d4ab80d289527b77ee, type: 2}
+  _enemyTeamManager: []
+  isEnemyTeam: 0
   _characterClassIcons: {fileID: 11400000, guid: 1b7dbef8bf83fe149b33b85c1c18c0c2, type: 2}
   _elementIcons: {fileID: 11400000, guid: 8d3404b33cc306a4db4257d059cdf18e, type: 2}
   characterSprite1: {fileID: 668455786}
@@ -6693,6 +6695,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamManager: {fileID: 11400000, guid: 3fbb3d247aecdc94bb6ca85ad3660625, type: 2}
+  _enemyTeamManager:
+  - {fileID: 11400000, guid: 3fbb3d247aecdc94bb6ca85ad3660625, type: 2}
+  - {fileID: 11400000, guid: 1cf57e97bfe46ab44956d7c939be2e13, type: 2}
+  - {fileID: 11400000, guid: c6bd3c6d953330b43885fbe438377d99, type: 2}
+  - {fileID: 11400000, guid: 158fc5148723c784f918a10e2fd568a2, type: 2}
+  isEnemyTeam: 1
   _characterClassIcons: {fileID: 11400000, guid: 1b7dbef8bf83fe149b33b85c1c18c0c2, type: 2}
   _elementIcons: {fileID: 11400000, guid: 8d3404b33cc306a4db4257d059cdf18e, type: 2}
   characterSprite1: {fileID: 2065314}

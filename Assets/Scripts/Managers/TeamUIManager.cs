@@ -9,6 +9,8 @@ public class TeamDisplayManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private TeamManager teamManager;
+    [SerializeField] private List<TeamManager> _enemyTeamManager = new List<TeamManager>();
+    [SerializeField] private bool isEnemyTeam;
     [SerializeField] private CharacterClassIcons _characterClassIcons;
     [SerializeField] private ElementIcons _elementIcons;
 
@@ -48,7 +50,17 @@ public class TeamDisplayManager : MonoBehaviour
 
     private void Awake()
     {
-        teamManager.LoadTeamFromJson();
+        int stageIndex = PlayerPrefs.GetInt("Stage", 1);
+        if (isEnemyTeam)
+        {
+            teamManager = _enemyTeamManager[stageIndex - 1];
+            teamManager.LoadTeamFromJson();
+        }
+        else
+        {
+            teamManager.LoadTeamFromJson();
+        }
+        Debug.Log($"Stage Index: {stageIndex}");
         // Thêm tất cả SpriteRenderer vào list để dễ quản lý
         characterSprites.Add(characterSprite1);
         characterSprites.Add(characterSprite2);

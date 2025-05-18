@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class UILogin : MonoBehaviour
 {
     [SerializeField] private Button loginButton;
+    [SerializeField] private GameObject waitingPanel;
 
     [SerializeField] private TMP_Text userIdText;
     [SerializeField] private TMP_Text userNameText;
@@ -18,6 +19,7 @@ public class UILogin : MonoBehaviour
 
     private void OnEnable()
     {
+        waitingPanel.SetActive(false);
         loginButton.onClick.AddListener(() => AudioManager.Instance.PlayClickSound());
         loginButton.onClick.AddListener(LoginButtonPressed);
 
@@ -35,6 +37,12 @@ public class UILogin : MonoBehaviour
     private async void LoginButtonPressed()
     {
         await loginController.InitSignIn();
+        showWaitingPanel(true);
+    }
+
+    private void showWaitingPanel(bool show)
+    {
+        waitingPanel.SetActive(show);
     }
 
     private void LoginController_OnSignedIn(PlayerProfile profile)

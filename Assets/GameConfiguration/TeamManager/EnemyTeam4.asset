@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 106d4650b7631b545838d63b18168db2, type: 3}
+  m_Name: EnemyTeam4
+  m_EditorClassIdentifier: 
+  filename: enemy_team1.json
+  teamJsonFilename: EnemyTeam4.json
+  enemyTeamJson:
+  - EnemyTeam1.json
+  - EnemyTeam2.json
+  - EnemyTeam3.json
+  - EnemyTeam4.json
+  teamType: 1
+  characterDatabase: {fileID: 11400000, guid: ae1bb4adb2030f048b0a3c14bd42ceb1, type: 2}
+  team:
+  - characterData: {fileID: 11400000, guid: b01db4e123a8fcd418a469179024eacf, type: 2}
+    level: 9
+    currentHealth: 210
+    activeBuffs: []
+  - characterData: {fileID: 11400000, guid: f5b211529f6e63c41b4af6dc19d60a8d, type: 2}
+    level: 3
+    currentHealth: 230
+    activeBuffs: []

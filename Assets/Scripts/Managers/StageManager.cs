@@ -25,13 +25,6 @@ public class StageManager : MonoBehaviour
     [Header("Scene fade")]
     [SerializeField] private SceneDirection _sceneDirection;
 
-    [Header("Enemy Team Manager")]
-    [SerializeField] private TeamManager _enemyTeamManager;
-
-    // [Header("Test value")]
-    // [SerializeField] private int level = 1; // Test value, replace with actual player level
-
-
     private void Start()
     {
         ShowCompletedStage();
@@ -45,25 +38,21 @@ public class StageManager : MonoBehaviour
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
-                _enemyTeamManager.LoadTeamFromJson();
                 break;
             case 2:
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
-                _enemyTeamManager.LoadTeamFromJson();
                 break;
             case 3:
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
-                _enemyTeamManager.LoadTeamFromJson();
                 break;
             case 4:
                 if (!CheckCondition(stageIndex))
                     break;
                 OpenLineUPScene(stageIndex, _sceneDirection);
-                _enemyTeamManager.LoadTeamFromJson();
                 break;
             default:
                 Debug.LogWarning("Invalid stage index: " + stageIndex);

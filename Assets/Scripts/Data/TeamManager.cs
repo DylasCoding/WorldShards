@@ -301,7 +301,8 @@ public class TeamManager : ScriptableObject
         {
             int stage = PlayerPrefs.GetInt("Stage", 1);
             Debug.Log("Stage: " + stage);
-            string enemyTeamJsonFilename = enemyTeamJson[stage - 1];
+            // string enemyTeamJsonFilename = enemyTeamJson[stage - 1];
+            string enemyTeamJsonFilename = teamJsonFilename;
 
             Debug.Log($"Loaded team with {loadedTeam.Count} members from {enemyTeamJsonFilename}");
             loadedTeam = TeamLoader.EnemyLoadFromJson(enemyTeamJsonFilename, characterDatabase.characters);
@@ -311,13 +312,32 @@ public class TeamManager : ScriptableObject
         {
             team = loadedTeam;
             if (teamType == TeamType.Player)
+            {
                 SaveTeamToJson();
+                Debug.Log("Player team loaded successfully from JSON.");
+            }
+
             InitializeTeam();
-            // Debug.Log("Team loaded successfully from JSON.");
         }
         else
         {
             Debug.LogError("Failed to load team from JSON.");
+        }
+    }
+
+    public void LoadEnemyTeamFromJson(int stageIndex)
+    {
+        string jsonPath = enemyTeamJson[stageIndex - 1];
+        List<CharacterState> loadedTeam = TeamLoader.EnemyLoadFromJson(jsonPath, characterDatabase.characters);
+        if (loadedTeam != null)
+        {
+            team = loadedTeam;
+            InitializeTeam();
+            Debug.Log("Enemy team loaded successfully from JSON.");
+        }
+        else
+        {
+            Debug.LogError("Failed to load enemy team from JSON.");
         }
     }
 

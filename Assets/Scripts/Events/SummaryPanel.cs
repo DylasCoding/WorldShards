@@ -19,8 +19,8 @@ public class SummaryPanel : MonoBehaviour
         _summaryPanel.SetActive(true);
         _title.text = title;
         _level.text = "Level: " + level.ToString();
-        _gems.text = "Gems: +" + gems.ToString();
-        _feather.text = "Feather: +" + feather.ToString();
+        _gems.text = "Gems: " + gems.ToString();
+        _feather.text = "Feather: " + feather.ToString();
     }
     public void ShowLosePanel(string title, int level, int gems, int feather)
     {
@@ -29,8 +29,8 @@ public class SummaryPanel : MonoBehaviour
         _title.text = title;
         _title.color = Color.red;
         _level.text = "Level: " + level.ToString();
-        _gems.text = "Gems: +" + gems.ToString();
-        _feather.text = "Feather: +" + feather.ToString();
+        _gems.text = "Gems: " + gems.ToString();
+        _feather.text = "Feather: " + feather.ToString();
     }
 
     public void HidePanel()

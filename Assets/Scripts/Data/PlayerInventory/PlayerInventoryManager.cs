@@ -20,11 +20,14 @@ public class PlayerInventoryManager : MonoBehaviour
     {
         PlayerCharacterInventory saveData = new();
 
-        foreach (var entry in ownedCharacters)
+        // Lấy dữ liệu từ LoginController.Instance.PlayerProfile.ownedCharacters
+        var profileOwnedCharacters = LoginController.Instance.PlayerProfile.ownedCharacters;
+
+        foreach (var entry in profileOwnedCharacters)
         {
             saveData.ownedCharacters.Add(new OwnedCharacter
             {
-                characterID = entry.characterData.characterID,
+                characterID = entry.characterID,
                 level = entry.level,
                 isUnlocked = entry.isUnlocked
             });

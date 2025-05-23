@@ -133,7 +133,7 @@ public class LoginController : MonoBehaviour
         var savedData = await CloudSaveService.Instance.Data.LoadAsync(keys);
 #pragma warning restore CS0618 
 
-        if (!savedData.ContainsKey("Team"))
+        if (!savedData.ContainsKey("OwnedCharacters"))
         {
             await SetDefaultProfile();
             await SavePlayerProfileToCloud();
@@ -170,8 +170,8 @@ public class LoginController : MonoBehaviour
         {
             playerInfo = AuthenticationService.Instance.PlayerInfo,
             Name = await AuthenticationService.Instance.GetPlayerNameAsync(),
-            Gems = 10,
-            Feathers = 0,
+            Gems = 8000,
+            Feathers = 200,
             Level = 1,
             ownedCharacters = new List<OwnedCharacter>(),
             team = new List<TeamMember>()
@@ -180,6 +180,18 @@ public class LoginController : MonoBehaviour
         // characters default
         playerProfile.ownedCharacters.Add(new OwnedCharacter { characterID = 1, level = 1, isUnlocked = true });
         playerProfile.team.Add(new TeamMember { characterID = 1, level = 1 });
+
+        // Save ownedCharacters to JSON file
+        var ownedWrapper = new PlayerCharacterInventory { ownedCharacters = playerProfile.ownedCharacters };
+        string ownedJson = JsonUtility.ToJson(ownedWrapper);
+        File.WriteAllText(playerInventoryPath, ownedJson);
+
+        // Save team to JSON file
+        var teamWrapper = new TeamJsonWrapper { team = playerProfile.team };
+        string teamJson = JsonUtility.ToJson(teamWrapper);
+        File.WriteAllText(playerTeamPath, teamJson);
+
+        UpdatePlayerProfileWithoutSave(playerProfile);
     }
 
     public async void UpdatePlayerProfile(PlayerProfile updatedProfile)

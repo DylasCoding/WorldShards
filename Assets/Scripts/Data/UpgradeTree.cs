@@ -52,6 +52,24 @@ public class UpgradeTree
             profile.Gems -= GetGemCost(level);
             profile.Feathers -= GetFeatherCost(level);
 
+            Debug.Log("Up 1");
+
+            int charId = playerCharacterEntry.characterData.characterID;
+            int ownedCharIndex = profile.ownedCharacters.FindIndex(c => c.characterID == charId);
+            if (ownedCharIndex != -1)
+            {
+                var ownedChar = profile.ownedCharacters[ownedCharIndex];
+                ownedChar.level = playerCharacterEntry.level;
+                profile.ownedCharacters[ownedCharIndex] = ownedChar;
+            }
+            else
+            {
+                Debug.LogError($"OwnedCharacter with characterID {charId} not found!");
+            }
+
+            Debug.Log("Up 2");
+
+
             await DataSyncManager.SaveGems(profile.Gems);
             await DataSyncManager.SaveFeathers(profile.Feathers);
 

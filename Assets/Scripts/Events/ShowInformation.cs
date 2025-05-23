@@ -121,6 +121,7 @@ public class ShowInformation : MonoBehaviour
 
             if (_playerInventoryManager != null)
             {
+                // _playerInventoryManager.UpdateOwnedCharacters(LoginController.Instance.PlayerProfile.ownedCharacters);
                 _playerInventoryManager.SaveToJson();
                 _notificationManager.ShowNotification(_playerCharacterEntry.characterData.characterName + " Level up!");
                 UpdateBalanceUI(LoginController.Instance.PlayerProfile);

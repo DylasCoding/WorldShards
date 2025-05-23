@@ -50,6 +50,7 @@ public class SceneDirection : MonoBehaviour
     public void GoToWorldMapScene()
     {
         StartCoroutine(TransitionToScene(worldMapSceneName));
+        AudioManager.Instance.PlayMainMenuMusic();
     }
 
     public void GoToLineUpScene()

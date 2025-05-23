@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/logo.jpg" alt="World Shards Logo" width="300"/>
+  <img src="docs/logo.png" alt="World Shards Logo" width="100"/>
 </p>
 
 <h1 align="center">World Shards</h1>
@@ -64,9 +64,6 @@
 
 ### 📷 Screenshots
 
-![Login Screen](docs/LoginScene.png)
-![Character Menu](docs/CharacterMenu.png)
-![Character Skill Details](docs/SkillDetails.png)
 ![Battle Scene](docs/BattleScene.png)
 ![Line Up Scene](docs/LineUpScene.png)
 
@@ -92,6 +89,6 @@
    git clone https://github.com/DylasCoding/WorldShards.git
    ```
 
-## 📥 Download
+## 🔗 Download
 
 [Download Latest APK](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)

@@ -1,4 +1,8 @@
-# 🌍 World Shards
+<p align="center">
+  <img src="docs/logo.jpg" alt="World Shards Logo" width="300"/>
+</p>
+
+<h1 align="center">World Shards</h1>
 
 **World Shards** is a turn-based RPG (T-RPG) game developed in Unity, designed for Android devices. Set in a world shattered by elemental conflict, players summon and build powerful teams of characters to explore stages, battle enemies, and uncover the story behind the fractured realms.
 
@@ -58,8 +62,6 @@
 
 ## 📸 Screenshots & Video
 
-> _(Add relevant images and gameplay demo links below)_
-
 ### 📷 Screenshots
 
 ![Login Screen](docs/LoginScene.png)
@@ -89,3 +91,7 @@
    ```bash
    git clone https://github.com/DylasCoding/WorldShards.git
    ```
+
+## 📥 Download
+
+[Download Latest APK](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)

@@ -183,3 +183,7 @@ _Made with ❤️ by passionate game developers_
 **🌟 May your journey through the World Shards be legendary! 🌟**
 
 </div>
+
+<p align="center">
+  <a href="#"><img src="https://komarev.com/ghpvc/?username=DylasCoding&style=for-the-badge&label=Views:&color=gray"/></a>
+</p>

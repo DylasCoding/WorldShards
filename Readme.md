@@ -8,89 +8,85 @@
 ![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
 
-**🎮 Turn-Based RPG | 📱 Mobile Gaming | ⚡ Elemental Combat**
+**Turn-Based RPG | Mobile Gaming | Elemental Combat**
 
 </div>
 
 ---
 
-## 🌍 **Welcome to a Shattered World**
+## **Welcome to a Shattered World**
 
 **World Shards** is an immersive turn-based RPG adventure crafted in Unity for Android devices. Journey through a realm fractured by ancient elemental wars, where you'll assemble legendary heroes, master strategic combat, and uncover the mysteries behind the world's destruction.
 
-### ⭐ **What Makes World Shards Special?**
+### **What Makes World Shards Special?**
 
-- 🧙‍♂️ **Deep Character Customization** - Build your ultimate team
-- ⚔️ **Strategic Combat System** - Master class and elemental advantages
-- 🎲 **Gacha Collection** - Summon powerful heroes
-- 📱 **Mobile-Optimized** - Designed for seamless mobile gameplay
-
----
-
-## 🔥 **Epic Features**
-
-### 🛡️ **Secure Cloud Authentication**
-
-- 🔐 **Unity Cloud Integration** - Your progress follows you everywhere
-- 👤 **Persistent Identity** - Secure login system with cloud sync
-- 💾 **Cross-Device Continuity** - Never lose your data
-
-### 🎯 **Strategic Character Management**
-
-- 🏛️ **Diverse Classes** - Warriors, SwordMasters, Mages, Archers, Rogues, Healers, Tanks, Monks and more
-- 🌊 **Elemental Mastery** - Wood, Water, Fire, and Neutral elements
-- ⚡ **Skill Combinations** - Each character wields 3 unique abilities
-- 🎭 **Class Warfare** - Exploit weaknesses, amplify strengths
-- 🔥 **Elemental Clashes** - Turn the battlefield to your advantage
-
-### 🚀 **Character Progression System**
-
-- 📈 **Level Advancement** - Grow stronger with every upgrade
-- 💪 **Stat Enhancement** - Customize your heroes' capabilities
-- 🏆 **Team Synergy** - Build the perfect combination
-
-### 🎰 **Summoning & Collection**
-
-- ✨ **Gacha Magic** - Discover new heroes
-- 📚 **Hero Collection** - Build your roster of champions
-- 🎁 **Surprise Encounters** - New allies await your call
-
-### ⚔️ **Tactical Combat Experience**
-
-- 🎯 **Strategic Lineup** - Position matters in battle
-- 🧩 **Team Composition** - Balance offense, defense, and support
-- 🏅 **Victory Conditions** - Multiple paths to triumph
-
-### 🗺️ **Epic Journey**
-
-- 🌄 **Story Campaigns** - Unravel the world's mysteries
-- 🔓 **Progressive Unlocks** - New challenges await
-- 🎢 **Escalating Difficulty** - Test your strategic mastery
-
-### 🎵 **Immersive Audio Experience**
-
-- 🎼 **Dynamic Soundtrack** - Music that adapts to your journey
-- 🔊 **Spatial Sound Effects** - Every spell and strike comes alive
-- 🎧 **Centralized Audio Control** - Perfect balance for mobile gaming
+- **Deep Character Customization** - Build your ultimate team
+- **Strategic Combat System** - Master class and elemental advantages
+- **Gacha Collection** - Summon powerful heroes
+- **Mobile-Optimized** - Designed for seamless mobile gameplay
 
 ---
 
-## 📱 **Mobile-First Design**
+## **Epic Features**
 
-- 🎨 **Intuitive Touch Controls** - Designed for fingers, not cursors
-- 📲 **Responsive Interface** - Optimized for all Android devices
-- ⚡ **Performance Optimized** - Smooth gameplay on any device
-- 🔋 **Battery Efficient** - Long gaming sessions without worry
+### **Secure Cloud Authentication**
+
+- **Unity Cloud Integration** - Your progress follows you everywhere
+- **Persistent Identity** - Secure login system with cloud sync
+- **Cross-Device Continuity** - Never lose your data
+
+### **Strategic Character Management**
+
+- **Diverse Classes** - Warriors, SwordMasters, Mages, Archers, Rogues, Healers, Tanks, Monks and more
+- **Elemental Mastery** - Wood, Water, Fire, and Neutral elements
+- **Skill Combinations** - Each character wields 3 unique abilities
+- **Class Warfare** - Exploit weaknesses, amplify strengths
+- **Elemental Clashes** - Turn the battlefield to your advantage
+
+### **Character Progression System**
+
+- **Level Advancement** - Grow stronger with every upgrade
+- **Stat Enhancement** - Customize your heroes' capabilities
+- **Team Synergy** - Build the perfect combination
+
+### **Summoning & Collection**
+
+- **Gacha Magic** - Discover new heroes
+- **Hero Collection** - Build your roster of champions
+- **Surprise Encounters** - New allies await your call
+
+### **Tactical Combat Experience**
+
+- **Strategic Lineup** - Position matters in battle
+- **Team Composition** - Balance offense, defense, and support
+- **Victory Conditions** - Multiple paths to triumph
+
+### **Epic Journey**
+
+- **Story Campaigns** - Unravel the world's mysteries
+- **Progressive Unlocks** - New challenges await
+- **Escalating Difficulty** - Test your strategic mastery
+
+### **Immersive Audio Experience**
+
+- **Dynamic Soundtrack** - Music that adapts to your journey
+- **Spatial Sound Effects** - Every spell and strike comes alive
+- **Centralized Audio Control** - Perfect balance for mobile gaming
 
 ---
 
-## 🎬 **Visual Showcase**
+## **Mobile-First Design**
+
+- **Intuitive Touch Controls** - Designed for fingers, not cursors
+---
+
+## **Visual Showcase**
 
 ### 📸 **Game Screenshots**
 
 <div align="center">
 
-|          ⚔️ **Epic Battles**          |         👥 **Team Formation**          |
+|            **Epic Battles**           |           **Team Formation**           |
 | :-----------------------------------: | :------------------------------------: |
 | ![Battle Scene](docs/BattleScene.png) | ![Line Up Scene](docs/LineUpScene.png) |
 |     _Strategic turn-based combat_     |      _Customize your dream team_       |
@@ -101,7 +97,7 @@
 
 <div align="center">
 
-[![🎮 Watch Epic Gameplay](https://img.shields.io/badge/▶️_WATCH_DEMO-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
+[![Watch Epic Gameplay](https://img.shields.io/badge/▶️_WATCH_DEMO-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
 
 _Experience World Shards in action!_
 
@@ -109,30 +105,30 @@ _Experience World Shards in action!_
 
 ---
 
-## 🛠️ **Built With Cutting-Edge Tech**
+## **Built With Cutting-Edge Tech**
 
 <div align="center">
 
-|     Technology      |         Purpose          |   Version   |
-| :-----------------: | :----------------------: | :---------: |
-| 🎮 **Unity Engine** |  Core Game Development   | 2022.3.35f1 |
-| ☁️ **Unity Cloud**  | Authentication & Backend |   Latest    |
-| 🤖 **Android SDK**  |     Mobile Platform      |   API 21+   |
-| 💻 **C# Language**  |   Game Logic & Systems   |    .NET     |
+|     Technology   |         Purpose          |   Version   |
+| :--------------: | :----------------------: | :---------: |
+| **Unity Engine** |  Core Game Development   | 2022.3.35f1 |
+| **Unity Cloud**  | Authentication & Backend |   Latest    |
+| **Android SDK**  |     Mobile Platform      |   API 21+   |
+| **C# Language**  |   Game Logic & Systems   |    .NET     |
 
 </div>
 
 ---
 
-## 🚀 **Get Started**
+## **Get Started**
 
-### 📥 **Quick Download**
+### **Quick Download**
 
 <div align="center">
 
 [![📱 Download APK](https://img.shields.io/badge/📱_DOWNLOAD_APK-4CAF50?style=for-the-badge&logo=android&logoColor=white)](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)
 
-_Get the latest version and start your adventure!_
+_Get the latest version!_
 
 </div>
 
@@ -141,33 +137,14 @@ _Get the latest version and start your adventure!_
 ```bash
 # Clone the legendary repository
 git clone https://github.com/DylasCoding/WorldShards.git
-
-# Open in Unity and let the magic begin! ✨
 ```
 
----
-
-## 🎯 **Why Play World Shards?**
+## **Join the Adventure**
 
 <div align="center">
 
-| 🎲 **For Strategy Lovers** |  📱 **For Mobile Gamers**   |    🎨 **For RPG Fans**     |
-| :------------------------: | :-------------------------: | :------------------------: |
-|    Deep tactical combat    | Optimized mobile experience | Rich character progression |
-| Class & element synergies  |  Touch-friendly interface   |  Immersive world-building  |
-|  Strategic team building   |   Play anywhere, anytime    |    Epic story campaigns    |
 
-</div>
-
----
-
-## 🌟 **Join the Adventure**
-
-<div align="center">
-
-**🎮 Ready to enter the shattered world?**
-
-_Download World Shards today and discover what legends are made of!_
+_Download World Shards today and discover_
 
 [![⭐ Star This Project](https://img.shields.io/badge/⭐_STAR_PROJECT-FFD700?style=for-the-badge&logo=github&logoColor=black)](https://github.com/DylasCoding/WorldShards)
 [![🐛 Report Issues](https://img.shields.io/badge/🐛_REPORT_BUGS-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DylasCoding/WorldShards/issues)
@@ -178,9 +155,7 @@ _Download World Shards today and discover what legends are made of!_
 
 <div align="center">
 
-_Made with ❤️ by passionate game developers_
-
-**🌟 May your journey through the World Shards be legendary! 🌟**
+_Views_
 
 </div>
 

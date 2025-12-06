@@ -1,7 +1,5 @@
 # World Shards 
 
-> _Forge your destiny in a world torn apart by elemental chaos_
-
 <div align="center">
 
 ![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
@@ -99,8 +97,6 @@
 
 [![Watch Epic Gameplay](https://img.shields.io/badge/_WATCH_DEMO-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
 
-_Experience World Shards in action!_
-
 </div>
 
 ---
@@ -128,8 +124,6 @@ _Experience World Shards in action!_
 
 [![Download APK](https://img.shields.io/badge/_DOWNLOAD_APK-4CAF50?style=for-the-badge&logo=android&logoColor=white)](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)
 
-_Get the latest version!_
-
 </div>
 
 ### **Developer Setup**
@@ -143,8 +137,6 @@ git clone https://github.com/DylasCoding/WorldShards.git
 
 <div align="center">
 
-
-_Download World Shards today and discover_
 
 [![⭐ Star This Project](https://img.shields.io/badge/⭐_STAR_PROJECT-FFD700?style=for-the-badge&logo=github&logoColor=black)](https://github.com/DylasCoding/WorldShards)
 [![🐛 Report Issues](https://img.shields.io/badge/🐛_REPORT_BUGS-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DylasCoding/WorldShards/issues)

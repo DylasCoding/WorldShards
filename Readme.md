@@ -82,7 +82,7 @@
 
 ## **Visual Showcase**
 
-### 📸 **Game Screenshots**
+### **Game Screenshots**
 
 <div align="center">
 

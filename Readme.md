@@ -1,4 +1,4 @@
-# 🌟 World Shards ⚔️
+# World Shards 
 
 > _Forge your destiny in a world torn apart by elemental chaos_
 
@@ -93,11 +93,11 @@
 
 </div>
 
-### 🎥 **Gameplay Demo**
+### **Gameplay Demo**
 
 <div align="center">
 
-[![Watch Epic Gameplay](https://img.shields.io/badge/▶️_WATCH_DEMO-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
+[![Watch Epic Gameplay](https://img.shields.io/badge/_WATCH_DEMO-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
 
 _Experience World Shards in action!_
 
@@ -126,13 +126,13 @@ _Experience World Shards in action!_
 
 <div align="center">
 
-[![📱 Download APK](https://img.shields.io/badge/📱_DOWNLOAD_APK-4CAF50?style=for-the-badge&logo=android&logoColor=white)](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)
+[![Download APK](https://img.shields.io/badge/_DOWNLOAD_APK-4CAF50?style=for-the-badge&logo=android&logoColor=white)](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)
 
 _Get the latest version!_
 
 </div>
 
-### 🔧 **Developer Setup**
+### **Developer Setup**
 
 ```bash
 # Clone the legendary repository

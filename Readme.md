@@ -87,7 +87,7 @@
 |            **Epic Battles**           |           **Team Formation**           |
 | :-----------------------------------: | :------------------------------------: |
 | ![Battle Scene](docs/BattleScene.png) | ![Line Up Scene](docs/LineUpScene.png) |
-|     _Strategic turn-based combat_     |      _Customize your dream team_       |
+|     _Strategic turn-based combat_     |      _Customize your team_       |
 
 </div>
 

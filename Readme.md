@@ -1,156 +1,102 @@
-# World Shards 
+# World Shards
 
-<div align="center">
+![Unity](https://img.shields.io/badge/Unity-2022.3.35f1-black?style=flat-square&logo=unity)
+![C#](https://img.shields.io/badge/C%23-.NET-black?style=flat-square&logo=c-sharp)
+![Android](https://img.shields.io/badge/Android-API%2021+-black?style=flat-square&logo=android)
 
-![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
-![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+A turn-based RPG developed in Unity for Android, featuring strategic combat with elemental and class-based mechanics.
 
-**Turn-Based RPG | Mobile Gaming | Elemental Combat**
+## Overview
 
-</div>
+World Shards is a mobile RPG that implements a turn-based combat system with character progression and gacha mechanics. The game uses Unity Cloud Services for authentication and persistent data storage across devices.
 
----
+## Core Systems
 
-## **Welcome to a Shattered World**
+### Combat System
+- **Turn-based mechanics** with action queue and elemental advantage resolution
+- **Class-based interactions** - Warriors, Mages, Archers, Rogues, Healers, Tanks, Monks with defined matchups
+- **Elemental system** - Wood, Water, Fire, Neutral elements affecting damage calculations and ability effects
+- **Skill mechanics** - Each character has 3 unique skills with individual cooldowns and effects
 
-**World Shards** is an immersive turn-based RPG adventure crafted in Unity for Android devices. Journey through a realm fractured by ancient elemental wars, where you'll assemble legendary heroes, master strategic combat, and uncover the mysteries behind the world's destruction.
+### Character Management
+- Hero roster with level progression and stat customization
+- Gacha summoning system for acquiring new characters
+- Team composition with 5-character lineup
+- Persistent character state via cloud save
 
-### **What Makes World Shards Special?**
+### Progression
+- Campaign-based story with progressive difficulty
+- Character leveling and stat enhancement
+- Team synergy balancing (offense/defense/support roles)
 
-- **Deep Character Customization** - Build your ultimate team
-- **Strategic Combat System** - Master class and elemental advantages
-- **Gacha Collection** - Summon powerful heroes
-- **Mobile-Optimized** - Designed for seamless mobile gameplay
+## Technical Implementation
 
----
+| Component | Details |
+|-----------|---------|
+| **Game Engine** | Unity 2022.3.35f1 |
+| **Language** | C# |
+| **Backend** | Unity Cloud Services (authentication + save data) |
+| **Platform** | Android (API 21+) |
+| **UI** | Mobile-optimized touch controls |
+| **Audio** | Adaptive soundtrack with spatial sound effects |
 
-## **Epic Features**
+### Key Features Implemented
+- Cloud authentication with persistent player identity
+- Cross-device save synchronization
+- Performance optimization for mobile devices
+- Dynamic audio system adapted to gameplay state
+- Responsive mobile UI
 
-### **Secure Cloud Authentication**
+## Screenshots
 
-- **Unity Cloud Integration** - Your progress follows you everywhere
-- **Persistent Identity** - Secure login system with cloud sync
-- **Cross-Device Continuity** - Never lose your data
-
-### **Strategic Character Management**
-
-- **Diverse Classes** - Warriors, SwordMasters, Mages, Archers, Rogues, Healers, Tanks, Monks and more
-- **Elemental Mastery** - Wood, Water, Fire, and Neutral elements
-- **Skill Combinations** - Each character wields 3 unique abilities
-- **Class Warfare** - Exploit weaknesses, amplify strengths
-- **Elemental Clashes** - Turn the battlefield to your advantage
-
-### **Character Progression System**
-
-- **Level Advancement** - Grow stronger with every upgrade
-- **Stat Enhancement** - Customize your heroes' capabilities
-- **Team Synergy** - Build the perfect combination
-
-### **Summoning & Collection**
-
-- **Gacha Magic** - Discover new heroes
-- **Hero Collection** - Build your roster of champions
-- **Surprise Encounters** - New allies await your call
-
-### **Tactical Combat Experience**
-
-- **Strategic Lineup** - Position matters in battle
-- **Team Composition** - Balance offense, defense, and support
-- **Victory Conditions** - Multiple paths to triumph
-
-### **Epic Journey**
-
-- **Story Campaigns** - Unravel the world's mysteries
-- **Progressive Unlocks** - New challenges await
-- **Escalating Difficulty** - Test your strategic mastery
-
-### **Immersive Audio Experience**
-
-- **Dynamic Soundtrack** - Music that adapts to your journey
-- **Spatial Sound Effects** - Every spell and strike comes alive
-- **Centralized Audio Control** - Perfect balance for mobile gaming
-
----
-
-## **Mobile-First Design**
-
-- **Intuitive Touch Controls** - Designed for fingers, not cursors
----
-
-## **Visual Showcase**
-
-### **Game Screenshots**
-
-<div align="center">
-
-|            **Epic Battles**           |           **Team Formation**           |
-| :-----------------------------------: | :------------------------------------: |
+| Battle System | Team Lineup |
+|:---:|:---:|
 | ![Battle Scene](docs/BattleScene.png) | ![Line Up Scene](docs/LineUpScene.png) |
-|     _Strategic turn-based combat_     |      _Customize your team_       |
+| Turn-based combat with elemental effects | Strategic team composition interface |
 
-</div>
+## Demo
 
-### **Gameplay Demo**
+[![Watch Gameplay Demo](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
 
-<div align="center">
+## Setup
 
-[![Watch Epic Gameplay](https://img.shields.io/badge/_WATCH_DEMO-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
+### Requirements
+- Unity 2022.3.35f1+
+- Android SDK (API 21+)
+- C# 9.0+
 
-</div>
-
----
-
-## **Built With Cutting-Edge Tech**
-
-<div align="center">
-
-|     Technology   |         Purpose          |   Version   |
-| :--------------: | :----------------------: | :---------: |
-| **Unity Engine** |  Core Game Development   | 2022.3.35f1 |
-| **Unity Cloud**  | Authentication & Backend |   Latest    |
-| **Android SDK**  |     Mobile Platform      |   API 21+   |
-| **C# Language**  |   Game Logic & Systems   |    .NET     |
-
-</div>
-
----
-
-## **Get Started**
-
-### **Quick Download**
-
-<div align="center">
-
-[![Download APK](https://img.shields.io/badge/_DOWNLOAD_APK-4CAF50?style=for-the-badge&logo=android&logoColor=white)](https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing)
-
-</div>
-
-### **Developer Setup**
-
+### Installation
 ```bash
-# Clone the legendary repository
 git clone https://github.com/DylasCoding/WorldShards.git
 ```
 
-## **Join the Adventure**
+Open the project in Unity and build for Android.
 
-<div align="center">
+### Build
+```bash
+APK available at
+https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing
+```
 
+## Project Structure
 
-[![⭐ Star This Project](https://img.shields.io/badge/⭐_STAR_PROJECT-FFD700?style=for-the-badge&logo=github&logoColor=black)](https://github.com/DylasCoding/WorldShards)
-[![🐛 Report Issues](https://img.shields.io/badge/🐛_REPORT_BUGS-FF6B6B?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DylasCoding/WorldShards/issues)
+```
+WorldShards/
+├── Assets/
+│   ├── Scripts/
+│   │   ├── Combat/
+│   │   ├── Characters/
+│   │   ├── Progression/
+│   │   └── Cloud/
+│   ├── Scenes/
+│   ├── Resources/
+│   └── UI/
+├── ProjectSettings/
+└── README.md
+```
 
-</div>
+## Links
 
----
-
-<div align="center">
-
-_Views_
-
-</div>
-
-<p align="center">
-  <a href="#"><img src="https://komarev.com/ghpvc/?username=DylasCoding&style=for-the-badge&label=Views:&color=gray"/></a>
-</p>
+- [GitHub Repository](https://github.com/DylasCoding/WorldShards)
+- [Issue Tracker](https://github.com/DylasCoding/WorldShards/issues)
+- [Demo Video](https://www.youtube.com/watch?v=XgiOgB1fSRA)

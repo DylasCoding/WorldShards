@@ -78,23 +78,6 @@ APK available at
 https://drive.google.com/drive/folders/1yEmvUFmDVFLH-hOxPSviUjv1IoZnIZHb?usp=sharing
 ```
 
-## Project Structure
-
-```
-WorldShards/
-├── Assets/
-│   ├── Scripts/
-│   │   ├── Combat/
-│   │   ├── Characters/
-│   │   ├── Progression/
-│   │   └── Cloud/
-│   ├── Scenes/
-│   ├── Resources/
-│   └── UI/
-├── ProjectSettings/
-└── README.md
-```
-
 ## Links
 
 - [GitHub Repository](https://github.com/DylasCoding/WorldShards)

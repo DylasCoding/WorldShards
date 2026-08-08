@@ -56,7 +56,7 @@ World Shards is a mobile RPG that implements a turn-based combat system with cha
 
 ## Demo
 
-[![Watch Gameplay Demo](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=XgiOgB1fSRA)
+[![Watch Gameplay Demo](https://img.shields.io/badge/YouTube-FF0000?style=flat-square&logo=youtube&logoColor=white)](https://youtu.be/c0y-Zopl5LU)
 
 ## Setup
 
